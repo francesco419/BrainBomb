@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# BrainBomb
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    ## 마인드맵 제작 웹페이지
 
-## Available Scripts
+        ### 구분 및 기획
 
-In the project directory, you can run:
+            #### 제작 계획
 
-### `npm start`
+            - 3페이지 이내의 쉽게 마인드맵을 그릴수 있는 웹페이지 제작.
+            - 로그인 및 인증 필요없이 단순 서비스 제공 (정적페이지)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+            #### 기획 의도
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+            - 새로운 툴 및 기술 학습
+            - 마인드맵을 그리는 웹을 찾던 도중 매우 간단하고 정확히 마인드맵의 기능만 하는 웹페이지가 없다고 생각됨으로 간단 명료한 서비스제작의도
 
-### `npm test`
+            #### 기술 스택
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+            - 사용 기술 : React, TypeScript, Redux, SCSS
+            - 새로 사용 기술 :  Lodash, Styled-Component
 
-### `npm run build`
+        ### 제작 룰
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+            #### 코드작성 룰
+            #### 디자인 룰
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        ### 스캐치
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+            #### 페이지 1
+            #### 페이지 2
+            #### 페이지 3
