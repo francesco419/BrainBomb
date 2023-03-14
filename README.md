@@ -19,19 +19,31 @@
 - 사용 기술 : React, TypeScript, Redux, SCSS
 - 새로 사용 기술 : Lodash, Styled-Component
 
-### 제작 룰
+### 제작
 
-#### 코드작성 룰
+#### 예정 기능
 
-#### 디자인 룰
+- 일반적인 마인드 맵을 제작하지만, 다른 복잡한 절차 필요없이 사용가능.
+- 이미지 및 pdf 등의 포멧변화를 통해 사용자가 원하는 형식으로 다운로드 가능.
+- 마인드맵의 format에 여러가지 선택지를 만들어 사용자가 원하는 방식으로 제작.
+- 마인드맵에서 각 element의 세부설정 가능하도록 함(색상, 형태, 선, 순서 등등);
 
 ### 스캐치
 
 #### 페이지 1
 
+- 마인드맵 제작 페이지
+  ![brainbomb_first](./src/assets/README/brainbomb_first.png)
+
 #### 페이지 2
 
+- 마인드맵 사용법 페이지
+  ![brainbomb_second](./src/assets/README/brainbomb_second.png)
+
 #### 페이지 3
+
+- 마인드맵 contact 페이지
+  ![brainbomb_third](./src/assets/README/brainbomb_third.png)
 
 # Work Through
 
@@ -42,3 +54,7 @@
 230312
 
 - 구체적 계획 및 기능 구상
+
+230312
+
+- 헤더 및 재사용 컴포넌트 제작
