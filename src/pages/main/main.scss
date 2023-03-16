@@ -1,0 +1,13 @@
+@import '../../style.scss';
+
+.section {
+  margin: 150px 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 100px;
+  &_part {
+    @include mx-flexbox();
+    height: 700px;
+    background-color: #c0c0c0;
+  }
+}

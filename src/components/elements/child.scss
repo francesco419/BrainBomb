@@ -1,0 +1,37 @@
+@import '../../style.scss';
+
+.child {
+  position: relative;
+  @include mx-flexbox();
+  @include mx-round(50%);
+  border: 1px solid;
+  @include mx-size(0, 50px, 50px);
+  padding: 10px;
+  &_input {
+    width: inherit;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid;
+    text-align: center;
+    &:focus {
+      outline: none;
+    }
+  }
+  &_setButton {
+    position: absolute;
+    @include mx-size(0, 20px, 20px);
+    @include mx-round(50%);
+    border: 1px solid;
+    background-color: #c0c0c0;
+  }
+}
+
+.addButton {
+  top: 0;
+  right: 0;
+}
+
+.deleteButton {
+  bottom: 0;
+  right: 0;
+}

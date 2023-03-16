@@ -18,7 +18,7 @@ body {
 }
 
 a {
-  color: var(--black-white);
+  color: #000;
   font-family: 'Pretendard-Regular';
   font-weight: 500;
   text-decoration: none;
@@ -35,20 +35,4 @@ p,
 pre {
   font-family: 'Pretendard-Regular';
   font-weight: 600;
-}
-
-html[data-theme='light'] {
-  --black-white: #{$black};
-  --white-black: #{$white};
-  --color-background: #{$backgroud};
-  --color-element: #{#fff};
-  --size0: 0;
-}
-
-html[data-theme='dark'] {
-  --black-white: #{$white};
-  --white-black: #{$black};
-  --color-background: #323232;
-  --color-element: #{#424242};
-  --size0: 1;
 }
