@@ -1,7 +1,7 @@
 @import '../../style.scss';
 
-.child {
-  position: relative;
+.kid {
+  position: absolute;
   @include mx-flexbox();
   @include mx-round(50%);
   border: 1px solid;

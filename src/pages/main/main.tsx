@@ -4,6 +4,7 @@ import Header from '../../components/header/header';
 import './main.scss';
 import Child from '../../components/elements/child';
 import Pallet from './pallet';
+import Alarm from '../../components/alarm/alarm';
 
 export default function Main() {
   const nav = useNavigate();
@@ -13,6 +14,7 @@ export default function Main() {
       <section className='section'>
         <Pallet />
       </section>
+      <Alarm />
       <footer>footer</footer>
     </div>
   );

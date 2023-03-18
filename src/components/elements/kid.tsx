@@ -1,15 +1,13 @@
-import './child.scss';
-import { useState, useRef, useContext } from 'react';
+import './kid.scss';
+import { useState, useRef } from 'react';
 import _ from 'lodash';
-import Kid from './kid';
-import { location } from '../../functions/location';
 
 interface Name {
   name?: string;
+  location: string[];
 }
 
-export default function Child({ name = 'child' }: Name) {
-  const [mindNode, setMindNode] = useState<string[]>(['1', '2']);
+export default function Kid({ name = 'child', location }: Name) {
   const [childText, setChildText] = useState<string>(name);
   const [change, setChange] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,20 +34,23 @@ export default function Child({ name = 'child' }: Name) {
     }
   };
 
-  const kidLocation = location(mindNode);
+  let styles = {
+    top: location[0] + 'px',
+    left: location[1] + 'px'
+  };
 
   return (
-    <div className='child'>
+    <div className='kid' style={styles}>
       <button
         type='button'
-        className='child_setButton addButton'
+        className='kid_setButton addButton'
         onClick={() => console.log('add')}
       >
         +
       </button>
       <button
         type='button'
-        className='child_setButton deleteButton'
+        className='kid_setButton deleteButton'
         onClick={() => console.log('delete')}
       >
         -
@@ -57,7 +58,7 @@ export default function Child({ name = 'child' }: Name) {
       {change ? (
         <input
           ref={inputRef}
-          className='child_input'
+          className='kid_input'
           type='text'
           autoFocus
           onChange={(e) => onChangeHandler(e)}
@@ -67,11 +68,6 @@ export default function Child({ name = 'child' }: Name) {
       ) : (
         <p onClick={changeText}>{childText}</p>
       )}
-      {mindNode.map((data, index) => {
-        if (kidLocation) {
-          return <Kid name={data} location={kidLocation[index]} />;
-        }
-      })}
     </div>
   );
 }

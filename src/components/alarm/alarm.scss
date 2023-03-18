@@ -1,0 +1,26 @@
+@import '../../style.scss';
+
+.alarm {
+  position: fixed;
+  bottom: -50px;
+  right: 0;
+  @include mx-flexbox();
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  background-color: #f1a708;
+  z-index: 99;
+  animation: show 1s linear;
+}
+
+@keyframes show {
+  0% {
+    bottom: -50px;
+  }
+  50% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -50px;
+  }
+}
