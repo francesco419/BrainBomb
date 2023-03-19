@@ -1,6 +1,7 @@
 import './kid.scss';
 import { useState, useRef } from 'react';
 import _ from 'lodash';
+import { locationMap } from '../../functions/location';
 
 interface Name {
   name?: string;
@@ -8,6 +9,7 @@ interface Name {
 }
 
 export default function Kid({ name = 'child', location }: Name) {
+  const [mindNode, setMindNode] = useState<string[]>([]);
   const [childText, setChildText] = useState<string>(name);
   const [change, setChange] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,19 +41,25 @@ export default function Kid({ name = 'child', location }: Name) {
     left: location[1] + 'px'
   };
 
+  const kidLocation = locationMap(mindNode);
+
   return (
     <div className='kid' style={styles}>
       <button
         type='button'
-        className='kid_setButton addButton'
-        onClick={() => console.log('add')}
+        className='child_setButton addButton'
+        onClick={() => {
+          setMindNode((mindNode) => [...mindNode, 'child']);
+        }}
       >
         +
       </button>
       <button
         type='button'
-        className='kid_setButton deleteButton'
-        onClick={() => console.log('delete')}
+        className='child_setButton deleteButton'
+        onClick={() =>
+          setMindNode((mindNode) => [...mindNode.slice(0, mindNode.length - 1)])
+        }
       >
         -
       </button>
@@ -68,6 +76,16 @@ export default function Kid({ name = 'child', location }: Name) {
       ) : (
         <p onClick={changeText}>{childText}</p>
       )}
+      {mindNode.map((data, index) => {
+        if (kidLocation) {
+          return (
+            <>
+              <Kid name={data} location={kidLocation[index]} />
+              <span className='spanl'></span>
+            </>
+          );
+        }
+      })}
     </div>
   );
 }
