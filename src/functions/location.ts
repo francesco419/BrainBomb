@@ -22,3 +22,21 @@ export const locationMap = (array: string[]) => {
       ];
   }
 };
+
+export const thirdLocation = (array: string[]) => {
+  switch (array.length) {
+    case 1:
+      return [['-10', '-100']];
+    case 2:
+      return [
+        ['-10', '-100'],
+        ['-10', '70']
+      ];
+    case 3:
+      return [
+        ['-10', '-100'],
+        ['-10', '70'],
+        ['-90', '-10']
+      ];
+  }
+};
