@@ -6,8 +6,17 @@
   width: 100%;
   padding: 0 100px;
   &_part {
+    position: relative;
     @include mx-flexbox();
     height: 700px;
     background-color: #c0c0c0;
+  }
+  &_over {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+  }
+  &_drag {
+    position: absolute;
   }
 }
