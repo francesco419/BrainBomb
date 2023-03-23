@@ -1,73 +1,79 @@
-import Child from '../../components/elements/child';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import _ from 'lodash';
+import Min from '../../components/elements/mapElement';
+import { pathType } from '../../redux/Slices/pathSlice';
+
+export interface MinType {
+  name: string;
+  index: number;
+  change: any;
+  deletit: any;
+}
 
 export default function Pallet() {
   const boxRef = useRef<HTMLDivElement>(null);
-  const eleRef = useRef<HTMLDivElement>(null);
-  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  //const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [element, setElement] = useState<string[]>(['HEAD']);
+  const [count, setCount] = useState<number>(0);
 
-  const debouceFunc = (func: () => void) => {
-    _.debounce(func, 500);
+  useEffect(() => {
+    line();
+  }, []);
+
+  const changeElement = (index: number, name: string) => {
+    let temp = element;
+    temp[index] = name;
+    setElement([...temp]);
   };
 
-  function Min() {
-    const [location, setLocation] = useState({ x: 0, y: 0 });
-    const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
-      const blankCanvas: any = document.createElement('canvas');
-      blankCanvas.classList.add('canvas');
-      e.dataTransfer?.setDragImage(blankCanvas, 0, 0);
-      document.body?.appendChild(blankCanvas); // 투명 캔버스를 생성하여 글로벌 아이콘 제거
-      e.dataTransfer.effectAllowed = 'move';
-    };
+  const changeDelete = (name: string) => {
+    let arr = element;
+    _.remove(arr, (data) => data === name);
+    setElement([...arr]);
+  };
 
-    const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
-      const target = e.target as HTMLDivElement;
-      const pos = { ...location };
-      pos['x'] = e.clientX - 100;
-      pos['y'] = e.clientY - 150;
-      setLocation(pos);
-    };
-
-    const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
-      e.preventDefault();
-    };
-
-    const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-      const canvases = document.getElementsByClassName('canvas');
-      for (let i = 0; i < canvases.length; i++) {
-        let canvas = canvases[i];
-        canvas.parentNode?.removeChild(canvas);
+  const line = () => {
+    const ctx = canvasRef.current?.getContext('2d');
+    if (ctx) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      if (ctx !== undefined && ctx !== null) {
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 1;
       }
-      // 캔버스로 인해 발생한 스크롤 방지 어트리뷰트 제거
-      document.body.removeAttribute('style');
-    };
-    return (
-      <div
-        draggable
-        className='section_drag'
-        ref={eleRef}
-        onDragStart={(e) => dragStartHandler(e)}
-        onDrag={(e) => dragHandler(e)}
-        onDragOver={(e) => dragOverHandler(e)}
-        onDragEnd={(e) => dragEndHandler(e)}
-        style={{ top: location.y + 'px', left: location.x + 'px' }}
-      >
-        drag me
-      </div>
-    );
-  }
+      ctx.lineTo(100, 20);
+      ctx.stroke();
+    }
+  };
 
   return (
     <div className='section_part' ref={boxRef}>
-      <Min />
-      <Min />
-      {/* <div
-        className='section_over'
-        onDragEnter={() => console.log('drag enter here')}
-        onDragOver={() => console.log('drag is here')}
-        onDragLeave={() => console.log('drag leave here')}
-      ></div> */}
+      <canvas width={1200} height={700} ref={canvasRef} id='mycanvas'></canvas>
+      <div className='section_dragSection'>
+        {element.map((data, index) => {
+          return (
+            <Min
+              name={data}
+              index={index}
+              change={changeElement}
+              deletit={changeDelete}
+            />
+          );
+        })}
+      </div>
+      <div className='section_setting'>
+        <button
+          className='section_setButton'
+          onClick={() => {
+            setElement([...element, `null${count}`]);
+            setCount((count) => count + 1);
+          }}
+        >
+          add +
+        </button>
+        <button className='section_setButton'>save</button>
+      </div>
     </div>
   );
 }
