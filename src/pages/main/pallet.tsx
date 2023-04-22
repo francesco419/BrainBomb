@@ -8,13 +8,14 @@ export interface MinType {
   index: number;
   change: any;
   deletit: any;
+  id: string;
 }
 
 export default function Pallet() {
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   //const [cursor, setCursor] = useState({ x: 0, y: 0 });
-  const [element, setElement] = useState<string[]>(['HEAD']);
+  const [element, setElement] = useState<string[]>(['HEAD', 'SUB']);
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
@@ -34,10 +35,13 @@ export default function Pallet() {
   };
 
   const line = () => {
+    const doc = document.getElementById('child_0');
+    const strArray = doc?.style.cssText.split(' ');
+    const temp = _.map(strArray, (data) => _.replace(data, 'px;', ''));
     const ctx = canvasRef.current?.getContext('2d');
     if (ctx) {
       ctx.beginPath();
-      ctx.moveTo(0, 0);
+      ctx.moveTo(parseInt(temp[3]), parseInt(temp[1]));
       if (ctx !== undefined && ctx !== null) {
         ctx.strokeStyle = 'red';
         ctx.lineWidth = 1;
@@ -58,6 +62,7 @@ export default function Pallet() {
               index={index}
               change={changeElement}
               deletit={changeDelete}
+              id={`child_${index}`}
             />
           );
         })}

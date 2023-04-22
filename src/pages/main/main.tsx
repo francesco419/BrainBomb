@@ -14,8 +14,8 @@ export default function Main() {
       <section className='section'>
         <Pallet />
       </section>
-      <Alarm />
-      <footer>footer</footer>
+      {/*       <Alarm />
+      <footer>footer</footer> */}
     </div>
   );
 }

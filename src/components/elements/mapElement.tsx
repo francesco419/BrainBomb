@@ -10,7 +10,8 @@ export default function Min({
   name = 'Null',
   index,
   change,
-  deletit
+  deletit,
+  id
 }: MinType) {
   const loc = useAppSelector(selectLocation);
   const dispatch = useAppDispatch();
@@ -54,7 +55,6 @@ export default function Min({
   };
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLDivElement;
     const pos = { ...location };
     pos['x'] = e.clientX - 100;
     pos['y'] = e.clientY - 150;
@@ -78,6 +78,7 @@ export default function Min({
 
   return (
     <div
+      id={id}
       draggable
       className='section_drag'
       ref={eleRef}
