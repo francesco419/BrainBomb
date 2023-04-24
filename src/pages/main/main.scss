@@ -1,14 +1,14 @@
 @import '../../style.scss';
 
 .section {
-  margin: 150px 0;
   box-sizing: border-box;
   width: 100%;
-  padding: 0 100px;
+  height: 100vh;
   &_part {
     position: relative;
     @include mx-flexbox();
-    height: 700px;
+    height: 100%;
+    width: 100%;
     background-color: #c0c0c0;
   }
   &_over {
@@ -23,9 +23,11 @@
     position: absolute;
     width: fit-content;
     padding: 0 10px;
-    height: 30px;
+    width: 90px;
+    height: 40px;
     font-size: 12px;
     border: 1px solid;
+    box-sizing: border-box;
     p {
       margin: 0 10px 0;
     }
@@ -74,4 +76,10 @@
     width: 90%;
     height: 100%;
   }
+}
+
+.st_line {
+  position: absolute;
+  width: 0px;
+  border-left: 1px dashed red;
 }

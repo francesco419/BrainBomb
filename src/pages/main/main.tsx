@@ -10,7 +10,7 @@ export default function Main() {
   const nav = useNavigate();
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <section className='section'>
         <Pallet />
       </section>

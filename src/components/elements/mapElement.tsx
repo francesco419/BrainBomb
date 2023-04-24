@@ -11,14 +11,24 @@ export default function Min({
   index,
   change,
   deletit,
-  id
+  id,
+  refer
 }: MinType) {
-  const loc = useAppSelector(selectLocation);
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
   const [location, setLocation] = useState<pathType>({ x: 0, y: 0 });
   const [text, setText] = useState<string>(name);
+
+  useEffect(() => {
+    throttle();
+  }, [location]);
+
+  const throttle = () => {
+    _.throttle(() => {
+      console.log(location);
+    }, 500);
+  };
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -56,8 +66,8 @@ export default function Min({
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
     const pos = { ...location };
-    pos['x'] = e.clientX - 100;
-    pos['y'] = e.clientY - 150;
+    pos['x'] = e.clientX - 45;
+    pos['y'] = e.clientY - 20;
     setLocation(pos);
   };
 
@@ -66,13 +76,6 @@ export default function Min({
   };
 
   const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    const canvases = document.getElementsByClassName('canvas');
-    for (let i = 0; i < canvases.length; i++) {
-      let canvas = canvases[i];
-      canvas.parentNode?.removeChild(canvas);
-    }
-    // 캔버스로 인해 발생한 스크롤 방지 어트리뷰트 제거
-    document.body.removeAttribute('style');
     dispatch(setPath(location));
   };
 

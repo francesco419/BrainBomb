@@ -9,18 +9,16 @@ export interface MinType {
   change: any;
   deletit: any;
   id: string;
+  refer?: React.RefObject<HTMLDivElement>;
 }
 
 export default function Pallet() {
   const boxRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const firstRef = useRef<HTMLDivElement>(null);
+  const secondRef = useRef<HTMLDivElement>(null);
   //const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [element, setElement] = useState<string[]>(['HEAD', 'SUB']);
   const [count, setCount] = useState<number>(0);
-
-  useEffect(() => {
-    line();
-  }, []);
 
   const changeElement = (index: number, name: string) => {
     let temp = element;
@@ -34,26 +32,8 @@ export default function Pallet() {
     setElement([...arr]);
   };
 
-  const line = () => {
-    const doc = document.getElementById('child_0');
-    const strArray = doc?.style.cssText.split(' ');
-    const temp = _.map(strArray, (data) => _.replace(data, 'px;', ''));
-    const ctx = canvasRef.current?.getContext('2d');
-    if (ctx) {
-      ctx.beginPath();
-      ctx.moveTo(parseInt(temp[3]), parseInt(temp[1]));
-      if (ctx !== undefined && ctx !== null) {
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 1;
-      }
-      ctx.lineTo(100, 20);
-      ctx.stroke();
-    }
-  };
-
   return (
     <div className='section_part' ref={boxRef}>
-      <canvas width={1200} height={700} ref={canvasRef} id='mycanvas'></canvas>
       <div className='section_dragSection'>
         {element.map((data, index) => {
           return (
@@ -66,6 +46,14 @@ export default function Pallet() {
             />
           );
         })}
+        <div
+          className='st_line'
+          style={{
+            top: '100px',
+            left: '100px',
+            height: '300px'
+          }}
+        ></div>
       </div>
       <div className='section_setting'>
         <button
