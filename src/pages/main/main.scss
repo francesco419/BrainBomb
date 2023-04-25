@@ -6,7 +6,7 @@
   height: 100vh;
   &_part {
     position: relative;
-    @include mx-flexbox();
+    @include mx-flexbox(end, center);
     height: 100%;
     width: 100%;
     background-color: #c0c0c0;

@@ -14,8 +14,6 @@ export interface MinType {
 
 export default function Pallet() {
   const boxRef = useRef<HTMLDivElement>(null);
-  const firstRef = useRef<HTMLDivElement>(null);
-  const secondRef = useRef<HTMLDivElement>(null);
   //const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [element, setElement] = useState<string[]>(['HEAD', 'SUB']);
   const [count, setCount] = useState<number>(0);

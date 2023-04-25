@@ -14,21 +14,12 @@ export default function Min({
   id,
   refer
 }: MinType) {
+  const loc = useAppSelector(selectLocation);
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
-  const [location, setLocation] = useState<pathType>({ x: 0, y: 0 });
+  const [location, setLocation] = useState<pathType>({ id: id, x: 0, y: 0 });
   const [text, setText] = useState<string>(name);
-
-  useEffect(() => {
-    throttle();
-  }, [location]);
-
-  const throttle = () => {
-    _.throttle(() => {
-      console.log(location);
-    }, 500);
-  };
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -65,6 +56,7 @@ export default function Min({
   };
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
+    //드래그 마다 새로운 위치 저장
     const pos = { ...location };
     pos['x'] = e.clientX - 45;
     pos['y'] = e.clientY - 20;
@@ -76,7 +68,8 @@ export default function Min({
   };
 
   const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    dispatch(setPath(location));
+    dispatch(setPath(location)); //현재 위치를 id와 같이 redux-path에 저장
+    console.log(loc);
   };
 
   return (

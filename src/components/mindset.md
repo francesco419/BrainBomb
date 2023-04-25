@@ -28,3 +28,7 @@
     - ?
 3.  element 추가와 삭제
 4.  전체적인 레이아웃
+
+### 위치
+
+- redux의 pathSlice 사용
