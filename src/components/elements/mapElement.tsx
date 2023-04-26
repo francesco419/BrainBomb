@@ -1,25 +1,23 @@
 import Child from '../../components/elements/child';
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
-import { MinType } from '../../pages/main/pallet';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectLocation } from '../../redux/Slices/pathSlice';
 import { pathType, setPath } from '../../redux/Slices/pathSlice';
+import { addEle, delEle } from '../../redux/Slices/eleSlice';
 
-export default function Min({
-  name = 'Null',
-  index,
-  change,
-  deletit,
-  id,
-  refer
-}: MinType) {
+export interface MinType {
+  id: string;
+  number: number;
+}
+
+export default function Min({ id, number }: MinType) {
   const loc = useAppSelector(selectLocation);
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
   const [location, setLocation] = useState<pathType>({ id: id, x: 0, y: 0 });
-  const [text, setText] = useState<string>(name);
+  const [text, setText] = useState<string>(`NULL_${number}`);
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -27,7 +25,7 @@ export default function Min({
 
   const changeText = () => {
     changeBool();
-    if (change) {
+    if (bool) {
       eleRef.current?.focus();
     }
   };
@@ -69,7 +67,6 @@ export default function Min({
 
   const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
     dispatch(setPath(location)); //현재 위치를 id와 같이 redux-path에 저장
-    console.log(loc);
   };
 
   return (
@@ -95,8 +92,17 @@ export default function Min({
       ) : (
         <p>{text}</p>
       )}
-      <button onClick={changeBool}></button>
-      <div className='section_drag_line' onClick={() => deletit(text)}></div>
+      <button onClick={changeBool} />
+      {id !== 'HEAD' ? (
+        <button
+          className='section_drag_delete section_drag_button'
+          onClick={() => dispatch(delEle(id))}
+        />
+      ) : null}
+      <button
+        className='section_drag_add section_drag_button'
+        onClick={() => dispatch(addEle())}
+      />
     </div>
   );
 }

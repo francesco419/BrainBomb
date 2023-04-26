@@ -4,9 +4,11 @@ import { combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
 import locationReducer from './Slices/pathSlice';
+import elementReducer from './Slices/eleSlice';
 //////////////////////////////
 const rootReducer = combineReducers({
-  location: locationReducer
+  location: locationReducer,
+  element: elementReducer
 });
 
 const persistConfig = {

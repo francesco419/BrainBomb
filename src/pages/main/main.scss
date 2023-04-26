@@ -23,7 +23,6 @@
     position: absolute;
     width: fit-content;
     padding: 0 10px;
-    width: 90px;
     height: 40px;
     font-size: 12px;
     border: 1px solid;
@@ -43,15 +42,24 @@
         outline: none;
       }
     }
-    &_line {
+    &_button {
       position: absolute;
-      top: -5px;
-      right: -5px;
+      top: -7px;
       display: block;
-      width: 10px;
-      height: 10px;
+      border: none;
+      width: 5px;
+      height: 5px;
       @include mx-round(50%);
+    }
+    &_delete {
+      position: absolute;
+      right: -7px;
       background-color: red;
+    }
+    &_add {
+      position: absolute;
+      left: -7px;
+      background-color: blue;
     }
   }
   &_dragSection {

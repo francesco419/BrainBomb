@@ -10,6 +10,8 @@ Whatever you use for drag control, call moved(e, ele) per increment of movement,
 
 */
 
+//  var c1 = new Connector({ ele1: 'a', ele2: 'b', lineStyle: '1px solid red' });
+
 var Connector = function (params) {
   if (typeof params == 'undefined') {
     return false;
@@ -45,6 +47,7 @@ var Connector = function (params) {
   };
 
   this.PseudoGuid = new (function () {
+    //유니크한 id 생성
     // Make a GUID to use in unique id assignment - from and credit to http://stackoverflow.com/questions/226689/unique-element-id-even-if-element-doesnt-have-one
     this.empty = '00000000-0000-0000-0000-000000000000';
     this.GetNew = function () {
@@ -77,6 +80,7 @@ var Connector = function (params) {
 
   // Append the div that is the link line into the DOM
   this.lineID = 'L' + this.id;
+  //선(line)엘리먼트 생성
   $('body').append(
     "<div id='" + this.lineID + "' class='" + className + "' style=  ></div>"
   );
