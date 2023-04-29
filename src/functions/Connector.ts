@@ -2,7 +2,7 @@ export let Connector = function () {};
 
 //var c1 = new Connector({ ele1: 'a', ele2: 'b', lineStyle: '1px solid red' });
 
-export var ConnectorTemp = function (params) {
+/* export var ConnectorTemp = function (params) {
   if (typeof params == 'undefined') {
     return false;
   } // If no params then abandon.
@@ -89,7 +89,6 @@ export var ConnectorTemp = function (params) {
   this.link(); // show the initial link
 };
 
-/* 
 this.line
 .css({ left: originX, height: l, width: 0, top: originY + adj1.hp })
 .css('-webkit-transform', 'rotate(' + angle + 'deg)')
@@ -98,7 +97,7 @@ this.line
 .css('-ms-transform', 'rotate(' + angle + 'deg)')
 .css('transform', 'rotate(' + angle + 'deg)')
 .css('transform-origin', '0 ' + -1 * adj1.hp + 'px');
-}; */
+};
 
 Connector.prototype.edgeAdjust = function (a, w1, h1) {
   var w = 0,
@@ -142,4 +141,4 @@ Connector.prototype.edgeAdjust = function (a, w1, h1) {
   var hp = this.hyp(w, h);
 
   return { hp: hp };
-};
+}; */

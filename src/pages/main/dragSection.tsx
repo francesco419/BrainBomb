@@ -1,28 +1,38 @@
 import { useRef, useState, useEffect } from 'react';
 import Min from '../../components/elements/mapElement';
-import { useAppSelector } from '../../redux/hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectEle } from '../../redux/Slices/eleSlice';
-import { randomID } from '../../functions/randomId';
+import { selectLocation } from '../../redux/Slices/pathSlice';
+import Line from '../../components/elements/line';
+import _ from 'lodash';
 
 export default function DragSection() {
   const ele = useAppSelector(selectEle);
-  const ran = randomID();
-  console.log(ran);
+  const loc = useAppSelector(selectLocation);
   return (
     <div className='section_dragSection'>
       {ele.map((data, index) => {
-        return <Min id={data} number={index} />;
+        if (index === 0) {
+          return <Min data={data} number={index} key={data.id} />;
+        } else {
+          return (
+            <>
+              <Min data={data} number={index} key={data.id} />
+              <Line data={data} key={`${data.id}_line`} />
+            </>
+          );
+        }
       })}
-      <div
+      {/*       <div
         className='st_line'
         style={{
-          top: '100px',
-          left: '100px',
-          height: '300px',
-          transform: `rotate(-50deg)`,
-          transformOrigin: '0 -50px'
+          top: from.y,
+          left: from.x,
+          height: to + 'px',
+          transform: `rotate(${tan}deg)`,
+          transformOrigin: '0 0px'
         }}
-      ></div>
+      ></div> */}
     </div>
   );
 }

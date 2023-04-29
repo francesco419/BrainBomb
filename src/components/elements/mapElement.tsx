@@ -3,21 +3,42 @@ import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectLocation } from '../../redux/Slices/pathSlice';
-import { pathType, setPath } from '../../redux/Slices/pathSlice';
+import { pathType, setPath, delPath } from '../../redux/Slices/pathSlice';
 import { addEle, delEle } from '../../redux/Slices/eleSlice';
+import { ElementObj } from '../../redux/Slices/eleSlice';
 
 export interface MinType {
-  id: string;
+  data: ElementObj;
   number: number;
 }
 
-export default function Min({ id, number }: MinType) {
+export default function Min({ data, number }: MinType) {
   const loc = useAppSelector(selectLocation);
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
-  const [location, setLocation] = useState<pathType>({ id: id, x: 0, y: 0 });
+  const [location, setLocation] = useState<pathType>({
+    id: data.id,
+    x: 0,
+    y: 0
+  });
   const [text, setText] = useState<string>(`NULL_${number}`);
+
+  useEffect(() => {
+    //location에 이전 위치가 저장되어있으면 해당 위치로 이동
+    const exist = _.findIndex(loc.path, (location) => {
+      return location.id === data.id;
+    });
+    if (exist >= 0) {
+      setLocation(loc.path[exist]);
+    } else {
+      dispatch(setPath(location));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -59,6 +80,7 @@ export default function Min({ id, number }: MinType) {
     pos['x'] = e.clientX - 45;
     pos['y'] = e.clientY - 20;
     setLocation(pos);
+    dispatch(setPath(location)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -69,9 +91,20 @@ export default function Min({ id, number }: MinType) {
     dispatch(setPath(location)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
+  const deleteElement = (id: string) => {
+    //redux eleSlice / pathSlice 에 저장된 해당 element정보 삭제
+    dispatch(delEle(id));
+    dispatch(delPath(id));
+  };
+
+  const addElement = (id: string) => {
+    //해당 element와 연결된 또다른 element생성 , redux 저장
+    dispatch(addEle(id));
+  };
+
   return (
     <div
-      id={id}
+      id={data.id}
       draggable
       className='section_drag'
       ref={eleRef}
@@ -93,15 +126,15 @@ export default function Min({ id, number }: MinType) {
         <p>{text}</p>
       )}
       <button onClick={changeBool} />
-      {id !== 'HEAD' ? (
+      {data.id !== 'HEAD' ? (
         <button
           className='section_drag_delete section_drag_button'
-          onClick={() => dispatch(delEle(id))}
+          onClick={() => deleteElement(data.id)}
         />
       ) : null}
       <button
         className='section_drag_add section_drag_button'
-        onClick={() => dispatch(addEle())}
+        onClick={() => addElement(data.id)}
       />
     </div>
   );

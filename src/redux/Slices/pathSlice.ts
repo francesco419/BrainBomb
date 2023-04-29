@@ -36,13 +36,19 @@ export const locationSlice = createSlice({
 
       state.path = newPath; //저장
     },
+    delPath: (state, action: PayloadAction<string>) => {
+      //element의 Location 삭제 => 일치하는 id찾아 삭제
+      let tempPath = state.path;
+      _.remove(tempPath, (data) => data.id === action.payload);
+      state.path = tempPath;
+    },
     defaultPath: (state) => {
       state.path = [];
     }
   }
 });
 
-export const { setPath, defaultPath } = locationSlice.actions;
+export const { setPath, defaultPath, delPath } = locationSlice.actions;
 
 export const selectLocation = (state: RootState) => state.location;
 

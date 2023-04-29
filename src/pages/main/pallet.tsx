@@ -36,7 +36,7 @@ export default function Pallet() {
         <button
           className='section_setButton'
           onClick={() => {
-            dispatch(addEle());
+            //dispatch(addEle());
           }}
         >
           add +

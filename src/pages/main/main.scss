@@ -27,12 +27,15 @@
     font-size: 12px;
     border: 1px solid;
     box-sizing: border-box;
+    background-color: #456788;
+    z-index: 10;
     p {
       margin: 0 10px 0;
     }
     button {
       width: 15px;
       height: 15px;
+      border: 1px solid #fff;
     }
     input[type='text'] {
       background: none;
@@ -90,4 +93,10 @@
   position: absolute;
   width: 0px;
   border-left: 1px dashed red;
+}
+
+.comp_line {
+  position: absolute;
+  width: 0px;
+  border-left: 1px dashed blue;
 }
