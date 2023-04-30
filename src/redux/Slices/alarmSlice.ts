@@ -8,6 +8,47 @@ export interface pathType {
   y: number;
 }
 
+export interface AlarmType {
+  isON: boolean;
+  text: string;
+}
+
+const initialState: AlarmType = {
+  isON: false,
+  text: ''
+};
+
+export const AlarmSlice = createSlice({
+  name: 'alarm',
+  initialState,
+  reducers: {
+    setAlarm: (state, action: PayloadAction<string>) => {
+      state.text = action.payload;
+      state.isON = true;
+    },
+    offAlarm: (state) => {
+      state.isON = false;
+    }
+  }
+});
+
+export const { setAlarm, offAlarm } = AlarmSlice.actions;
+
+export const selectAlarm = (state: RootState) => state.alarm;
+
+export default AlarmSlice.reducer;
+
+/**
+ * import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import _ from 'lodash';
+
+export interface pathType {
+  id: string;
+  x: number;
+  y: number;
+}
+
 export interface LocationState {
   path: pathType[];
 }
@@ -53,3 +94,4 @@ export const { setPath, defaultPath, delPath } = locationSlice.actions;
 export const selectLocation = (state: RootState) => state.location;
 
 export default locationSlice.reducer;
+ */

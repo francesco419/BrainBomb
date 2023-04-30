@@ -1,7 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../redux/hooks';
 import { ElementObj, selectEle } from '../../redux/Slices/eleSlice';
-import { pathType, selectLocation } from '../../redux/Slices/pathSlice';
 import _ from 'lodash';
 
 interface xy {
@@ -14,33 +13,23 @@ interface LineState {
 }
 
 export default function Line({ data }: LineState) {
-  const loc = useAppSelector(selectLocation);
+  const ele = useAppSelector(selectEle);
   const [from, setFrom] = useState<xy>({ x: '0px', y: '0px' });
   const [to, setTo] = useState<number>(0);
   const [tan, setTan] = useState<number>();
   const elementID = data;
-  const myLocation = findLoc();
 
   useEffect(() => {
-    cal(myLocation, elementID.from);
-  }, [loc]);
+    cal(elementID);
+  }, [ele]);
 
-  function findLoc() {
-    //호이스팅
-    //해당 ele와 같은 loc 찾기 + 리턴
-    const num = _.findIndex(loc.path, (data) => {
-      return data.id === elementID.id;
-    });
-    return loc.path[num];
-  }
-
-  const cal = (id: pathType, fromID: string | null) => {
-    if (fromID === null) {
+  const cal = (myElement: ElementObj) => {
+    if (myElement.from === null) {
       return; //fromID가 null일시 return => 오직 HEAD에 적용(예정)
     }
 
-    const at = _.findIndex(loc.path, (data) => {
-      return data.id === fromID;
+    const at = _.findIndex(ele, (data) => {
+      return data.id === myElement.from;
     }); //도착 element 위치 계산위한 ele의 인덱스 찾기 - 찾는곳은 redux의 location에서 직접 검색
 
     /*
@@ -56,17 +45,20 @@ export default function Line({ data }: LineState) {
     이를 해결하기위해 기존 시작과 대상 element을 서로 바꿔주면서 rotate의 각도가 각 시작지점에 따라 정상작동하도록 설계하였다. 
     */
 
-    if (id.y >= loc.path[at].y) {
+    const location = myElement.location;
+    const otherLocation = ele[at].location;
+
+    if (location.y >= otherLocation.y) {
       const fromObj: xy = {
-        x: loc.path[at].x + 48.5 + 'px',
-        y: loc.path[at].y + 20 + 'px'
+        x: otherLocation.x + 48.5 + 'px',
+        y: otherLocation.y + 20 + 'px'
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
 
       const state = {
-        x: loc.path[at].x - id.x,
-        y: whichIsBigger(id.y, loc.path[at].y)
+        x: otherLocation.x - location.x,
+        y: whichIsBigger(location.y, otherLocation.y)
       };
 
       const tempTan = ((Math.atan(state.x / state.y) * 180) / Math.PI).toFixed(
@@ -78,15 +70,15 @@ export default function Line({ data }: LineState) {
       setTo(real);
     } else {
       const fromObj: xy = {
-        x: id.x + 48.5 + 'px',
-        y: id.y + 20 + 'px'
+        x: location.x + 48.5 + 'px',
+        y: location.y + 20 + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
 
       const state = {
-        x: id.x - loc.path[at].x,
-        y: whichIsBigger(loc.path[at].y, id.y)
+        x: location.x - otherLocation.x,
+        y: whichIsBigger(otherLocation.y, location.y)
       };
 
       const tempTan = ((Math.atan(state.x / state.y) * 180) / Math.PI).toFixed(

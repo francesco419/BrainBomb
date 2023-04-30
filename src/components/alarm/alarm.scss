@@ -24,3 +24,29 @@
     bottom: -50px;
   }
 }
+
+.alarmCenter {
+  @include mx-flexbox();
+  flex-direction: column;
+  width: 500px;
+  height: 200px;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+
+  &__buttonBox {
+    margin: 20px 0;
+    * {
+      width: 50px;
+      height: 30px;
+      margin: 0 10px;
+      background-color: #f1a708;
+      border: none;
+    }
+  }
+}

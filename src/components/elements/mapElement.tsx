@@ -2,10 +2,11 @@ import Child from '../../components/elements/child';
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { selectLocation } from '../../redux/Slices/pathSlice';
-import { pathType, setPath, delPath } from '../../redux/Slices/pathSlice';
-import { addEle, delEle } from '../../redux/Slices/eleSlice';
+import { selectEle } from '../../redux/Slices/eleSlice';
+import { pathType, setAlarm } from '../../redux/Slices/alarmSlice';
+import { addEle, delEle, editLocation } from '../../redux/Slices/eleSlice';
 import { ElementObj } from '../../redux/Slices/eleSlice';
+import { selectAlarm } from '../../redux/Slices/alarmSlice';
 
 export interface MinType {
   data: ElementObj;
@@ -13,18 +14,19 @@ export interface MinType {
 }
 
 export default function Min({ data, number }: MinType) {
-  const loc = useAppSelector(selectLocation);
+  const alarm = useAppSelector(selectAlarm);
+  const ele = useAppSelector(selectEle);
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
   const [location, setLocation] = useState<pathType>({
     id: data.id,
-    x: 0,
-    y: 0
+    x: data.location.x,
+    y: data.location.y
   });
   const [text, setText] = useState<string>(`NULL_${number}`);
 
-  useEffect(() => {
+  /* useEffect(() => {
     //location에 이전 위치가 저장되어있으면 해당 위치로 이동
     const exist = _.findIndex(loc.path, (location) => {
       return location.id === data.id;
@@ -34,7 +36,7 @@ export default function Min({ data, number }: MinType) {
     } else {
       dispatch(setPath(location));
     }
-  }, []);
+  }, []); */
 
   useEffect(() => {
     console.log(data);
@@ -80,7 +82,7 @@ export default function Min({ data, number }: MinType) {
     pos['x'] = e.clientX - 45;
     pos['y'] = e.clientY - 20;
     setLocation(pos);
-    dispatch(setPath(location)); //현재 위치를 id와 같이 redux-path에 저장
+    dispatch(editLocation(location)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -88,13 +90,12 @@ export default function Min({ data, number }: MinType) {
   };
 
   const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    dispatch(setPath(location)); //현재 위치를 id와 같이 redux-path에 저장
+    dispatch(editLocation(location)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
   const deleteElement = (id: string) => {
     //redux eleSlice / pathSlice 에 저장된 해당 element정보 삭제
     dispatch(delEle(id));
-    dispatch(delPath(id));
   };
 
   const addElement = (id: string) => {
@@ -129,7 +130,16 @@ export default function Min({ data, number }: MinType) {
       {data.id !== 'HEAD' ? (
         <button
           className='section_drag_delete section_drag_button'
-          onClick={() => deleteElement(data.id)}
+          onClick={() => {
+            const havIt = _.findIndex(ele, (o) => {
+              return o.from === data.id;
+            });
+            if (havIt >= 0) {
+              dispatch(setAlarm('delete'));
+            } else {
+              deleteElement(data.id);
+            }
+          }}
         />
       ) : null}
       <button

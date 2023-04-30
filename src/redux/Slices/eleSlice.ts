@@ -2,12 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
 import { randomID } from '../../functions/randomId';
-import { useAppDispatch } from '../hooks';
-import { setPath } from './pathSlice';
+import { pathType } from './alarmSlice';
+
+export interface LocationType {
+  x: number;
+  y: number;
+}
 
 export interface ElementObj {
   //name: string;
   id: string;
+  location: LocationType;
   from: string | null;
 }
 
@@ -20,6 +25,7 @@ const initialState: ElementState = {
     {
       //name:'HEAD',
       id: 'HEAD',
+      location: { x: 0, y: 0 },
       from: null
     }
   ]
@@ -30,16 +36,12 @@ export const elementSlice = createSlice({
   initialState,
   reducers: {
     addEle: (state, action: PayloadAction<string>) => {
-      const dispatch = useAppDispatch();
       let temp = state.element;
-      const random = randomID();
-
       const ran = {
-        id: random,
+        id: randomID(),
+        location: { x: 0, y: 0 },
         from: action.payload
       };
-
-      dispatch(setPath({ id: random, x: 0, y: 0 }));
       temp.push(ran);
       state.element = temp;
     },
@@ -47,11 +49,20 @@ export const elementSlice = createSlice({
       let temp = state.element;
       _.remove(temp, (data) => data.id === action.payload);
       state.element = temp;
+    },
+    editLocation: (state, action: PayloadAction<pathType>) => {
+      const temp = state.element;
+      const index = _.findIndex(temp, (data) => {
+        return data.id === action.payload.id;
+      });
+      temp[index].location = { x: action.payload.x, y: action.payload.y };
+
+      state.element = temp;
     }
   }
 });
 
-export const { addEle, delEle } = elementSlice.actions;
+export const { addEle, delEle, editLocation } = elementSlice.actions;
 
 export const selectEle = (state: RootState) => state.element.element;
 
