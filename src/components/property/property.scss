@@ -1,0 +1,19 @@
+.property {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #0c3184;
+}
+
+.property-list,
+.property-edit,
+.property-info {
+  padding: 15px;
+  flex-grow: 1;
+  box-sizing: border-box;
+  border: 5px double #5190f4;
+}

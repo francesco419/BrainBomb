@@ -5,13 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectEle, addEle } from '../../redux/Slices/eleSlice';
 import { selectAlarm } from '../../redux/Slices/alarmSlice';
 import AlarmCenter from '../../components/alarm/alarmCenter';
-
-export interface TanType {
-  x: number;
-  y: number;
-  ox: number;
-  oy: number;
-}
+import Property from '../../components/property/property';
 
 export default function Pallet() {
   const alarm = useAppSelector(selectAlarm);
@@ -21,9 +15,7 @@ export default function Pallet() {
   return (
     <div className='section_part' ref={boxRef}>
       <DragSection />
-      <div className='section_setting'>
-        <button className='section_setButton'>save</button>
-      </div>
+      <Property />
       {alarm.isON ? <AlarmCenter text={alarm.text} /> : null}
     </div>
   );

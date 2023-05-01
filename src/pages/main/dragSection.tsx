@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import Min from '../../components/elements/mapElement';
+import { MemoElement } from '../../components/elements/mapElement';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectEle } from '../../redux/Slices/eleSlice';
 import Line from '../../components/elements/line';
@@ -11,11 +11,11 @@ export default function DragSection() {
     <div className='section_dragSection'>
       {ele.map((data, index) => {
         if (index === 0) {
-          return <Min data={data} number={index} key={data.id} />;
+          return <MemoElement data={data} number={index} key={data.id} />;
         } else {
           return (
             <>
-              <Min data={data} number={index} key={data.id} />
+              <MemoElement data={data} number={index} key={data.id} />
               <Line data={data} key={`${data.id}_line`} />
             </>
           );

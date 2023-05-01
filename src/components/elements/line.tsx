@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../redux/hooks';
 import { ElementObj, selectEle } from '../../redux/Slices/eleSlice';
 import _ from 'lodash';
+import React from 'react';
 
 interface xy {
   x: string;
@@ -20,8 +21,25 @@ export default function Line({ data }: LineState) {
   const elementID = data;
 
   useEffect(() => {
+    console.log(
+      ele[getIndex(ele, elementID.from)],
+      ele[getIndex(ele, elementID.id)]
+    );
     cal(elementID);
-  }, [ele]);
+  }, [ele[getIndex(ele, elementID.from)], ele[getIndex(ele, elementID.id)]]);
+
+  /* const effectElement=(arr:ElementObj[])=>{
+    _.findIndex(arr,(o)=>{return o.})
+  } */
+
+  function getIndex(arr: ElementObj[], compare: string | null) {
+    if (compare === null) {
+      return 0;
+    }
+    return _.findIndex(arr, (data) => {
+      return data.id === compare;
+    });
+  }
 
   const cal = (myElement: ElementObj) => {
     if (myElement.from === null) {
@@ -118,3 +136,5 @@ export default function Line({ data }: LineState) {
     ></div>
   );
 }
+
+export const MemoLine = React.memo(Line);

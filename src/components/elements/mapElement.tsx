@@ -13,7 +13,11 @@ export interface MinType {
   number: number;
 }
 
-export default function Min({ data, number }: MinType) {
+const areEqual = (prevProps: any, nextProps: any) => {
+  return prevProps.data.location === nextProps.data.location;
+};
+
+export function Min({ data, number }: MinType) {
   const alarm = useAppSelector(selectAlarm);
   const ele = useAppSelector(selectEle);
   const dispatch = useAppDispatch();
@@ -37,10 +41,6 @@ export default function Min({ data, number }: MinType) {
       dispatch(setPath(location));
     }
   }, []); */
-
-  useEffect(() => {
-    console.log(data);
-  }, []);
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -69,11 +69,11 @@ export default function Min({ data, number }: MinType) {
   };
 
   const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    const blankCanvas: any = document.createElement('canvas');
+    /*  const blankCanvas: any = document.createElement('canvas');
     blankCanvas.classList.add('canvas');
     e.dataTransfer?.setDragImage(blankCanvas, 0, 0);
     document.body?.appendChild(blankCanvas); // 투명 캔버스를 생성하여 글로벌 아이콘 제거
-    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.effectAllowed = 'move'; */
   };
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -149,3 +149,5 @@ export default function Min({ data, number }: MinType) {
     </div>
   );
 }
+
+export const MemoElement = React.memo(Min, areEqual);
