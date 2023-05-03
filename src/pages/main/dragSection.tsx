@@ -14,10 +14,10 @@ export default function DragSection() {
           return <MemoElement data={data} number={index} key={data.id} />;
         } else {
           return (
-            <>
+            <div key={`${data.id}_${index}`}>
               <MemoElement data={data} number={index} key={data.id} />
               <Line data={data} key={`${data.id}_line`} />
-            </>
+            </div>
           );
         }
       })}

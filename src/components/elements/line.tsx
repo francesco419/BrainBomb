@@ -21,10 +21,6 @@ export default function Line({ data }: LineState) {
   const elementID = data;
 
   useEffect(() => {
-    console.log(
-      ele[getIndex(ele, elementID.from)],
-      ele[getIndex(ele, elementID.id)]
-    );
     cal(elementID);
   }, [ele[getIndex(ele, elementID.from)], ele[getIndex(ele, elementID.id)]]);
 
