@@ -23,15 +23,7 @@ export interface ElementState {
 }
 
 const initialState: ElementState = {
-  element: [
-    {
-      //name:'HEAD',
-      id: 'HEAD',
-      location: { x: 0, y: 0 },
-      from: null,
-      deep: 0
-    }
-  ]
+  element: []
 };
 
 export const elementSlice = createSlice({

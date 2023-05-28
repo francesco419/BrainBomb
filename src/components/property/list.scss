@@ -1,0 +1,7 @@
+.property-list {
+  overflow-y: scroll;
+  &__element {
+    margin: 10px 0;
+    cursor: default;
+  }
+}

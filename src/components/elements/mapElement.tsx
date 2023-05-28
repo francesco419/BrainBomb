@@ -13,6 +13,11 @@ export interface MinType {
   number: number;
 }
 
+export interface AddType {
+  id: string;
+  deep: number;
+}
+
 const areEqual = (prevProps: any, nextProps: any) => {
   return prevProps.data.location === nextProps.data.location;
 };
@@ -82,7 +87,8 @@ export function Min({ data, number }: MinType) {
     pos['x'] = e.clientX - 45;
     pos['y'] = e.clientY - 20;
     setLocation(pos);
-    dispatch(editLocation(location)); //현재 위치를 id와 같이 redux-path에 저장
+    dispatch(editLocation(location));
+    //현재 위치를 id와 같이 redux-path에 저장
   };
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -98,9 +104,13 @@ export function Min({ data, number }: MinType) {
     dispatch(delEle(id));
   };
 
-  const addElement = (id: string) => {
+  const addElement = (id: string, deep: number) => {
+    const data: AddType = {
+      id: id,
+      deep: deep
+    };
     //해당 element와 연결된 또다른 element생성 , redux 저장
-    dispatch(addEle(id));
+    dispatch(addEle(data));
   };
 
   return (
@@ -144,7 +154,7 @@ export function Min({ data, number }: MinType) {
       ) : null}
       <button
         className='section_drag_add section_drag_button'
-        onClick={() => addElement(data.id)}
+        onClick={() => addElement(data.id, data.deep)}
       />
     </div>
   );

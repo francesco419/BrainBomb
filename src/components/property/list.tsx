@@ -3,6 +3,7 @@ import { selectEle } from '../../redux/Slices/eleSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import _ from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
+import './list.scss';
 
 export default function PropertyList() {
   const ele = useAppSelector(selectEle);
@@ -11,22 +12,37 @@ export default function PropertyList() {
   let befOrder: ElementObj[] = [];
 
   useEffect(() => {
-    setList(copy);
+    testArr(ele);
+  }, [ele]);
+
+  useEffect(() => {
+    testArr(ele);
   }, []);
 
-  const setList = (arr: ElementObj[]) => {
-    let temp: ElementObj[] = arr;
-    /* _.forEach(arr, (element) => {
-      if (element.from === null) {
-        temp.push(element);
+  const testArr = (arr: ElementObj[]) => {
+    let temp: ElementObj[] = [];
+
+    arr.forEach((targetElement) => {
+      if (targetElement.from !== null) {
+        const fromIndex = _.findIndex(temp, (from) => {
+          return from.id === targetElement.from;
+        });
+        temp.splice(fromIndex + 1, 0, targetElement);
+      } else {
+        temp.push(targetElement);
       }
-    }); */
+    });
+    setInOrder((inOrder) => temp);
+  };
+
+  /*   const setList = (arr: ElementObj[]) => {
+    let temp: ElementObj[] = arr;
 
     searchDeep(temp, arr[0]);
     setInOrder((inOrder) => befOrder);
-  };
+  }; */
 
-  const findIndexElement = (
+  /*   const findIndexElement = (
     arr: ElementObj[],
     element: string | null,
     unit: number
@@ -46,13 +62,12 @@ export default function PropertyList() {
     }
 
     return index;
-  };
+  }; */
 
-  const searchDeep = (arr: ElementObj[], element: ElementObj) => {
+  /*   const searchDeep = (arr: ElementObj[], element: ElementObj) => {
     if (arr.length <= 1) {
       return;
     }
-    /* 
     0. 현재 element를 index에 넣기.
     
     1. if 현재id를 from으로 가지고 있는 element 찾기.
@@ -62,7 +77,6 @@ export default function PropertyList() {
       2.2 있다면 => 1번 반복
 
     3. 
-    */
 
     const isExist = findIndexElement(befOrder, element.id, 0);
     const index = findIndexElement(arr, element.id, 1);
@@ -96,16 +110,55 @@ export default function PropertyList() {
         searchDeep(arr, arr[before]);
       }
     }
-
-    //if()
-  };
+  }; */
 
   return (
     <div className='property-list'>
-      {_.map(inOrder, (o) => {
+      {_.map(inOrder, (o, index) => {
+        if (index === 0) {
+          return (
+            <div
+              className='property-list__element'
+              onMouseOver={() => {
+                const doc = document.getElementById(o.id);
+                if (doc) {
+                  doc.style.borderColor = '#fff';
+                  doc.style.backgroundColor = '#ff0000';
+                }
+              }}
+              onMouseLeave={() => {
+                const doc = document.getElementById(o.id);
+                if (doc) {
+                  doc.style.borderColor = '#000';
+                  doc.style.backgroundColor = '#456788';
+                }
+              }}
+            >
+              <p>- {o.id}</p>
+            </div>
+          );
+        } else {
+        }
         return (
-          <div>
-            <p>{o.id}</p>
+          <div
+            className='property-list__element'
+            style={{ marginLeft: `${10 * o.deep}px` }}
+            onMouseOver={() => {
+              const doc = document.getElementById(o.id);
+              if (doc) {
+                doc.style.borderColor = '#fff';
+                doc.style.backgroundColor = '#ff0000';
+              }
+            }}
+            onMouseLeave={() => {
+              const doc = document.getElementById(o.id);
+              if (doc) {
+                doc.style.borderColor = '#000';
+                doc.style.backgroundColor = '#456788';
+              }
+            }}
+          >
+            <p>└ {o.id.slice(0, 8)}</p>
           </div>
         );
       })}
