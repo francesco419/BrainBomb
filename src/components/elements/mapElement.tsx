@@ -63,7 +63,6 @@ export function Min({ data, number }: MinType) {
   };
 
   const debounceOnChange = _.debounce((value: string) => {
-    console.log(value);
     setText((text) => value);
   }, 500);
 
@@ -134,7 +133,7 @@ export function Min({ data, number }: MinType) {
           onBlur={changeText}
         />
       ) : (
-        <p>{text}</p>
+        <p>{data.name}</p>
       )}
       <button onClick={changeBool} />
       {data.id !== 'HEAD' ? (

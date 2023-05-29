@@ -13,7 +13,6 @@ export interface LocationType {
 export interface ElementObj {
   //name: string;
   id: string;
-  name: string;
   location: LocationType;
   from: string | null;
   deep: number;
@@ -24,16 +23,7 @@ export interface ElementState {
 }
 
 const initialState: ElementState = {
-  element: [
-    {
-      //name:'HEAD',
-      id: 'HEAD',
-      name: 'HEAD',
-      location: { x: 0, y: 0 },
-      from: null,
-      deep: 0
-    }
-  ]
+  element: []
 };
 
 export const elementSlice = createSlice({
@@ -44,7 +34,6 @@ export const elementSlice = createSlice({
       let temp = state.element;
       const ran = {
         id: randomID(),
-        name: 'null',
         location: { x: 0, y: 0 },
         from: action.payload.id,
         deep: action.payload.deep + 1
@@ -60,16 +49,6 @@ export const elementSlice = createSlice({
     },
 
     editLocation: (state, action: PayloadAction<pathType>) => {
-      const temp = state.element;
-      const index = _.findIndex(temp, (data) => {
-        return data.id === action.payload.id;
-      });
-      temp[index].location = { x: action.payload.x, y: action.payload.y };
-
-      state.element = temp;
-    },
-
-    reName: (state, action: PayloadAction<pathType>) => {
       const temp = state.element;
       const index = _.findIndex(temp, (data) => {
         return data.id === action.payload.id;
