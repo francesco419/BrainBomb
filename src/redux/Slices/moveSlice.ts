@@ -1,67 +1,42 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
-import { randomID } from '../../functions/randomId';
 import { pathType } from './alarmSlice';
-import { AddType } from '../../components/elements/mapElement';
+import { LocationType } from './eleSlice';
+import { ElementObj } from './eleSlice';
 
-export interface LocationType {
-  x: number;
-  y: number;
+export interface MoveState {
+  element: ElementObj;
 }
 
-export interface ElementObj {
-  //name: string;
-  id: string;
-  location: LocationType;
-  from: string | null;
-  deep: number;
-}
-
-export interface ElementState {
-  element: ElementObj[];
-}
-
-const initialState: ElementState = {
-  element: []
+const initialState: MoveState = {
+  element: {
+    id: 'null',
+    location: {
+      x: 0,
+      y: 0
+    },
+    from: null,
+    deep: 999,
+    name: 'null'
+  }
 };
 
-export const elementSlice = createSlice({
-  name: 'ele',
+export const MoveSlice = createSlice({
+  name: 'move',
   initialState,
   reducers: {
-    addEle: (state, action: PayloadAction<AddType>) => {
-      let temp = state.element;
-      const ran = {
-        id: randomID(),
-        location: { x: 0, y: 0 },
-        from: action.payload.id,
-        deep: action.payload.deep + 1
-      };
-      temp.push(ran);
-      state.element = temp;
+    setMove: (state, action: PayloadAction<ElementObj>) => {
+      state.element = action.payload;
     },
-
-    delEle: (state, action: PayloadAction<string>) => {
-      let temp = state.element;
-      _.remove(temp, (data) => data.id === action.payload);
-      state.element = temp;
-    },
-
-    editLocation: (state, action: PayloadAction<pathType>) => {
-      const temp = state.element;
-      const index = _.findIndex(temp, (data) => {
-        return data.id === action.payload.id;
-      });
-      temp[index].location = { x: action.payload.x, y: action.payload.y };
-
-      state.element = temp;
+    setMoveLocation: (state, action: PayloadAction<pathType>) => {
+      state.element.location = action.payload;
     }
   }
 });
 
-export const { addEle, delEle, editLocation } = elementSlice.actions;
+export const { setMove, setMoveLocation } = MoveSlice.actions;
 
-export const selectEle = (state: RootState) => state.element.element;
+export const selectMove = (state: RootState) => state.move.element;
 
-export default elementSlice.reducer;
+export default MoveSlice.reducer;

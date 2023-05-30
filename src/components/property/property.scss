@@ -21,3 +21,37 @@
   font-size: 0.5rem;
   min-height: 300px;
 }
+
+.property-info {
+  font-size: 0.8rem;
+  p {
+    margin: 0;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    list-style: none;
+  }
+  &__inner {
+    &::first-line {
+      margin: 20 px 0;
+    }
+  }
+  button {
+    display: inline;
+    width: 20px;
+    margin: 0 20px;
+    height: 1rem;
+  }
+  input {
+    width: 100px;
+    margin-left: 20px;
+    height: 1rem;
+  }
+}

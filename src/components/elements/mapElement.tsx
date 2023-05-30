@@ -2,11 +2,20 @@ import Child from '../../components/elements/child';
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { selectEle } from '../../redux/Slices/eleSlice';
-import { pathType, setAlarm } from '../../redux/Slices/alarmSlice';
-import { addEle, delEle, editLocation } from '../../redux/Slices/eleSlice';
-import { ElementObj } from '../../redux/Slices/eleSlice';
-import { selectAlarm } from '../../redux/Slices/alarmSlice';
+import { pathType, setAlarm, selectAlarm } from '../../redux/Slices/alarmSlice';
+import {
+  addEle,
+  delEle,
+  ElementObj,
+  replaceEle,
+  selectEle,
+  reNameEle
+} from '../../redux/Slices/eleSlice';
+import {
+  selectMove,
+  setMove,
+  setMoveLocation
+} from '../../redux/Slices/moveSlice';
 
 export interface MinType {
   data: ElementObj;
@@ -18,13 +27,18 @@ export interface AddType {
   deep: number;
 }
 
+export interface RenameType {
+  id: string;
+  name: string;
+}
+
 const areEqual = (prevProps: any, nextProps: any) => {
   return prevProps.data.location === nextProps.data.location;
 };
 
 export function Min({ data, number }: MinType) {
-  const alarm = useAppSelector(selectAlarm);
   const ele = useAppSelector(selectEle);
+  const move = useAppSelector(selectMove);
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
@@ -33,7 +47,8 @@ export function Min({ data, number }: MinType) {
     x: data.location.x,
     y: data.location.y
   });
-  const [text, setText] = useState<string>(`NULL_${number}`);
+  let text: string;
+  //const [text, setText] = useState<string>('');
 
   /* useEffect(() => {
     //location에 이전 위치가 저장되어있으면 해당 위치로 이동
@@ -54,30 +69,44 @@ export function Min({ data, number }: MinType) {
   const changeText = () => {
     changeBool();
     if (bool) {
-      eleRef.current?.focus();
+      dispatch(
+        reNameEle({
+          id: data.id,
+          name: text
+        })
+      );
     }
   };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debounceOnChange(e.target.value);
+    text = e.target.value;
   };
 
   const debounceOnChange = _.debounce((value: string) => {
-    setText((text) => value);
-  }, 500);
+    //setText((text) => value);
+  }, 200);
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      if (bool) {
+        dispatch(
+          reNameEle({
+            id: data.id,
+            name: text
+          })
+        );
+      }
       changeBool();
     }
   };
 
-  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragStartHandler = () => {
     /*  const blankCanvas: any = document.createElement('canvas');
     blankCanvas.classList.add('canvas');
     e.dataTransfer?.setDragImage(blankCanvas, 0, 0);
     document.body?.appendChild(blankCanvas); // 투명 캔버스를 생성하여 글로벌 아이콘 제거
     e.dataTransfer.effectAllowed = 'move'; */
+    dispatch(setMove(data));
   };
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
@@ -86,7 +115,7 @@ export function Min({ data, number }: MinType) {
     pos['x'] = e.clientX - 45;
     pos['y'] = e.clientY - 20;
     setLocation(pos);
-    dispatch(editLocation(location));
+    dispatch(setMoveLocation(location));
     //현재 위치를 id와 같이 redux-path에 저장
   };
 
@@ -94,8 +123,8 @@ export function Min({ data, number }: MinType) {
     e.preventDefault();
   };
 
-  const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    dispatch(editLocation(location)); //현재 위치를 id와 같이 redux-path에 저장
+  const dragEndHandler = () => {
+    dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
   const deleteElement = (id: string) => {
@@ -118,10 +147,11 @@ export function Min({ data, number }: MinType) {
       draggable
       className='section_drag'
       ref={eleRef}
-      onDragStart={(e) => dragStartHandler(e)}
+      onDragStart={(e) => dragStartHandler()}
       onDrag={(e) => dragHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
-      onDragEnd={(e) => dragEndHandler(e)}
+      onDragEnd={() => dragEndHandler()}
+      onClick={() => dragStartHandler()}
       style={{ top: location.y + 'px', left: location.x + 'px' }}
     >
       {bool ? (
@@ -133,7 +163,7 @@ export function Min({ data, number }: MinType) {
           onBlur={changeText}
         />
       ) : (
-        <p>{data.name}</p>
+        <p>{ele[_.findIndex(ele, { id: data.id })].name}</p>
       )}
       <button onClick={changeBool} />
       {data.id !== 'HEAD' ? (

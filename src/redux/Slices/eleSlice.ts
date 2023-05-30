@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { randomID } from '../../functions/randomId';
 import { pathType } from './alarmSlice';
 import { AddType } from '../../components/elements/mapElement';
+import { RenameType } from '../../components/elements/mapElement';
 
 export interface LocationType {
   x: number;
@@ -11,7 +12,6 @@ export interface LocationType {
 }
 
 export interface ElementObj {
-  //name: string;
   id: string;
   name: string;
   location: LocationType;
@@ -26,7 +26,6 @@ export interface ElementState {
 const initialState: ElementState = {
   element: [
     {
-      //name:'HEAD',
       id: 'HEAD',
       name: 'HEAD',
       location: { x: 0, y: 0 },
@@ -44,7 +43,7 @@ export const elementSlice = createSlice({
       let temp = state.element;
       const ran = {
         id: randomID(),
-        name: 'null',
+        name: 'no name',
         location: { x: 0, y: 0 },
         from: action.payload.id,
         deep: action.payload.deep + 1
@@ -59,29 +58,33 @@ export const elementSlice = createSlice({
       state.element = temp;
     },
 
-    editLocation: (state, action: PayloadAction<pathType>) => {
-      const temp = state.element;
-      const index = _.findIndex(temp, (data) => {
-        return data.id === action.payload.id;
-      });
-      temp[index].location = { x: action.payload.x, y: action.payload.y };
+    reNameEle: (state, action: PayloadAction<RenameType>) => {
+      /* const temp = state.element;
+      const index = _.findIndex(state.element, { id: action.payload.id });
+      temp[index].name = action.payload.name;
 
-      state.element = temp;
+      state.element = temp; */
+      const index = _.findIndex(state.element, { id: action.payload.id });
+      if (index !== -1) {
+        state.element[index].name = action.payload.name;
+      }
     },
 
-    reName: (state, action: PayloadAction<pathType>) => {
-      const temp = state.element;
-      const index = _.findIndex(temp, (data) => {
-        return data.id === action.payload.id;
-      });
-      temp[index].location = { x: action.payload.x, y: action.payload.y };
+    replaceEle: (state, action: PayloadAction<ElementObj>) => {
+      const index = _.findIndex(state.element, { id: action.payload.id });
 
-      state.element = temp;
+      state.element[index] = {
+        id: action.payload.id,
+        name: state.element[index].name,
+        location: action.payload.location,
+        from: action.payload.from,
+        deep: action.payload.deep
+      };
     }
   }
 });
 
-export const { addEle, delEle, editLocation } = elementSlice.actions;
+export const { addEle, delEle, replaceEle, reNameEle } = elementSlice.actions;
 
 export const selectEle = (state: RootState) => state.element.element;
 

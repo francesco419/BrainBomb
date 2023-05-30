@@ -129,6 +129,8 @@
 
 - React.Memo를 사용 -> 컴포넌트 생성이 map()을 사용하기에 redux의 eleSlice의 변화가 생기면 모든 ele의 재생성 => 불가피한 컴포넌트 리랜더링.
 
+---
+
 ### 작업
 
 - 선 연결(connector)기능

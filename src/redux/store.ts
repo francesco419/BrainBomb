@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
 import alarmReducer from './Slices/alarmSlice';
 import elementReducer from './Slices/eleSlice';
+import moveReducer from './Slices/moveSlice';
 //////////////////////////////
 const rootReducer = combineReducers({
   alarm: alarmReducer,
-  element: elementReducer
+  element: elementReducer,
+  move: moveReducer
 });
 
 const persistConfig = {
