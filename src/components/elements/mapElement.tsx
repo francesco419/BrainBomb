@@ -25,6 +25,7 @@ export interface MinType {
 export interface AddType {
   id: string;
   deep: number;
+  color: string;
 }
 
 export interface RenameType {
@@ -48,19 +49,6 @@ export function Min({ data, number }: MinType) {
     y: data.location.y
   });
   let text: string;
-  //const [text, setText] = useState<string>('');
-
-  /* useEffect(() => {
-    //location에 이전 위치가 저장되어있으면 해당 위치로 이동
-    const exist = _.findIndex(loc.path, (location) => {
-      return location.id === data.id;
-    });
-    if (exist >= 0) {
-      setLocation(loc.path[exist]);
-    } else {
-      dispatch(setPath(location));
-    }
-  }, []); */
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -81,10 +69,6 @@ export function Min({ data, number }: MinType) {
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     text = e.target.value;
   };
-
-  const debounceOnChange = _.debounce((value: string) => {
-    //setText((text) => value);
-  }, 200);
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -132,13 +116,9 @@ export function Min({ data, number }: MinType) {
     dispatch(delEle(id));
   };
 
-  const addElement = (id: string, deep: number) => {
-    const data: AddType = {
-      id: id,
-      deep: deep
-    };
+  const addElement = (id: string) => {
     //해당 element와 연결된 또다른 element생성 , redux 저장
-    dispatch(addEle(data));
+    dispatch(addEle(id));
   };
 
   return (
@@ -152,7 +132,11 @@ export function Min({ data, number }: MinType) {
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
       onClick={() => dragStartHandler()}
-      style={{ top: location.y + 'px', left: location.x + 'px' }}
+      style={{
+        top: location.y + 'px',
+        left: location.x + 'px',
+        backgroundColor: ele[_.findIndex(ele, { id: data.id })].color
+      }}
     >
       {bool ? (
         <input
@@ -183,7 +167,7 @@ export function Min({ data, number }: MinType) {
       ) : null}
       <button
         className='section_drag_add section_drag_button'
-        onClick={() => addElement(data.id, data.deep)}
+        onClick={() => addElement(data.id)}
       />
     </div>
   );

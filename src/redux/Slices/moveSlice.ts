@@ -18,7 +18,8 @@ const initialState: MoveState = {
     },
     from: null,
     deep: 999,
-    name: 'null'
+    name: 'null',
+    color: '#000'
   }
 };
 

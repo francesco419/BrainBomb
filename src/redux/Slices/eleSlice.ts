@@ -17,6 +17,7 @@ export interface ElementObj {
   location: LocationType;
   from: string | null;
   deep: number;
+  color: string;
 }
 
 export interface ElementState {
@@ -30,7 +31,8 @@ const initialState: ElementState = {
       name: 'HEAD',
       location: { x: 0, y: 0 },
       from: null,
-      deep: 0
+      deep: 0,
+      color: '#456788'
     }
   ]
 };
@@ -39,14 +41,19 @@ export const elementSlice = createSlice({
   name: 'ele',
   initialState,
   reducers: {
-    addEle: (state, action: PayloadAction<AddType>) => {
+    addEle: (state, action: PayloadAction<string>) => {
       let temp = state.element;
+      const index = _.findIndex(state.element, { id: action.payload });
       const ran = {
         id: randomID(),
         name: 'no name',
-        location: { x: 0, y: 0 },
-        from: action.payload.id,
-        deep: action.payload.deep + 1
+        location: {
+          x: 100,
+          y: 100
+        },
+        from: state.element[index].id,
+        deep: state.element[index].deep + 1,
+        color: state.element[index].color
       };
       temp.push(ran);
       state.element = temp;
@@ -78,13 +85,24 @@ export const elementSlice = createSlice({
         name: state.element[index].name,
         location: action.payload.location,
         from: action.payload.from,
-        deep: action.payload.deep
+        deep: action.payload.deep,
+        color: action.payload.color
       };
+    },
+
+    colorEle: (state, action: PayloadAction<AddType>) => {
+      let temp = state.element;
+      const index = _.findIndex(state.element, { id: action.payload.id });
+
+      temp[index].color = action.payload.color;
+
+      state.element = temp;
     }
   }
 });
 
-export const { addEle, delEle, replaceEle, reNameEle } = elementSlice.actions;
+export const { addEle, delEle, replaceEle, reNameEle, colorEle } =
+  elementSlice.actions;
 
 export const selectEle = (state: RootState) => state.element.element;
 

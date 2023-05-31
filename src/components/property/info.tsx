@@ -1,17 +1,25 @@
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectMove } from '../../redux/Slices/moveSlice';
-import { ElementObj, selectEle, reNameEle } from '../../redux/Slices/eleSlice';
+import {
+  ElementObj,
+  selectEle,
+  reNameEle,
+  colorEle
+} from '../../redux/Slices/eleSlice';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
+import { SketchPicker } from 'react-color';
 
 export default function PropertyInfo() {
   const element = useAppSelector(selectMove);
   const elementArray = useAppSelector(selectEle);
   const [show, setShow] = useState<boolean>(false);
+  const [color, setColor] = useState<string>();
+  const [colorPicker, setColorPicker] = useState<boolean>(false);
+  let [ele, setEle] = useState<ElementObj[]>([]);
   const dispatch = useAppDispatch();
 
   let anyText: string;
-  let [ele, setEle] = useState<ElementObj[]>([]);
   let parent: string = element.from
     ? elementArray[_.findIndex(elementArray, { id: element.from })].name
     : '-';
@@ -24,7 +32,14 @@ export default function PropertyInfo() {
   useEffect(() => {
     const arr = filterChild();
     setEle((ele) => arr);
+    setColor((color) => element.color);
   }, [elementArray, element.id, element]);
+
+  useEffect(() => {
+    const arr = filterChild();
+    setEle((ele) => arr);
+    setColor((color) => element.color);
+  }, [element]);
 
   const filterChild = (): ElementObj[] => {
     return _.filter(elementArray, { from: element.id });
@@ -55,16 +70,24 @@ export default function PropertyInfo() {
     }
   };
 
+  const changeColorHandler = () => {
+    if (colorPicker && color) {
+      console.log(1);
+      dispatch(colorEle({ id: element.id, deep: element.deep, color: color }));
+    }
+    setColorPicker((colorPicker) => !colorPicker);
+  };
+
   return (
     <div className='property-info'>
       {element.id !== 'null' && (
         <div className='property-info__inner'>
           <ul>
             <li>
-              <p>{`id : ${element.id}`}</p>
+              <p>{`Id : ${element.id}`}</p>
             </li>
             <li>
-              <p>name :&nbsp;</p>
+              <p>Name :&nbsp;</p>
               {show ? (
                 <input
                   onChange={(e) => onChangeHandler(e)}
@@ -81,15 +104,34 @@ export default function PropertyInfo() {
             <li>
               <p>{`location : ${element.location.x} / ${element.location.x}`}</p>
             </li>
+            <li className='property-info__color'>
+              <p>Background :&nbsp;</p>
+              <button
+                className='property-info__colorButton'
+                style={{ backgroundColor: color }}
+                onClick={changeColorHandler}
+              />
+            </li>
+            {colorPicker && (
+              <li>
+                <SketchPicker
+                  color={color}
+                  onChange={(color: any) => {
+                    setColor(color.hex);
+                    console.log(color.hex);
+                  }}
+                />
+              </li>
+            )}
             <li>
-              <p>{`parent : ${parent}`}</p>
+              <p>{`Parent : ${parent}`}</p>
             </li>
           </ul>
           <div style={{ display: 'flex' }}>
-            <p>{`child : `}&nbsp;</p>
+            <p>{`Child : `}&nbsp;</p>
             <ul>
-              {ele.length > 0
-                ? _.map(ele, (obj) => {
+              {/*               {ele.length > 0
+                ? _.map(ele, (obj,index) => {
                     return (
                       <li>
                         <p>
@@ -100,7 +142,7 @@ export default function PropertyInfo() {
                       </li>
                     );
                   })
-                : null}
+                : null} */}
               <li>
                 <p>({ele.length})</p>
               </li>
