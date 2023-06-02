@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { SketchPicker } from 'react-color';
+import { ReactComponent as Edit } from '../../assets/svg/edit.svg';
 
 export default function PropertyInfo() {
   const element = useAppSelector(selectMove);
@@ -80,13 +81,14 @@ export default function PropertyInfo() {
 
   return (
     <div className='property-info'>
+      <p>----- Info ------</p>
       {element.id !== 'null' && (
         <div className='property-info__inner'>
           <ul>
             <li>
               <p>{`Id : ${element.id}`}</p>
             </li>
-            <li>
+            <li className='property-info__name'>
               <p>Name :&nbsp;</p>
               {show ? (
                 <input
@@ -99,7 +101,9 @@ export default function PropertyInfo() {
               <button
                 type='button'
                 onClick={show ? changeNameHandler : changeShow}
-              />
+              >
+                <Edit />
+              </button>
             </li>
             <li>
               <p>{`location : ${element.location.x} / ${element.location.x}`}</p>

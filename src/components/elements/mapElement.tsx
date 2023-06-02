@@ -1,4 +1,3 @@
-import Child from '../../components/elements/child';
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
@@ -43,6 +42,7 @@ export function Min({ data, number }: MinType) {
   const dispatch = useAppDispatch();
   const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
+  const [showButton, setShowButton] = useState<boolean>(false);
   const [location, setLocation] = useState<pathType>({
     id: data.id,
     x: data.location.x,
@@ -111,14 +111,29 @@ export function Min({ data, number }: MinType) {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
-  const deleteElement = (id: string) => {
+  /*   const deleteElement = (id: string) => {
     //redux eleSlice / pathSlice 에 저장된 해당 element정보 삭제
     dispatch(delEle(id));
-  };
+  }; */
 
   const addElement = (id: string) => {
     //해당 element와 연결된 또다른 element생성 , redux 저장
     dispatch(addEle(id));
+  };
+
+  const deleteElement = (id: string) => {
+    const havIt = _.findIndex(ele, (o) => {
+      return o.from === id;
+    });
+    if (havIt >= 0) {
+      dispatch(setAlarm('delete'));
+    } else {
+      dispatch(delEle(id));
+    }
+  };
+
+  const mouseEventHandler = () => {
+    setShowButton((showButton) => !showButton);
   };
 
   return (
@@ -132,6 +147,8 @@ export function Min({ data, number }: MinType) {
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
       onClick={() => dragStartHandler()}
+      onMouseEnter={mouseEventHandler}
+      onMouseLeave={mouseEventHandler}
       style={{
         top: location.y + 'px',
         left: location.x + 'px',
@@ -150,21 +167,13 @@ export function Min({ data, number }: MinType) {
         <p>{ele[_.findIndex(ele, { id: data.id })].name}</p>
       )}
       <button onClick={changeBool} />
-      {data.id !== 'HEAD' ? (
+      {showButton &&}
+      {data.id !== 'HEAD' && (
         <button
           className='section_drag_delete section_drag_button'
-          onClick={() => {
-            const havIt = _.findIndex(ele, (o) => {
-              return o.from === data.id;
-            });
-            if (havIt >= 0) {
-              dispatch(setAlarm('delete'));
-            } else {
-              deleteElement(data.id);
-            }
-          }}
+          onClick={() => deleteElement(data.id)}
         />
-      ) : null}
+      )}
       <button
         className='section_drag_add section_drag_button'
         onClick={() => addElement(data.id)}

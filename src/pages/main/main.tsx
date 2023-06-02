@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/header/header';
 import './main.scss';
-import Child from '../../components/elements/child';
 import Pallet from './pallet';
 import Alarm from '../../components/alarm/alarm';
 

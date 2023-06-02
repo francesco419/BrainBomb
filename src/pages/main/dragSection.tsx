@@ -11,7 +11,7 @@ export default function DragSection() {
   const speed = 0.1;
   let scale = 1;
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (ref && ref.current) {
       ref.current.addEventListener('wheel', (e) => {
         if (ref.current) {
@@ -24,7 +24,7 @@ export default function DragSection() {
         }
       });
     }
-  }, []);
+  }, []); */
 
   return (
     <div ref={ref} className='section_page'>

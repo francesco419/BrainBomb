@@ -38,6 +38,7 @@ export default function PropertyList() {
 
   return (
     <div className='property-list'>
+      <p>----- List ------</p>
       {_.map(inOrder, (o, index) => {
         return (
           <div

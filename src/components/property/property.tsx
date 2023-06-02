@@ -7,8 +7,8 @@ export default function Property() {
   return (
     <div className='property'>
       <PropertyList />
-      <PropertyEdit />
       <PropertyInfo />
+      <PropertyEdit />
     </div>
   );
 }

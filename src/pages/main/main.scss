@@ -26,6 +26,7 @@
     font-size: 12px;
     border: 1px solid;
     box-sizing: border-box;
+    border-radius: 15px;
     /* background-color: #456788; */
     z-index: 10;
     p {
@@ -34,7 +35,6 @@
     button {
       width: 15px;
       height: 15px;
-      border: 1px solid #fff;
     }
     input[type='text'] {
       background: none;
@@ -47,7 +47,6 @@
     &_button {
       position: absolute;
       top: -7px;
-      display: block;
       border: none;
       width: 5px;
       height: 5px;
@@ -97,5 +96,5 @@
 .comp_line {
   position: absolute;
   width: 0px;
-  border-left: 1px dashed blue;
+  border-left: 1px dashed #000;
 }
