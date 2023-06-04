@@ -147,8 +147,8 @@ export function Min({ data, number }: MinType) {
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
       onClick={() => dragStartHandler()}
-      onMouseEnter={mouseEventHandler}
-      onMouseLeave={mouseEventHandler}
+      onMouseOver={mouseEventHandler}
+      onMouseOut={mouseEventHandler}
       style={{
         top: location.y + 'px',
         left: location.x + 'px',
@@ -167,17 +167,19 @@ export function Min({ data, number }: MinType) {
         <p>{ele[_.findIndex(ele, { id: data.id })].name}</p>
       )}
       <button onClick={changeBool} />
-      {showButton &&}
-      {data.id !== 'HEAD' && (
-        <button
-          className='section_drag_delete section_drag_button'
-          onClick={() => deleteElement(data.id)}
-        />
+      {showButton && (
+        <>
+          <button
+            disabled={data.id === 'HEAD'}
+            className='section_drag_delete section_drag_button'
+            onClick={() => deleteElement(data.id)}
+          />
+          <button
+            className='section_drag_add section_drag_button'
+            onClick={() => addElement(data.id)}
+          />
+        </>
       )}
-      <button
-        className='section_drag_add section_drag_button'
-        onClick={() => addElement(data.id)}
-      />
     </div>
   );
 }

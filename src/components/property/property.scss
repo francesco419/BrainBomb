@@ -9,7 +9,31 @@
   z-index: 99;
 }
 
-.property-list,
+.property-prop {
+  padding: 15px;
+  box-sizing: border-box;
+  border: 5px solid #fff;
+  color: white;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  border-radius: 25px;
+  background-color: #687655;
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    border: 0;
+    background: none;
+    color: #fff;
+    font-weight: 1000;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+/* .property-list,
 .property-edit,
 .property-info {
   padding: 15px;
@@ -19,7 +43,7 @@
   font-size: 1rem;
   margin: 1rem 0;
   background-color: #687655;
-}
+} */
 
 .property-info {
   height: fit-content;

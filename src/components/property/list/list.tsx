@@ -1,11 +1,11 @@
-import { ElementObj } from '../../redux/Slices/eleSlice';
-import { selectEle } from '../../redux/Slices/eleSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { ElementObj } from '../../../redux/Slices/eleSlice';
+import { selectEle } from '../../../redux/Slices/eleSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import _ from 'lodash';
 import { useEffect, useState } from 'react';
 import './list.scss';
-import { elementBackgroundHandler } from '../../functions/backgroundHandler';
-import { setMove } from '../../redux/Slices/moveSlice';
+import { elementBackgroundHandler } from '../../../functions/backgroundHandler';
+import { setMove } from '../../../redux/Slices/moveSlice';
 
 export default function PropertyList() {
   const ele = useAppSelector(selectEle);
@@ -38,7 +38,6 @@ export default function PropertyList() {
 
   return (
     <div className='property-list'>
-      <p>----- List ------</p>
       {_.map(inOrder, (o, index) => {
         return (
           <div

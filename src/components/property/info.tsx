@@ -81,7 +81,6 @@ export default function PropertyInfo() {
 
   return (
     <div className='property-info'>
-      <p>----- Info ------</p>
       {element.id !== 'null' && (
         <div className='property-info__inner'>
           <ul>
