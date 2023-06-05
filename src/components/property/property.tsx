@@ -1,7 +1,7 @@
 import './property.scss';
 import PropertyList from './list/list';
 import PropertyEdit from './edit/edit';
-import PropertyInfo from './info';
+import PropertyInfo from './info/info';
 import { useEffect, useState } from 'react';
 
 interface PropertyType {

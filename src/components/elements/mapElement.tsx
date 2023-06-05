@@ -149,11 +149,15 @@ export function Min({ data, number }: MinType) {
       onClick={() => dragStartHandler()}
       onMouseOver={mouseEventHandler}
       onMouseOut={mouseEventHandler}
-      style={{
-        top: location.y + 'px',
-        left: location.x + 'px',
-        backgroundColor: ele[_.findIndex(ele, { id: data.id })].color
-      }}
+      style={Object.assign(
+        {
+          top: location.y + 'px',
+          left: location.x + 'px',
+          backgroundColor:
+            ele[_.findIndex(ele, { id: data.id })].style.backgroundColor
+        },
+        data.style
+      )}
     >
       {bool ? (
         <input

@@ -1,21 +1,37 @@
-import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { selectMove } from '../../redux/Slices/moveSlice';
+import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
+import { selectMove } from '../../../redux/Slices/moveSlice';
 import {
   ElementObj,
   selectEle,
   reNameEle,
   colorEle
-} from '../../redux/Slices/eleSlice';
+} from '../../../redux/Slices/eleSlice';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { SketchPicker } from 'react-color';
-import { ReactComponent as Edit } from '../../assets/svg/edit.svg';
+import { ReactComponent as Edit } from '../../../assets/svg/edit.svg';
+import './info.scss';
+import ElementEdit from './elementEdit';
+
+//const aa = <p style={{width: }}></p>
+
+export interface StyleProp {
+  width: string;
+  height: string;
+  fontSize: string;
+  borderWidth: string;
+  borderStyle: string;
+  borderColor: string;
+  borderRadius: string;
+  backgroundColor: string;
+}
 
 export default function PropertyInfo() {
   const element = useAppSelector(selectMove);
   const elementArray = useAppSelector(selectEle);
   const [show, setShow] = useState<boolean>(false);
-  const [color, setColor] = useState<string>();
+  const [styleEdit, setStyleEdit] = useState<boolean>(false);
+  const [color, setColor] = useState<string>(element.style.backgroundColor);
   const [colorPicker, setColorPicker] = useState<boolean>(false);
   let [ele, setEle] = useState<ElementObj[]>([]);
   const dispatch = useAppDispatch();
@@ -33,13 +49,13 @@ export default function PropertyInfo() {
   useEffect(() => {
     const arr = filterChild();
     setEle((ele) => arr);
-    setColor((color) => element.color);
+    setColor((color) => element.style.backgroundColor);
   }, [elementArray, element.id, element]);
 
   useEffect(() => {
     const arr = filterChild();
     setEle((ele) => arr);
-    setColor((color) => element.color);
+    setColor((color) => element.style.backgroundColor);
   }, [element]);
 
   const filterChild = (): ElementObj[] => {
@@ -79,11 +95,16 @@ export default function PropertyInfo() {
     setColorPicker((colorPicker) => !colorPicker);
   };
 
+  const changeStyleEdit = () => {
+    console.log(1);
+    setStyleEdit((styleEdit) => !styleEdit);
+  };
+
   return (
     <div className='property-info'>
       {element.id !== 'null' && (
         <div className='property-info__inner'>
-          <ul>
+          <ul className='property-info__ul'>
             <li>
               <p>{`Id : ${element.id}`}</p>
             </li>
@@ -91,6 +112,7 @@ export default function PropertyInfo() {
               <p>Name :&nbsp;</p>
               {show ? (
                 <input
+                  className='property-info__input'
                   onChange={(e) => onChangeHandler(e)}
                   onKeyPress={(e) => onKeyPressHandler(e)}
                 ></input>
@@ -98,17 +120,18 @@ export default function PropertyInfo() {
                 <p>{obj.name}</p>
               )}
               <button
+                className='property-info__button'
                 type='button'
                 onClick={show ? changeNameHandler : changeShow}
               >
-                <Edit />
+                <Edit className='property-info__svg' />
               </button>
             </li>
             <li>
               <p>{`location : ${element.location.x} / ${element.location.x}`}</p>
             </li>
             <li className='property-info__color'>
-              <p>Background :&nbsp;</p>
+              <p>Color :&nbsp;</p>
               <button
                 className='property-info__colorButton'
                 style={{ backgroundColor: color }}
@@ -129,30 +152,41 @@ export default function PropertyInfo() {
             <li>
               <p>{`Parent : ${parent}`}</p>
             </li>
+            <li>
+              <p>{`Child : `}&nbsp;</p>
+              <p>({ele.length})</p>
+            </li>
+            <li>
+              <p>Style :&nbsp;</p>
+              <button
+                className='property-info__button'
+                onClick={changeStyleEdit}
+              >
+                <Edit className='property-info__svg' />
+              </button>
+            </li>
           </ul>
-          <div style={{ display: 'flex' }}>
-            <p>{`Child : `}&nbsp;</p>
-            <ul>
-              {/*               {ele.length > 0
-                ? _.map(ele, (obj,index) => {
-                    return (
-                      <li>
-                        <p>
-                          {obj.name.length > 10
-                            ? obj.name.slice(0, 9)
-                            : obj.name}
-                        </p>
-                      </li>
-                    );
-                  })
-                : null} */}
-              <li>
-                <p>({ele.length})</p>
-              </li>
-            </ul>
-          </div>
         </div>
       )}
+      {styleEdit && <ElementEdit data={element} shut={changeStyleEdit} />}
     </div>
   );
+}
+
+{
+  /*               {ele.length > 0
+                ? _.map(ele, (obj,index) => {
+                  return (
+                    <li>
+                    <p>
+                    {obj.name.length > 10
+                      ? obj.name.slice(0, 9)
+                      : obj.name}
+                      </p>
+                      </li>
+                      );
+                    })
+                    : null} 
+                    해당 엘리먼트에 연결된 자식 엘리먼트 리스트
+                  */
 }

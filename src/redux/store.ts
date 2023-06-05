@@ -6,11 +6,15 @@ import { persistReducer } from 'redux-persist';
 import alarmReducer from './Slices/alarmSlice';
 import elementReducer from './Slices/eleSlice';
 import moveReducer from './Slices/moveSlice';
+import pageReducer from './Slices/pageSlice';
+import lineReducer from './Slices/lineSlice';
 //////////////////////////////
 const rootReducer = combineReducers({
   alarm: alarmReducer,
   element: elementReducer,
-  move: moveReducer
+  move: moveReducer,
+  page: pageReducer,
+  line: lineReducer
 });
 
 const persistConfig = {

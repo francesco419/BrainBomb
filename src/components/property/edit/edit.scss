@@ -1,0 +1,43 @@
+.property-edit {
+  &__page {
+    padding: 0;
+  }
+  li {
+    list-style: none;
+    margin: 0 0 15px;
+  }
+  &__back {
+    display: flex;
+    button {
+      width: 20px;
+      height: 20px;
+      border: none;
+      margin-left: 10px;
+    }
+  }
+  &__picker {
+    display: flex;
+    justify-content: center;
+  }
+  &__line {
+    margin: 20px 0 0;
+    padding: 0 0 0 10px;
+    li {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__save {
+    margin: 10px 0 0;
+    padding: 5px;
+    color: #fff;
+    border: 1px solid #fff;
+    &:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  }
+  input[type='radio'] {
+    margin: 0 0 0 5px;
+  }
+}

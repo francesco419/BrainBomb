@@ -13,20 +13,20 @@
   padding: 15px;
   box-sizing: border-box;
   border: 5px solid #fff;
+  border-radius: 25px;
   color: white;
   font-size: 1rem;
   margin: 0 0 1rem;
-  border-radius: 25px;
   background-color: #687655;
   &__title {
     display: flex;
     justify-content: space-between;
-  }
-  button {
-    border: 0;
-    background: none;
-    color: #fff;
-    font-weight: 1000;
+    button {
+      border: 0;
+      background: none;
+      color: #fff;
+      font-weight: 1000;
+    }
   }
   p {
     margin: 0;
@@ -44,58 +44,3 @@
   margin: 1rem 0;
   background-color: #687655;
 } */
-
-.property-info {
-  height: fit-content;
-  p {
-    margin: 0;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  li {
-    display: flex;
-    align-items: center;
-    padding-bottom: 20px;
-    list-style: none;
-  }
-  &__inner {
-    padding: 16px 0 0;
-    &::first-line {
-      margin: 20 px 0;
-    }
-  }
-  &__name {
-    button {
-      background: none;
-      border: none;
-      svg {
-        width: 15px;
-        height: 15px;
-        fill: none;
-      }
-    }
-  }
-  button {
-    width: 20px;
-    height: 20px;
-    background: none;
-    margin-left: 10px;
-  }
-  input {
-    width: 100px;
-    margin-left: 20px;
-    height: 1rem;
-  }
-  &__color {
-    display: flex;
-  }
-  &__colorButton {
-    width: 1rem;
-    margin: 0 20px;
-    height: 1rem;
-    border: 1px solid #fff;
-  }
-}

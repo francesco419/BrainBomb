@@ -4,19 +4,21 @@ import { ElementObj, selectEle } from '../../redux/Slices/eleSlice';
 import _ from 'lodash';
 import React from 'react';
 import { selectMove } from '../../redux/Slices/moveSlice';
+import { selectLine } from '../../redux/Slices/lineSlice';
 
 interface xy {
   x: string;
   y: string;
 }
 
-interface LineState {
+interface LineProp {
   data: ElementObj;
 }
 
-export default function Line({ data }: LineState) {
+export default function Line({ data }: LineProp) {
   const ele = useAppSelector(selectEle);
   const move = useAppSelector(selectMove);
+  const line = useAppSelector(selectLine);
   const [from, setFrom] = useState<xy>({ x: '0px', y: '0px' });
   const [to, setTo] = useState<number>(0);
   const [tan, setTan] = useState<number>();
@@ -195,13 +197,16 @@ export default function Line({ data }: LineState) {
   return (
     <div
       className='comp_line'
-      style={{
-        top: from.y,
-        left: from.x,
-        height: to + 'px',
-        transform: `rotate(${tan}deg)`,
-        transformOrigin: '0 0px'
-      }}
+      style={Object.assign(
+        {
+          top: from.y,
+          left: from.x,
+          height: to + 'px',
+          transform: `rotate(${tan}deg)`,
+          transformOrigin: '0 0px'
+        },
+        line.value
+      )}
     ></div>
   );
 }

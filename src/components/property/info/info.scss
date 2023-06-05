@@ -1,0 +1,54 @@
+.property-info {
+  height: fit-content;
+  p {
+    margin: 0;
+  }
+  &__ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      list-style: none;
+    }
+  }
+  &__inner {
+    padding: 16px 0 0;
+    &::first-line {
+      margin: 20 px 0;
+    }
+  }
+  &__name {
+    button {
+      background: none;
+      border: none;
+    }
+  }
+  &__button {
+    width: 20px;
+    height: 20px;
+    background: none;
+    margin-left: 10px;
+  }
+  &__input {
+    width: 100px;
+    margin-left: 20px;
+    height: 1rem;
+  }
+  &__color {
+    display: flex;
+  }
+  &__colorButton {
+    width: 1rem;
+    margin: 0 20px;
+    height: 1rem;
+    border: 1px solid #fff;
+  }
+  &__svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+  }
+}

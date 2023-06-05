@@ -2,14 +2,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
 import { randomID } from '../../functions/randomId';
-import { pathType } from './alarmSlice';
 import { AddType } from '../../components/elements/mapElement';
 import { RenameType } from '../../components/elements/mapElement';
+import { StyleProp } from '../../components/property/info/info';
+import { StyleIdProp } from '../../components/property/info/elementEdit';
 
 export interface LocationType {
   x: number;
   y: number;
 }
+
+export let DEFAULT_STYLE: StyleProp = {
+  width: 'fit-content',
+  height: 'fit-content',
+  fontSize: '12px',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: '#000',
+  borderRadius: '15px',
+  backgroundColor: '#456788'
+};
 
 export interface ElementObj {
   id: string;
@@ -17,7 +29,7 @@ export interface ElementObj {
   location: LocationType;
   from: string | null;
   deep: number;
-  color: string;
+  style: StyleProp;
 }
 
 export interface ElementState {
@@ -32,7 +44,7 @@ const initialState: ElementState = {
       location: { x: 0, y: 0 },
       from: null,
       deep: 0,
-      color: '#456788'
+      style: DEFAULT_STYLE
     }
   ]
 };
@@ -53,7 +65,7 @@ export const elementSlice = createSlice({
         },
         from: state.element[index].id,
         deep: state.element[index].deep + 1,
-        color: state.element[index].color
+        style: state.element[index].style
       };
       temp.push(ran);
       state.element = temp;
@@ -86,7 +98,7 @@ export const elementSlice = createSlice({
         location: action.payload.location,
         from: action.payload.from,
         deep: action.payload.deep,
-        color: action.payload.color
+        style: action.payload.style
       };
     },
 
@@ -94,15 +106,34 @@ export const elementSlice = createSlice({
       let temp = state.element;
       const index = _.findIndex(state.element, { id: action.payload.id });
 
-      temp[index].color = action.payload.color;
+      temp[index].style.backgroundColor = action.payload.color;
 
       state.element = temp;
+    },
+
+    styleEle: (state, action: PayloadAction<StyleIdProp>) => {
+      const index = _.findIndex(state.element, { id: action.payload.id });
+      state.element[index].style = action.payload.style;
+    },
+
+    allStyleEle: (state, action: PayloadAction<StyleIdProp>) => {
+      DEFAULT_STYLE = action.payload.style;
+      state.element.forEach((data) => {
+        data.style = action.payload.style;
+      });
     }
   }
 });
 
-export const { addEle, delEle, replaceEle, reNameEle, colorEle } =
-  elementSlice.actions;
+export const {
+  addEle,
+  delEle,
+  replaceEle,
+  reNameEle,
+  colorEle,
+  styleEle,
+  allStyleEle
+} = elementSlice.actions;
 
 export const selectEle = (state: RootState) => state.element.element;
 

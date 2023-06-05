@@ -2,8 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
 import { pathType } from './alarmSlice';
-import { LocationType } from './eleSlice';
-import { ElementObj } from './eleSlice';
+import { ElementObj, DEFAULT_STYLE } from './eleSlice';
 
 export interface MoveState {
   element: ElementObj;
@@ -19,7 +18,7 @@ const initialState: MoveState = {
     from: null,
     deep: 999,
     name: 'null',
-    color: '#000'
+    style: DEFAULT_STYLE
   }
 };
 
