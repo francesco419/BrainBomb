@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
 import { randomID } from '../../functions/randomId';
-import { AddType } from '../../components/elements/mapElement';
-import { RenameType } from '../../components/elements/mapElement';
+import { AddType } from '../../components/elements/element/mapElement';
+import { RenameType } from '../../components/elements/element/mapElement';
 import { StyleProp } from '../../components/property/info/info';
 import { StyleIdProp } from '../../components/property/info/elementEdit';
 
@@ -13,14 +13,14 @@ export interface LocationType {
 }
 
 export let DEFAULT_STYLE: StyleProp = {
-  width: 'fit-content',
-  height: 'fit-content',
-  fontSize: '12px',
-  borderWidth: '1px',
+  width: '100px',
+  height: '100px',
+  fontSize: '16px',
+  borderWidth: '5px',
   borderStyle: 'solid',
-  borderColor: '#000',
-  borderRadius: '15px',
-  backgroundColor: '#456788'
+  borderColor: '#fff',
+  borderRadius: '50%',
+  backgroundColor: '#64b1b1'
 };
 
 export interface ElementObj {

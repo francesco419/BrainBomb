@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
-import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { pathType, setAlarm, selectAlarm } from '../../redux/Slices/alarmSlice';
+import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
+import {
+  pathType,
+  setAlarm,
+  selectAlarm
+} from '../../../redux/Slices/alarmSlice';
 import {
   addEle,
   delEle,
@@ -9,12 +13,14 @@ import {
   replaceEle,
   selectEle,
   reNameEle
-} from '../../redux/Slices/eleSlice';
+} from '../../../redux/Slices/eleSlice';
 import {
   selectMove,
   setMove,
   setMoveLocation
-} from '../../redux/Slices/moveSlice';
+} from '../../../redux/Slices/moveSlice';
+import ElementModify from './elementModify';
+import ElementName from './elementName';
 
 export interface MinType {
   data: ElementObj;
@@ -48,11 +54,13 @@ export function Min({ data, number }: MinType) {
     x: data.location.x,
     y: data.location.y
   });
-  let text: string;
 
   const changeBool = () => {
     setBool((bool) => !bool);
   };
+
+  /*   let text: string;
+
 
   const changeText = () => {
     changeBool();
@@ -82,7 +90,7 @@ export function Min({ data, number }: MinType) {
       }
       changeBool();
     }
-  };
+  }; */
 
   const dragStartHandler = () => {
     /*  const blankCanvas: any = document.createElement('canvas');
@@ -111,31 +119,6 @@ export function Min({ data, number }: MinType) {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
   };
 
-  /*   const deleteElement = (id: string) => {
-    //redux eleSlice / pathSlice 에 저장된 해당 element정보 삭제
-    dispatch(delEle(id));
-  }; */
-
-  const addElement = (id: string) => {
-    //해당 element와 연결된 또다른 element생성 , redux 저장
-    dispatch(addEle(id));
-  };
-
-  const deleteElement = (id: string) => {
-    const havIt = _.findIndex(ele, (o) => {
-      return o.from === id;
-    });
-    if (havIt >= 0) {
-      dispatch(setAlarm('delete'));
-    } else {
-      dispatch(delEle(id));
-    }
-  };
-
-  const mouseEventHandler = () => {
-    setShowButton((showButton) => !showButton);
-  };
-
   return (
     <div
       id={data.id}
@@ -147,8 +130,6 @@ export function Min({ data, number }: MinType) {
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
       onClick={() => dragStartHandler()}
-      onMouseOver={mouseEventHandler}
-      onMouseOut={mouseEventHandler}
       style={Object.assign(
         {
           top: location.y + 'px',
@@ -160,32 +141,23 @@ export function Min({ data, number }: MinType) {
       )}
     >
       {bool ? (
-        <input
-          type='text'
-          autoFocus
-          onChange={(e) => onChangeHandler(e)}
-          onKeyPress={(e) => onKeyPressHandler(e)}
-          onBlur={changeText}
-        />
+        <ElementName change={changeBool} id={data.id} bool={bool} />
       ) : (
         <p>{ele[_.findIndex(ele, { id: data.id })].name}</p>
       )}
-      <button onClick={changeBool} />
-      {showButton && (
-        <>
-          <button
-            disabled={data.id === 'HEAD'}
-            className='section_drag_delete section_drag_button'
-            onClick={() => deleteElement(data.id)}
-          />
-          <button
-            className='section_drag_add section_drag_button'
-            onClick={() => addElement(data.id)}
-          />
-        </>
-      )}
+      <ElementModify change={changeBool} id={data.id} />
     </div>
   );
 }
 
 export const MemoElement = React.memo(Min, areEqual);
+
+{
+  /* <input
+  type='text'
+  autoFocus
+  onChange={(e) => onChangeHandler(e)}
+  onKeyPress={(e) => onKeyPressHandler(e)}
+  onBlur={changeText}
+/> */
+}

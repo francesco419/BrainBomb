@@ -1,0 +1,26 @@
+.element-modify {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5px;
+  transform: translateY(-50%);
+  &:hover {
+    display: flex;
+  }
+  &__button {
+    background-color: #c0c0c0;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    padding: 4x 5px;
+  }
+  &__add,
+  &__delete {
+    margin: 0 0 5px;
+  }
+  button:disabled {
+    cursor: default;
+  }
+}

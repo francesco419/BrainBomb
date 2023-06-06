@@ -3,7 +3,7 @@ import { RootState } from '../store';
 import _ from 'lodash';
 import { randomID } from '../../functions/randomId';
 import { pathType } from './alarmSlice';
-import { AddType } from '../../components/elements/mapElement';
+import { AddType } from '../../components/elements/element/mapElement';
 
 export interface LineState {
   value: {

@@ -27,9 +27,11 @@
     border-radius: 15px;
     z-index: 10;
     p {
-      margin: 0 10px 0;
+      text-align: center;
+      width: 100%;
+      margin: 0;
     }
-    button {
+    &__button {
       width: 15px;
       height: 15px;
     }
@@ -41,23 +43,8 @@
         outline: none;
       }
     }
-    &_button {
-      position: absolute;
-      top: -7px;
-      border: none;
-      width: 5px;
-      height: 5px;
-      @include mx-round(50%);
-    }
-    &_delete {
-      position: absolute;
-      right: -7px;
-      background-color: red;
-    }
-    &_add {
-      position: absolute;
-      left: -7px;
-      background-color: blue;
+    &:hover .element-modify {
+      display: flex;
     }
   }
   &_dragSection {

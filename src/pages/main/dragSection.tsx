@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { MemoElement, Min } from '../../components/elements/mapElement';
+import { MemoElement, Min } from '../../components/elements/element/mapElement';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectEle } from '../../redux/Slices/eleSlice';
 import Line from '../../components/elements/line';

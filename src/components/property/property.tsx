@@ -19,13 +19,15 @@ export default function Property() {
     <div className='property'>
       <PropertyProp element={<PropertyList />} propertyName='Element List' />
       <PropertyProp element={<PropertyInfo />} propertyName='Element Info' />
-      <PropertyProp element={<PropertyEdit />} propertyName='Page Edit' />
+      <PropertyProp element={<PropertyEdit />} propertyName='Page Theme' />
     </div>
   );
 }
 
 function PropertyProp({ element, propertyName }: PropertyType) {
-  const [show, setShow] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(
+    propertyName !== 'Element Info' ? false : true
+  );
 
   useEffect(() => {}, []);
 

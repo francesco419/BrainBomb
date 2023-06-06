@@ -73,8 +73,8 @@ export default function Line({ data }: LineProp) {
 
     if (location.y >= otherLocation.y) {
       const fromObj: xy = {
-        x: otherLocation.x + 48.5 + 'px',
-        y: otherLocation.y + 20 + 'px'
+        x: otherLocation.x + 50 + 'px',
+        y: otherLocation.y + 50 + 'px'
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -93,8 +93,8 @@ export default function Line({ data }: LineProp) {
       setTo(real);
     } else {
       const fromObj: xy = {
-        x: location.x + 48.5 + 'px',
-        y: location.y + 20 + 'px'
+        x: location.x + 50 + 'px',
+        y: location.y + 50 + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -139,8 +139,8 @@ export default function Line({ data }: LineProp) {
 
     if (location.y >= otherLocation.y) {
       const fromObj: xy = {
-        x: otherLocation.x + 48.5 + 'px',
-        y: otherLocation.y + 20 + 'px'
+        x: otherLocation.x + 50 + 'px',
+        y: otherLocation.y + 50 + 'px'
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -159,8 +159,8 @@ export default function Line({ data }: LineProp) {
       setTo(real);
     } else {
       const fromObj: xy = {
-        x: location.x + 48.5 + 'px',
-        y: location.y + 20 + 'px'
+        x: location.x + 50 + 'px',
+        y: location.y + 50 + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
