@@ -1,11 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { reNameEle } from '../../../redux/Slices/eleSlice';
-
-interface nameType {
-  change: () => void;
-  bool: boolean;
-  id: string;
-}
+import { nameType } from '../../../functions/interface/interface';
+import './elementName.scss';
 
 export default function ElementName({ change, bool, id }: nameType) {
   const dispatch = useDispatch();

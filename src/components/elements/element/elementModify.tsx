@@ -4,11 +4,7 @@ import './elementModify.scss';
 import _ from 'lodash';
 import { setAlarm } from '../../../redux/Slices/alarmSlice';
 import ElementName from './elementName';
-
-interface ModifyType {
-  change: () => void;
-  id: string;
-}
+import { ModifyType } from '../../../functions/interface/interface';
 
 export default function ElementModify({ change, id }: ModifyType) {
   const dispatch = useAppDispatch();

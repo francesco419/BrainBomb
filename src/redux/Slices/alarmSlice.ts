@@ -1,17 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
-
-export interface pathType {
-  id: string;
-  x: number;
-  y: number;
-}
-
-export interface AlarmType {
-  isON: boolean;
-  text: string;
-}
+import { pathType, AlarmType } from '../../functions/interface/interface';
 
 const initialState: AlarmType = {
   isON: false,

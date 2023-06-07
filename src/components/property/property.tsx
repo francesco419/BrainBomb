@@ -3,11 +3,7 @@ import PropertyList from './list/list';
 import PropertyEdit from './edit/edit';
 import PropertyInfo from './info/info';
 import { useEffect, useState } from 'react';
-
-interface PropertyType {
-  element: JSX.Element;
-  propertyName: string;
-}
+import { PropertyType } from '../../functions/interface/interface';
 
 export default function Property() {
   const list: PropertyType = {

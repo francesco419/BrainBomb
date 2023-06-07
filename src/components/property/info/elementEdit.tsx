@@ -1,22 +1,11 @@
 import './elementEdit.scss';
-import { StyleProp } from './info';
 import { useState, useRef, useEffect } from 'react';
 import { ReactComponent as Warning } from '../../../assets/svg/warning.svg';
 import { ReactComponent as Reset } from '../../../assets/svg/reset.svg';
-import { ElementObj, allStyleEle } from '../../../redux/Slices/eleSlice';
+import { allStyleEle, styleEle } from '../../../redux/Slices/eleSlice';
 import { ColorResult, SketchPicker } from 'react-color';
 import { useDispatch } from 'react-redux';
-import { styleEle } from '../../../redux/Slices/eleSlice';
-
-type ElementProp = {
-  data: ElementObj;
-  shut: () => void;
-};
-
-export interface StyleIdProp {
-  id: string;
-  style: StyleProp;
-}
+import { ElementProp, StyleProp } from '../../../functions/interface/interface';
 
 export default function ElementEdit({ data, shut }: ElementProp) {
   const [styles, setStyles] = useState<StyleProp>(data.style);
@@ -108,25 +97,57 @@ export default function ElementEdit({ data, shut }: ElementProp) {
     setStyles((styles) => style);
   };
 
+  const sizeAuto = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
+    if (!e.target.checked) {
+      return;
+    }
+
+    style = JSON.parse(JSON.stringify(styles));
+
+    if (type === 'height') {
+      style.height = 'fit-content';
+    }
+
+    if (type === 'width') {
+      style.width = 'fit-content';
+    }
+
+    setStyles((styles) => style);
+  };
+
   return (
     <div className='element-edit'>
       <ul className='element-edit__ul'>
-        <li className='element-edit__flex'>
-          <p>Width / Height : &nbsp;</p>
-          <div>
+        <li className='element-edit__size'>
+          <div className='element-edit__size__temp'>
+            <p>Height : &nbsp;</p>
             <input
               className='element-edit_inputNum'
               type='number'
               onChange={(e) => inputHandler(e, 'width')}
             />
             <label>px</label>
-            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <input
+              id='height-auto'
+              type='checkbox'
+              onChange={(e) => sizeAuto(e, 'height')}
+            />
+            <label htmlFor='height-auto'>auto</label>
+          </div>
+          <div className='element-edit__size__temp'>
+            <p>Width : &nbsp;</p>
             <input
               className='element-edit_inputNum'
               type='number'
               onChange={(e) => inputHandler(e, 'height')}
             />
             <label>px</label>
+            <input
+              id='width-auto'
+              type='checkbox'
+              onChange={(e) => sizeAuto(e, 'width')}
+            />
+            <label htmlFor='width-auto'>auto</label>
           </div>
         </li>
         <li className='element-edit__flex'>

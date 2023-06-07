@@ -1,0 +1,8 @@
+input[type='text'] {
+  background: none;
+  border: 0;
+  width: 100px;
+  &:focus {
+    outline: none;
+  }
+}

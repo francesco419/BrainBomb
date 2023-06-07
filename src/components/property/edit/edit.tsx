@@ -3,12 +3,9 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { setBackground, pageEle } from '../../../redux/Slices/pageSlice';
 import { ColorResult, SketchPicker } from 'react-color';
 import { useEffect, useState } from 'react';
-import {
-  selectLine,
-  editLine,
-  LineState
-} from '../../../redux/Slices/lineSlice';
+import { selectLine, editLine } from '../../../redux/Slices/lineSlice';
 import { ColorPallet } from './pallet';
+import { LineState } from '../../../functions/interface/interface';
 
 export default function PropertyEdit() {
   const dispatch = useAppDispatch();

@@ -1,13 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
-import { randomID } from '../../functions/randomId';
-
-export interface PageType {
-  value: {
-    backgroundColor: string;
-  };
-}
+import { PageType } from '../../functions/interface/interface';
 
 const initialState: PageType = {
   value: {

@@ -2,12 +2,9 @@ import './alarm.scss';
 import { useRef, useState, useEffect } from 'react';
 import { useAppDispatch } from '../../redux/hooks';
 import { offAlarm } from '../../redux/Slices/alarmSlice';
+import { StringType } from '../../functions/interface/interface';
 
-type alarm = {
-  text: string;
-};
-
-export default function AlarmCenter({ text }: alarm) {
+export default function AlarmCenter({ text }: StringType) {
   const dispatch = useAppDispatch();
   const closeAlarm = () => {
     dispatch(offAlarm());

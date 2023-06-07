@@ -2,12 +2,7 @@ import './pallet.scss';
 import { useAppDispatch } from '../../../redux/hooks';
 import { ColorResult, SketchPicker } from 'react-color';
 import { useState } from 'react';
-import { LineState } from '../../../redux/Slices/lineSlice';
-
-export interface LinePallet {
-  line: string;
-  set: any;
-}
+import { LineState, LinePallet } from '../../../functions/interface/interface';
 
 export function ColorPallet({ line, set }: LinePallet) {
   const [show, setShow] = useState<boolean>(false);

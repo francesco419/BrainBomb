@@ -1,15 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
-import { pathType } from './alarmSlice';
 import { ElementObj, DEFAULT_STYLE } from './eleSlice';
+import { Element, pathType } from '../../functions/interface/interface';
 
-export interface MoveState {
-  element: ElementObj;
-}
-
-const initialState: MoveState = {
-  element: {
+const initialState: Element = {
+  data: {
     id: 'null',
     location: {
       x: 0,
@@ -27,16 +23,16 @@ export const MoveSlice = createSlice({
   initialState,
   reducers: {
     setMove: (state, action: PayloadAction<ElementObj>) => {
-      state.element = action.payload;
+      state.data = action.payload;
     },
     setMoveLocation: (state, action: PayloadAction<pathType>) => {
-      state.element.location = action.payload;
+      state.data.location = action.payload;
     }
   }
 });
 
 export const { setMove, setMoveLocation } = MoveSlice.actions;
 
-export const selectMove = (state: RootState) => state.move.element;
+export const selectMove = (state: RootState) => state.move.data;
 
 export default MoveSlice.reducer;

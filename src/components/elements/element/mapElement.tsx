@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
-import {
-  pathType,
-  setAlarm,
-  selectAlarm
-} from '../../../redux/Slices/alarmSlice';
+import { setAlarm, selectAlarm } from '../../../redux/Slices/alarmSlice';
 import {
   addEle,
   delEle,
@@ -21,22 +17,7 @@ import {
 } from '../../../redux/Slices/moveSlice';
 import ElementModify from './elementModify';
 import ElementName from './elementName';
-
-export interface MinType {
-  data: ElementObj;
-  number: number;
-}
-
-export interface AddType {
-  id: string;
-  deep: number;
-  color: string;
-}
-
-export interface RenameType {
-  id: string;
-  name: string;
-}
+import { MinType, pathType } from '../../../functions/interface/interface';
 
 const areEqual = (prevProps: any, nextProps: any) => {
   return prevProps.data.location === nextProps.data.location;
@@ -59,41 +40,10 @@ export function Min({ data, number }: MinType) {
     setBool((bool) => !bool);
   };
 
-  /*   let text: string;
-
-
-  const changeText = () => {
-    changeBool();
-    if (bool) {
-      dispatch(
-        reNameEle({
-          id: data.id,
-          name: text
-        })
-      );
-    }
-  };
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    text = e.target.value;
-  };
-
-  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      if (bool) {
-        dispatch(
-          reNameEle({
-            id: data.id,
-            name: text
-          })
-        );
-      }
-      changeBool();
-    }
-  }; */
-
-  const dragStartHandler = () => {
-    /*  const blankCanvas: any = document.createElement('canvas');
+  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
+    const img = new Image();
+    e.dataTransfer.setDragImage(img, 0, 0);
+    /* const blankCanvas: any = document.createElement('canvas');
     blankCanvas.classList.add('canvas');
     e.dataTransfer?.setDragImage(blankCanvas, 0, 0);
     document.body?.appendChild(blankCanvas); // 투명 캔버스를 생성하여 글로벌 아이콘 제거
@@ -101,11 +51,18 @@ export function Min({ data, number }: MinType) {
     dispatch(setMove(data));
   };
 
+  const onClickHandler = () => {
+    dispatch(setMove(data));
+  };
+
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
     //드래그 마다 새로운 위치 저장
     const pos = { ...location };
-    pos['x'] = e.clientX - 45;
-    pos['y'] = e.clientY - 20;
+    const getWidth = data.style.width.split('px');
+    const getHeight = data.style.height.split('px');
+
+    pos['x'] = e.clientX - parseInt(getWidth[0]) / 2;
+    pos['y'] = e.clientY - parseInt(getHeight[0]) / 2;
     setLocation(pos);
     dispatch(setMoveLocation(location));
     //현재 위치를 id와 같이 redux-path에 저장
@@ -117,6 +74,12 @@ export function Min({ data, number }: MinType) {
 
   const dragEndHandler = () => {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
+    /* const canvases = document.getElementsByClassName('canvas');
+    for (let i = 0; i < canvases.length; i++) {
+      let canvas = canvases[i];
+      canvas.parentNode?.removeChild(canvas);
+    }
+    document.body.removeAttribute('style'); */
   };
 
   return (
@@ -125,11 +88,11 @@ export function Min({ data, number }: MinType) {
       draggable
       className='section_drag'
       ref={eleRef}
-      onDragStart={(e) => dragStartHandler()}
+      onDragStart={(e) => dragStartHandler(e)}
       onDrag={(e) => dragHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
-      onClick={() => dragStartHandler()}
+      onClick={onClickHandler}
       style={Object.assign(
         {
           top: location.y + 'px',

@@ -2,15 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
 import { randomID } from '../../functions/randomId';
-import { AddType } from '../../components/elements/element/mapElement';
-import { RenameType } from '../../components/elements/element/mapElement';
-import { StyleProp } from '../../components/property/info/info';
-import { StyleIdProp } from '../../components/property/info/elementEdit';
-
-export interface LocationType {
-  x: number;
-  y: number;
-}
+import {
+  AddType,
+  RenameType,
+  StyleIdProp,
+  StyleProp,
+  LocationType
+} from '../../functions/interface/interface';
 
 export let DEFAULT_STYLE: StyleProp = {
   width: '100px',
@@ -41,7 +39,7 @@ const initialState: ElementState = {
     {
       id: 'HEAD',
       name: 'HEAD',
-      location: { x: 0, y: 0 },
+      location: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
       from: null,
       deep: 0,
       style: DEFAULT_STYLE

@@ -13,19 +13,6 @@ import { ReactComponent as Edit } from '../../../assets/svg/edit.svg';
 import './info.scss';
 import ElementEdit from './elementEdit';
 
-//const aa = <p style={{width: }}></p>
-
-export interface StyleProp {
-  width: string;
-  height: string;
-  fontSize: string;
-  borderWidth: string;
-  borderStyle: string;
-  borderColor: string;
-  borderRadius: string;
-  backgroundColor: string;
-}
-
 export default function PropertyInfo() {
   const element = useAppSelector(selectMove);
   const elementArray = useAppSelector(selectEle);

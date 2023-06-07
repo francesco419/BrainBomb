@@ -5,17 +5,9 @@ import _ from 'lodash';
 import React from 'react';
 import { selectMove } from '../../redux/Slices/moveSlice';
 import { selectLine } from '../../redux/Slices/lineSlice';
+import { xy, Element } from '../../functions/interface/interface';
 
-interface xy {
-  x: string;
-  y: string;
-}
-
-interface LineProp {
-  data: ElementObj;
-}
-
-export default function Line({ data }: LineProp) {
+export default function Line({ data }: Element) {
   const ele = useAppSelector(selectEle);
   const move = useAppSelector(selectMove);
   const line = useAppSelector(selectLine);
@@ -71,10 +63,21 @@ export default function Line({ data }: LineProp) {
     const location = myElement.location;
     const otherLocation = ele[at].location;
 
+    const getWidth = myElement.style.width.split('px');
+    const getHeight = myElement.style.height.split('px');
+    const getAtWidth = ele[at].style.width.split('px');
+    const getAtHeight = ele[at].style.height.split('px');
+
+    let x = parseInt(getWidth[0]) / 2;
+    let y = parseInt(getHeight[0]) / 2;
+
+    let aX = parseInt(getAtWidth[0]) / 2;
+    let aY = parseInt(getAtHeight[0]) / 2;
+
     if (location.y >= otherLocation.y) {
       const fromObj: xy = {
-        x: otherLocation.x + 50 + 'px',
-        y: otherLocation.y + 50 + 'px'
+        x: otherLocation.x + aX + 'px',
+        y: otherLocation.y + aY + 'px'
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -93,8 +96,8 @@ export default function Line({ data }: LineProp) {
       setTo(real);
     } else {
       const fromObj: xy = {
-        x: location.x + 50 + 'px',
-        y: location.y + 50 + 'px'
+        x: location.x + aX + 'px',
+        y: location.y + aY + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -136,11 +139,21 @@ export default function Line({ data }: LineProp) {
 
     const location = myElement.location;
     const otherLocation = at.location;
+    const getWidth = myElement.style.width.split('px');
+    const getHeight = myElement.style.height.split('px');
+    const getAtWidth = at.style.width.split('px');
+    const getAtHeight = at.style.height.split('px');
+
+    let x = parseInt(getWidth[0]) / 2;
+    let y = parseInt(getHeight[0]) / 2;
+
+    let aX = parseInt(getAtWidth[0]) / 2;
+    let aY = parseInt(getAtHeight[0]) / 2;
 
     if (location.y >= otherLocation.y) {
       const fromObj: xy = {
-        x: otherLocation.x + 50 + 'px',
-        y: otherLocation.y + 50 + 'px'
+        x: otherLocation.x + aX + 'px',
+        y: otherLocation.y + aY + 'px'
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -159,8 +172,8 @@ export default function Line({ data }: LineProp) {
       setTo(real);
     } else {
       const fromObj: xy = {
-        x: location.x + 50 + 'px',
-        y: location.y + 50 + 'px'
+        x: location.x + aX + 'px',
+        y: location.y + aY + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정

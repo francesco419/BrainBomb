@@ -1,18 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-
-interface ButtonProps {
-  disabled?: boolean;
-  size: string;
-  children: string;
-  act: any;
-}
-
-type sizeType = {
-  [anyKeyword: string]: FlattenSimpleInterpolation;
-  sm: FlattenSimpleInterpolation;
-  md: FlattenSimpleInterpolation;
-  lg: FlattenSimpleInterpolation;
-};
+import { ButtonProps, sizeType } from '../../functions/interface/interface';
 
 const SIZES: sizeType = {
   sm: css`

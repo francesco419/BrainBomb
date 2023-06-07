@@ -66,6 +66,19 @@
     }
   }
 
+  &__size {
+    padding-bottom: 30px;
+    &__temp {
+      display: flex;
+      input[type='checkbox'] {
+        margin: 0 0 0 20px;
+      }
+    }
+    &__temp:first-child {
+      margin: 0 0 20px;
+    }
+  }
+
   &_inputNum {
     width: 50px;
     background: none;
