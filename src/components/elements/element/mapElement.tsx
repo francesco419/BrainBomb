@@ -55,11 +55,12 @@ export function Min({ data, number }: MinType) {
     dispatch(setMove(data));
   };
 
+  const getWidth = data.style.width.split('px');
+  const getHeight = data.style.height.split('px');
+
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
     //드래그 마다 새로운 위치 저장
     const pos = { ...location };
-    const getWidth = data.style.width.split('px');
-    const getHeight = data.style.height.split('px');
 
     pos['x'] = e.clientX - parseInt(getWidth[0]) / 2;
     pos['y'] = e.clientY - parseInt(getHeight[0]) / 2;
