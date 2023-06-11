@@ -115,7 +115,7 @@ export default function PropertyInfo() {
               </button>
             </li>
             <li>
-              <p>{`location : ${element.location.x} / ${element.location.x}`}</p>
+              <p>{`Location : ${element.location.x} / ${element.location.y}`}</p>
             </li>
             <li className='property-info__color'>
               <p>Color :&nbsp;</p>

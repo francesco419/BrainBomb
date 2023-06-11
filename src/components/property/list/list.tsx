@@ -43,9 +43,8 @@ export default function PropertyList() {
           <div
             className='property-list__element'
             style={index === 0 ? {} : { marginLeft: `${10 * o.deep}px` }}
-            onMouseOver={() => elementBackgroundHandler(o.id)}
-            onMouseLeave={() => elementBackgroundHandler(o.id, false)}
             onClick={() => dispatch(setMove(o))}
+            key={`${o.name}_${index}`}
           >
             {index === 0 ? (
               <p> {o.name}</p>
@@ -62,3 +61,8 @@ export default function PropertyList() {
     </div>
   );
 }
+
+/* 
+ onMouseOver={() => elementBackgroundHandler(o.id)}
+            onMouseLeave={() => elementBackgroundHandler(o.id, false)}
+ */
