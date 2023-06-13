@@ -33,17 +33,17 @@
 #### 페이지 1
 
 - 마인드맵 제작 페이지
-  ![brainbomb_first](./src/assets/README/brainbomb_first.png)
+  ~~~![brainbomb_first](./src/assets/README/brainbomb_first.png)~~~
 
 #### 페이지 2
 
 - 마인드맵 사용법 페이지
-  ![brainbomb_second](./src/assets/README/brainbomb_second.png)
+  ~~~![brainbomb_second](./src/assets/README/brainbomb_second.png)~~~
 
 #### 페이지 3
 
 - 마인드맵 contact 페이지
-  ![brainbomb_third](./src/assets/README/brainbomb_third.png)
+  ~~~![brainbomb_third](./src/assets/README/brainbomb_third.png)~~~
 
 # Work Through
 
