@@ -1,15 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
-import { setAlarm, selectAlarm } from '../../../redux/Slices/alarmSlice';
-import {
-  addEle,
-  delEle,
-  ElementObj,
-  replaceEle,
-  selectEle,
-  reNameEle
-} from '../../../redux/Slices/eleSlice';
+import { replaceEle, selectEle } from '../../../redux/Slices/eleSlice';
 import {
   selectMove,
   setMove,
@@ -27,9 +19,8 @@ export function Min({ data, number }: MinType) {
   const ele = useAppSelector(selectEle);
   const move = useAppSelector(selectMove);
   const dispatch = useAppDispatch();
-  const eleRef = useRef<HTMLDivElement>(null);
   const [bool, setBool] = useState<boolean>(false);
-  const [showButton, setShowButton] = useState<boolean>(false);
+  //const [showButton, setShowButton] = useState<boolean>(false);
   const [location, setLocation] = useState<pathType>({
     id: data.id,
     x: data.location.x,
@@ -55,15 +46,11 @@ export function Min({ data, number }: MinType) {
     dispatch(setMove(data));
   };
 
-  const getWidth = data.style.width.split('px');
-  const getHeight = data.style.height.split('px');
-
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
     //드래그 마다 새로운 위치 저장
     const pos = { ...location };
-
-    pos['x'] = e.clientX - parseInt(getWidth[0]) / 2;
-    pos['y'] = e.clientY - parseInt(getHeight[0]) / 2;
+    pos['x'] = e.clientX - 50;
+    pos['y'] = e.clientY - 50;
     setLocation(pos);
     dispatch(setMoveLocation(location));
     //현재 위치를 id와 같이 redux-path에 저장
@@ -75,44 +62,50 @@ export function Min({ data, number }: MinType) {
 
   const dragEndHandler = () => {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
-    console.log(ele);
-    const doc = document.getElementById(data.id) as HTMLDivElement;
-    console.log(doc.style);
     /* const canvases = document.getElementsByClassName('canvas');
     for (let i = 0; i < canvases.length; i++) {
       let canvas = canvases[i];
       canvas.parentNode?.removeChild(canvas);
     }
-    document.body.removeAttribute('style'); */
+    document.body.removeAttribute('style'); 
+    //캔버스를 사용하여 고스트 이미지 제거할시
+    */
   };
 
   return (
     <div
-      id={data.id}
+      className='drag_outter'
       draggable
-      className='section_drag'
-      ref={eleRef}
       onDragStart={(e) => dragStartHandler(e)}
       onDrag={(e) => dragHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
-      onClick={onClickHandler}
-      style={Object.assign(
-        {
-          top: location.y + 'px',
-          left: location.x + 'px',
-          backgroundColor:
-            ele[_.findIndex(ele, { id: data.id })].style.backgroundColor
-        },
-        data.style
-      )}
+      style={{
+        top: location.y + 'px',
+        left: location.x + 'px'
+      }}
     >
-      {bool ? (
-        <ElementName change={changeBool} id={data.id} bool={bool} />
-      ) : (
-        <p>{ele[_.findIndex(ele, { id: data.id })].name}</p>
-      )}
-      <ElementModify change={changeBool} id={data.id} />
+      <div className='drag_inner'>
+        <div
+          id={data.id}
+          className='section_drag'
+          onClick={onClickHandler}
+          style={Object.assign(
+            {
+              backgroundColor:
+                ele[_.findIndex(ele, { id: data.id })].style.backgroundColor
+            },
+            data.style
+          )}
+        >
+          {bool ? (
+            <ElementName change={changeBool} id={data.id} bool={bool} />
+          ) : (
+            <p>{ele[_.findIndex(ele, { id: data.id })].name}</p>
+          )}
+          <ElementModify change={changeBool} id={data.id} />
+        </div>
+      </div>
     </div>
   );
 }

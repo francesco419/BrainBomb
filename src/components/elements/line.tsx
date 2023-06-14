@@ -64,29 +64,18 @@ export default function Line({ data }: Element) {
     const location = myElement.location;
     const otherLocation = ele[at].location;
 
-    const getWidth = myElement.style.width.split('px');
-    const getHeight = myElement.style.height.split('px');
-    const getAtWidth = ele[at].style.width.split('px');
-    const getAtHeight = ele[at].style.height.split('px');
-
-    let x = parseInt(getWidth[0]) / 2;
-    let y = parseInt(getHeight[0]) / 2;
-
-    let aX = parseInt(getAtWidth[0]) / 2;
-    let aY = parseInt(getAtHeight[0]) / 2;
-
     if (location.y >= otherLocation.y) {
       //(나 -   상위)
       const fromObj: xy = {
-        x: otherLocation.x + aX + 'px',
-        y: otherLocation.y + aY + 'px'
+        x: otherLocation.x + 50 + 'px',
+        y: otherLocation.y + 50 + 'px'
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
 
       const state = {
         x: otherLocation.x - location.x, // (aX > x ? x - aX : 0), //- x / 2,
-        y: location.y - otherLocation.y
+        y: whichIsBigger(location.y, otherLocation.y)
       };
 
       const tempTan = ((Math.atan(state.x / state.y) * 180) / Math.PI).toFixed(
@@ -96,20 +85,18 @@ export default function Line({ data }: Element) {
 
       const real = Math.sqrt(state.x * state.x + state.y * state.y); //피타고라스를 이용한 대각선 계산
       setTo(real);
-      console.log(1);
-      console.log(state);
     } else if (location.y < otherLocation.y) {
       //------------------------------------------------else----------------------------------------------//
       const fromObj: xy = {
-        x: location.x + x + 'px',
-        y: location.y + y + 'px'
+        x: location.x + 50 + 'px',
+        y: location.y + 50 + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
 
       const state = {
-        x: location.x - otherLocation.x + aX, // + aX,
-        y: otherLocation.y - location.y - aY //whichIsBigger(otherLocation.y, location.y) //- aY
+        x: location.x - otherLocation.x, // + aX,
+        y: whichIsBigger(otherLocation.y, location.y)
       };
 
       const tempTan = ((Math.atan(state.x / state.y) * 180) / Math.PI).toFixed(
@@ -119,7 +106,6 @@ export default function Line({ data }: Element) {
 
       const real = Math.sqrt(state.x * state.x + state.y * state.y); //피타고라스를 이용한 대각 선 계산
       setTo(real);
-      console.log(3);
     }
   };
 
@@ -147,29 +133,18 @@ export default function Line({ data }: Element) {
     const location = myElement.location;
     const otherLocation = at.location;
 
-    const getWidth = myElement.style.width.split('px');
-    const getHeight = myElement.style.height.split('px');
-    const getAtWidth = at.style.width.split('px');
-    const getAtHeight = at.style.height.split('px');
-
-    let x = parseInt(getWidth[0]) / 2;
-    let y = parseInt(getHeight[0]) / 2;
-
-    let aX = parseInt(getAtWidth[0]) / 2;
-    let aY = parseInt(getAtHeight[0]) / 2;
-
     if (location.y >= otherLocation.y) {
       const fromObj: xy = {
-        x: otherLocation.x + aX + 'px',
-        y: otherLocation.y + aY + 'px'
+        x: otherLocation.x + 50 + 'px',
+        y: otherLocation.y + 50 + 'px'
         //시작점 => 움직이는 엘리먼트가 아님 => fromObj
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
 
       const state = {
-        x: otherLocation.x - location.x - aX, // - x / 2,
-        y: location.y - otherLocation.y + aY // whichIsBigger(location.y, otherLocation.y) // + y / 2
+        x: otherLocation.x - location.x, // - x / 2,
+        y: whichIsBigger(location.y, otherLocation.y) // whichIsBigger(location.y, otherLocation.y) // + y / 2
       };
 
       const tempTan = ((Math.atan(state.x / state.y) * 180) / Math.PI).toFixed(
@@ -179,20 +154,18 @@ export default function Line({ data }: Element) {
 
       const real = Math.sqrt(state.x * state.x + state.y * state.y); //피타고라스를 이용한 대각선 계산
       setTo(real);
-      console.log(12);
-      console.log(state.x, state.y, fromObj.x, fromObj.y);
     } else if (location.y < otherLocation.y) {
       //------------------------------------------------else----------------------------------------------//
       const fromObj: xy = {
-        x: location.x + x + 'px',
-        y: location.y + y + 'px'
+        x: location.x + 50 + 'px',
+        y: location.y + 50 + 'px'
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
 
       const state = {
-        x: location.x - otherLocation.x + aX, // + x / 2,
-        y: otherLocation.y - location.y - aY //whichIsBigger(otherLocation.y, location.y) // - y / 2
+        x: location.x - otherLocation.x, // + x / 2,
+        y: whichIsBigger(otherLocation.y, location.y) // - y / 2
       };
 
       const tempTan = ((Math.atan(state.x / state.y) * 180) / Math.PI).toFixed(
@@ -202,9 +175,6 @@ export default function Line({ data }: Element) {
 
       const real = Math.sqrt(state.x * state.x + state.y * state.y); //피타고라스를 이용한 대각선 계산
       setTo(real);
-      console.log(state.x, state.y, fromObj.x, fromObj.y);
-      //console.log(from.y, from.x, to, tan);
-      console.log(13);
     }
   };
 
