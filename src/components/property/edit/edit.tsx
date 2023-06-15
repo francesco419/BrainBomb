@@ -1,6 +1,10 @@
 import './edit.scss';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { setBackground, pageEle } from '../../../redux/Slices/pageSlice';
+import {
+  setBackground,
+  pageEle,
+  setMenuType
+} from '../../../redux/Slices/pageSlice';
 import { ColorResult, SketchPicker } from 'react-color';
 import { useEffect, useState } from 'react';
 import { selectLine, editLine } from '../../../redux/Slices/lineSlice';
@@ -38,6 +42,10 @@ export default function PropertyEdit() {
     }
   };
 
+  const menuStyleHandler = () => {
+    dispatch(setMenuType());
+  };
+
   return (
     <div className='property-edit'>
       <ul className='property-edit__page'>
@@ -46,6 +54,7 @@ export default function PropertyEdit() {
           <button
             style={{ backgroundColor: pageStyle.value.backgroundColor }}
             onClick={BackgroundHandler}
+            title={pageStyle.value.backgroundColor}
           ></button>
         </li>
         {back && (
@@ -56,8 +65,12 @@ export default function PropertyEdit() {
             />
           </li>
         )}
+        <li className='edit-flex'>
+          <p>Menu : </p>
+          <button onClick={menuStyleHandler}></button>
+        </li>
         <li>
-          <p> - LINE - </p>
+          <p className='property-edit__category'>LINE : </p>
           <ul className='property-edit__line'>
             <ColorPallet line={color} set={setColor} />
             <li>

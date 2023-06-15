@@ -42,10 +42,10 @@
     &:hover .element-modify {
       display: flex;
     }
-    /* &:hover {
-      transform: translateY(-2px);
+    &:hover {
+      transform: translate(-50%, -50%) translateY(-2px);
       box-shadow: 0px 10px 20px 2px #00000040;
-    } */
+    }
   }
   &_dragSection {
     display: block;
@@ -79,7 +79,6 @@
 .comp_line {
   position: absolute;
   width: 0px;
-  border-left: 1px dashed #000;
 }
 
 .drag {

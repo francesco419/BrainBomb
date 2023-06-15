@@ -30,7 +30,11 @@ export default function DragSection() {
   }, []); */
 
   return (
-    <div ref={ref} className='section_page' style={pageStyle.value}>
+    <div
+      ref={ref}
+      className='section_page'
+      style={{ backgroundColor: pageStyle.value.backgroundColor }}
+    >
       <div className='section_dragSection'>
         {ele.map((data, index) => {
           if (index === 0) {

@@ -27,6 +27,7 @@ export function ColorPallet({ line, set }: LinePallet) {
             border: '1px solid #fff'
           }}
           onClick={changeShow}
+          title={line}
         />
       </li>
       {show && (

@@ -138,5 +138,6 @@ export interface LineState {
 export interface PageType {
   value: {
     backgroundColor: string;
+    MenuType: boolean;
   };
 } //pageSlice

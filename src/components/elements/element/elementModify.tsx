@@ -44,7 +44,7 @@ export default function ElementModify({ change, id }: ModifyType) {
         className='element-modify__name element-modify__button'
         onClick={change}
       >
-        NAME
+        RENAME
       </button>
     </div>
   );

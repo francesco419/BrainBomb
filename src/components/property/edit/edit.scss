@@ -9,8 +9,8 @@
   &__back {
     display: flex;
     button {
-      width: 20px;
-      height: 20px;
+      width: 1rem;
+      height: 1rem;
       border: none;
       margin-left: 10px;
     }
@@ -40,4 +40,8 @@
   input[type='radio'] {
     margin: 0 0 0 5px;
   }
+}
+
+.edit-flex {
+  display: flex;
 }
