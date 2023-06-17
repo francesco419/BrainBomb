@@ -44,6 +44,8 @@ export default function PropertyList() {
             className='property-list__element'
             style={index === 0 ? {} : { marginLeft: `${10 * o.deep}px` }}
             onClick={() => dispatch(setMove(o))}
+            onMouseOver={() => elementBackgroundHandler(o.id, true)}
+            onMouseOut={() => elementBackgroundHandler(o.id, false)}
             key={`${o.name}_${index}`}
           >
             {index === 0 ? (

@@ -10,7 +10,6 @@ export default function DragSection() {
   const ele = useAppSelector(selectEle);
   const pageStyle = useAppSelector(pageEle);
   const ref = useRef<HTMLDivElement>(null);
-  /*
   const speed = 0.1;
   let scale = 1;
 
@@ -27,7 +26,7 @@ export default function DragSection() {
         }
       });
     }
-  }, []); */
+  }, []);
 
   return (
     <div

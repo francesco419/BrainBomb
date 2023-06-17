@@ -1,11 +1,12 @@
 .property-list {
   overflow-y: scroll;
+  color: #b3b3b3;
   &__element {
     width: fit-content;
     cursor: default;
     padding: 16px 0 0;
     &:hover {
-      color: red;
+      color: #fff;
     }
   }
 }

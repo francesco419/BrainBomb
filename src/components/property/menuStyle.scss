@@ -1,0 +1,26 @@
+.menuStyle {
+  height: 60px;
+  width: 60px;
+  padding: 10px 0;
+  box-sizing: border-box;
+  border: 5px solid #fff;
+  border-radius: 20px;
+  background-color: #424242;
+  color: white;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  float: right;
+  button {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    margin: 0 auto;
+    padding: 0;
+  }
+  svg {
+    width: inherit;
+    height: inherit;
+    fill: #fff;
+  }
+}

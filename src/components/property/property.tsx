@@ -5,6 +5,7 @@ import PropertyInfo from './info/info';
 import Catergories from './categories';
 import { useAppSelector } from '../../redux/hooks';
 import { pageEle } from '../../redux/Slices/pageSlice';
+import MenuStyle from './menuStyle';
 
 export default function Property() {
   const page = useAppSelector(pageEle);
@@ -16,6 +17,7 @@ export default function Property() {
       <Catergories element={<PropertyList />} propertyName='Element List' />
       <Catergories element={<PropertyInfo />} propertyName='Element Info' />
       <Catergories element={<PropertyEdit />} propertyName='Page Theme' />
+      <MenuStyle />
     </div>
   );
 }
