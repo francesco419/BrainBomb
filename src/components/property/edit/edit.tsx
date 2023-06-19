@@ -5,6 +5,8 @@ import { SketchPicker } from 'react-color';
 import { useState } from 'react';
 import { selectLine, editLine } from '../../../redux/Slices/lineSlice';
 import { ColorPallet } from './pallet';
+import * as htmlToImage from 'html-to-image';
+import download from 'downloadjs';
 
 export default function PropertyEdit() {
   const dispatch = useAppDispatch();
@@ -103,7 +105,22 @@ export default function PropertyEdit() {
                 className='property-edit__save'
                 onClick={changeState}
               >
-                Save
+                Save Theme
+              </button>
+              <button
+                type='button'
+                className='property-edit__save'
+                onClick={() => {
+                  htmlToImage
+                    .toPng(
+                      document.getElementById('fullpage') as HTMLDivElement
+                    )
+                    .then(function (dataUrl) {
+                      download(dataUrl, 'my-node.png');
+                    });
+                }}
+              >
+                Download Image
               </button>
             </li>
           </ul>

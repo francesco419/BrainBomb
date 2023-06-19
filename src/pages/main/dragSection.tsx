@@ -5,12 +5,14 @@ import { selectEle } from '../../redux/Slices/eleSlice';
 import Line from '../../components/elements/line';
 import { pageEle } from '../../redux/Slices/pageSlice';
 import _ from 'lodash';
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 export default function DragSection() {
   const ele = useAppSelector(selectEle);
   const pageStyle = useAppSelector(pageEle);
   const ref = useRef<HTMLDivElement>(null);
-  const speed = 0.1;
+  /*  const speed = 0.1;
   let scale = 1;
 
   useEffect(() => {
@@ -26,10 +28,11 @@ export default function DragSection() {
         }
       });
     }
-  }, []);
+  }, []); */
 
   return (
     <div
+      id='fullpage'
       ref={ref}
       className='section_page'
       style={{ backgroundColor: pageStyle.value.backgroundColor }}
