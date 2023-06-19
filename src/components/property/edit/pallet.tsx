@@ -19,7 +19,7 @@ export function ColorPallet({ line, set }: LinePallet) {
   return (
     <>
       <li>
-        <p>BackGround :&nbsp;</p>
+        <label>BackGround :&nbsp;</label>
         <button
           className='property-pallet__colorButton'
           style={{

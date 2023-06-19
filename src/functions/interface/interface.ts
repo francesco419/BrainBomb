@@ -139,5 +139,12 @@ export interface PageType {
   value: {
     backgroundColor: string;
     MenuType: boolean;
+    width: number;
+    height: number;
   };
 } //pageSlice
+
+export interface PageSizeType {
+  width: number;
+  height: number;
+}

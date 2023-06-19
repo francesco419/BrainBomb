@@ -4,9 +4,6 @@
   box-sizing: border-box;
   &_part {
     position: relative;
-    @include mx-flexbox(end, center);
-    height: 100%;
-    width: 100%;
     background-color: #c0c0c0;
   }
   &_over {
@@ -70,8 +67,6 @@
     height: 100%;
   }
   &_page {
-    width: 3000px;
-    height: 2000px;
   }
 }
 

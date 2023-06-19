@@ -5,8 +5,6 @@ import { selectEle } from '../../redux/Slices/eleSlice';
 import Line from '../../components/elements/line';
 import { pageEle } from '../../redux/Slices/pageSlice';
 import _ from 'lodash';
-import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
 export default function DragSection() {
   const ele = useAppSelector(selectEle);
@@ -35,7 +33,11 @@ export default function DragSection() {
       id='fullpage'
       ref={ref}
       className='section_page'
-      style={{ backgroundColor: pageStyle.value.backgroundColor }}
+      style={{
+        backgroundColor: pageStyle.value.backgroundColor,
+        width: pageStyle.value.width + 'px',
+        height: pageStyle.value.height + 'px'
+      }}
     >
       <div className='section_dragSection'>
         {ele.map((data, index) => {
