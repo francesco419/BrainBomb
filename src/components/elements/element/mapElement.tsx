@@ -5,7 +5,8 @@ import { replaceEle, selectEle } from '../../../redux/Slices/eleSlice';
 import {
   selectMove,
   setMove,
-  setMoveLocation
+  setMoveLocation,
+  setDragOff
 } from '../../../redux/Slices/moveSlice';
 import ElementModify from './elementModify';
 import ElementName from './elementName';
@@ -32,6 +33,7 @@ export function Min({ data, number }: MinType) {
   };
 
   const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     const img = new Image();
     e.dataTransfer.setDragImage(img, 0, 0);
     /* const blankCanvas: any = document.createElement('canvas');
@@ -48,6 +50,7 @@ export function Min({ data, number }: MinType) {
 
   const dragHandler = (e: React.DragEvent<HTMLDivElement>) => {
     //드래그 마다 새로운 위치 저장
+    e.stopPropagation();
     const pos = { ...location };
     pos['x'] = e.clientX - 50;
     pos['y'] = e.clientY - 50;
@@ -57,11 +60,13 @@ export function Min({ data, number }: MinType) {
   };
 
   const dragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     e.preventDefault();
   };
 
   const dragEndHandler = () => {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
+    dispatch(setDragOff());
     /* const canvases = document.getElementsByClassName('canvas');
     for (let i = 0; i < canvases.length; i++) {
       let canvas = canvases[i];

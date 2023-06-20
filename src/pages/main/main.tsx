@@ -8,14 +8,12 @@ import Alarm from '../../components/alarm/alarm';
 export default function Main() {
   const nav = useNavigate();
   return (
-    <div>
-      {/* <Header /> */}
+    <>
       <section className='section'>
         <Pallet />
       </section>
-
       {/*       <Alarm />
       <footer>footer</footer> */}
-    </div>
+    </>
   );
 }

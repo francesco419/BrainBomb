@@ -59,6 +59,11 @@ export interface Element {
   data: ElementObj;
 }
 
+export interface ElementDrag {
+  data: ElementObj;
+  drag: boolean;
+}
+
 //line
 
 export interface LinePallet {

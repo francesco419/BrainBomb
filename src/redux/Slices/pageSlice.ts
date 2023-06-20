@@ -6,7 +6,7 @@ import { PageType, PageSizeType } from '../../functions/interface/interface';
 const initialState: PageType = {
   value: {
     backgroundColor: '#f0f0f0',
-    MenuType: false,
+    MenuType: true,
     width: 3000,
     height: 2000
   }

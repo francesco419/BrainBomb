@@ -33,17 +33,26 @@
 #### 페이지 1
 
 - 마인드맵 제작 페이지
-  ~~~![brainbomb_first](./src/assets/README/brainbomb_first.png)~~~
+
+  ```![brainbomb_first](./src/assets/README/brainbomb_first.png)~~~
+
+  ```
 
 #### 페이지 2
 
 - 마인드맵 사용법 페이지
-  ~~~![brainbomb_second](./src/assets/README/brainbomb_second.png)~~~
+
+  ```![brainbomb_second](./src/assets/README/brainbomb_second.png)~~~
+
+  ```
 
 #### 페이지 3
 
 - 마인드맵 contact 페이지
-  ~~~![brainbomb_third](./src/assets/README/brainbomb_third.png)~~~
+
+  ```![brainbomb_third](./src/assets/README/brainbomb_third.png)~~~
+
+  ```
 
 # Work Through
 
@@ -138,3 +147,5 @@
 1. path, ele 리덕스를 통해 위치와 id 가져오기 가능( 통합하는것도 괜찮아보임).
 2. path를 통해 선의 위치 및 transform 값 계산.
 3. 계산식은 temp파일의 코드 분석 후 새로운 코드로 구성하여 사용.
+
+## 이후의 모든 작업일지 페이지[https://velog.io/@francesco419/%EB%A7%88%EC%9D%B8%EB%93%9C%EB%A7%B5-230530]
