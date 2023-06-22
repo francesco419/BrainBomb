@@ -38,7 +38,7 @@ export const MoveSlice = createSlice({
       state.drag = true;
     },
     setDragOff: (state) => {
-      console.log('drag drag');
+      console.log('drag end');
       state.drag = false;
     }
   }

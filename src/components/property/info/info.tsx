@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
-import { selectMove } from '../../../redux/Slices/moveSlice';
+import { selectMove, moveDrag } from '../../../redux/Slices/moveSlice';
 import {
   ElementObj,
   selectEle,
@@ -15,6 +15,7 @@ import ElementEdit from './elementEdit';
 
 export default function PropertyInfo() {
   const element = useAppSelector(selectMove);
+  const move = useAppSelector(moveDrag);
   const elementArray = useAppSelector(selectEle);
   const [show, setShow] = useState<boolean>(false);
   const [styleEdit, setStyleEdit] = useState<boolean>(false);
@@ -151,6 +152,10 @@ export default function PropertyInfo() {
               >
                 <Edit className='property-info__svg' />
               </button>
+            </li>
+            <li>
+              <p>Drag : &nbsp;</p>
+              <p style={{ color: move ? '#39C904' : '#ff0000' }}>{`${move}`}</p>
             </li>
           </ul>
         </div>

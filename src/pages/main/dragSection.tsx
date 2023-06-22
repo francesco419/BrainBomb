@@ -20,24 +20,22 @@ export default function DragSection() {
   let _dragElement: HTMLDivElement | null;
 
   function OnMouseDown(event: any) {
-    document.onmousemove = OnMouseMove;
     _startX = event.clientX;
     _startY = event.clientY;
     _dragElement = document.getElementById('dragSection') as HTMLDivElement;
     _offsetX = _dragElement.offsetLeft;
     _offsetY = _dragElement.offsetTop;
     console.log('page start');
+    document.onmousemove = OnMouseMove;
   }
 
   function OnMouseMove(event: any) {
-    if (move) {
-      document.onmousemove = null;
-    } else {
-      if (_dragElement) {
+    if (!move) {
+      if (_dragElement !== null) {
         _dragElement.style.left = _offsetX + event.clientX - _startX + 'px';
         _dragElement.style.top = _offsetY + event.clientY - _startY + 'px';
+        console.log('page drag');
       }
-      console.log('page drag');
     }
   }
 

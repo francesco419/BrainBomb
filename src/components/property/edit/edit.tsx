@@ -116,7 +116,7 @@ function PageEdit() {
 
   const downloadHandler = () => {
     htmlToImage
-      .toPng(document.getElementById('fullpage') as HTMLDivElement)
+      .toPng(document.getElementById('dragSection') as HTMLDivElement)
       .then(function (dataUrl) {
         download(dataUrl, 'my-node.png');
       });
