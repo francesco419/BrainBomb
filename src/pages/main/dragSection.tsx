@@ -19,27 +19,24 @@ export default function DragSection() {
   let _offsetY = 0;
   let _dragElement: HTMLDivElement | null;
 
-  function OnMouseDown(event: any) {
+  function onMouseDown(event: any) {
     _startX = event.clientX;
     _startY = event.clientY;
     _dragElement = document.getElementById('dragSection') as HTMLDivElement;
     _offsetX = _dragElement.offsetLeft;
     _offsetY = _dragElement.offsetTop;
     console.log('page start');
-    document.onmousemove = OnMouseMove;
   }
 
-  function OnMouseMove(event: any) {
-    if (!move) {
-      if (_dragElement !== null) {
-        _dragElement.style.left = _offsetX + event.clientX - _startX + 'px';
-        _dragElement.style.top = _offsetY + event.clientY - _startY + 'px';
-        console.log('page drag');
-      }
+  function onMouseMoveHandler(event: any) {
+    if (_dragElement !== null) {
+      _dragElement.style.left = _offsetX + event.clientX - _startX + 'px';
+      _dragElement.style.top = _offsetY + event.clientY - _startY + 'px';
+      console.log('page drag');
     }
   }
 
-  function OnMouseUp(event: any) {
+  function onMouseUp(event: any) {
     if (_dragElement) {
       document.onmousemove = null;
       if (_offsetY + event.clientY - _startY > 0) {
@@ -99,9 +96,10 @@ export default function DragSection() {
           width: pageStyle.value.width + 'px',
           height: pageStyle.value.height + 'px'
         }}
-        onMouseDown={OnMouseDown}
-        onMouseUp={OnMouseUp}
-        onMouseLeave={() => (document.onmousemove = null)}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onMouseMove={move ? undefined : onMouseMoveHandler}
+        //onMouseLeave={() => (document.onmousemove = null)}
       >
         {ele.map((data, index) => {
           if (index === 0) {

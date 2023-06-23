@@ -66,9 +66,7 @@ export function Min({ data, number }: MinType) {
 
   const dragEndHandler = () => {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
-    setTimeout(() => {
-      dispatch(setDragOff());
-    }, 1000);
+    dispatch(setDragOff());
     /* const canvases = document.getElementsByClassName('canvas');
     for (let i = 0; i < canvases.length; i++) {
       let canvas = canvases[i];
