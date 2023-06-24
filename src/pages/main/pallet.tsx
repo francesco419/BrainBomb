@@ -15,7 +15,6 @@ export default function Pallet() {
   return (
     <div className='section_part' ref={boxRef}>
       <DragSection />
-      <Property />
       {alarm.isON ? <AlarmCenter text={alarm.text} /> : null}
     </div>
   );

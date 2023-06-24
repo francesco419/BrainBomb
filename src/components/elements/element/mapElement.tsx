@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import _ from 'lodash';
+import React, { useEffect, useRef, useState } from 'react';
+import _, { debounce } from 'lodash';
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { replaceEle, selectEle } from '../../../redux/Slices/eleSlice';
 import {
@@ -11,6 +11,7 @@ import {
 import ElementModify from './elementModify';
 import ElementName from './elementName';
 import { MinType, pathType } from '../../../functions/interface/interface';
+import { pageEle } from '../../../redux/Slices/pageSlice';
 
 const areEqual = (prevProps: any, nextProps: any) => {
   return prevProps.data.location === nextProps.data.location;
@@ -18,15 +19,22 @@ const areEqual = (prevProps: any, nextProps: any) => {
 
 export function Min({ data, number }: MinType) {
   const ele = useAppSelector(selectEle);
-  const move = useAppSelector(selectMove);
   const dispatch = useAppDispatch();
+  const move = useAppSelector(selectMove);
+  const pageStyle = useAppSelector(pageEle);
   const [bool, setBool] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
   //const [showButton, setShowButton] = useState<boolean>(false);
   const [location, setLocation] = useState<pathType>({
     id: data.id,
     x: data.location.x,
     y: data.location.y
   });
+
+  let _startX = 0;
+  let _startY = 0;
+  let _offsetX = 0;
+  let _offsetY = 0;
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -36,15 +44,22 @@ export function Min({ data, number }: MinType) {
     e.stopPropagation();
     const img = new Image();
     e.dataTransfer.setDragImage(img, 0, 0);
-    /* const blankCanvas: any = document.createElement('canvas');
-    blankCanvas.classList.add('canvas');
-    e.dataTransfer?.setDragImage(blankCanvas, 0, 0);
-    document.body?.appendChild(blankCanvas); // 투명 캔버스를 생성하여 글로벌 아이콘 제거
-    e.dataTransfer.effectAllowed = 'move'; */
+    _startX = e.clientX;
+    _startY = e.clientY;
+    if (ref.current) {
+      _offsetX = ref.current.offsetLeft;
+      _offsetY = ref.current.offsetTop;
+      console.log(_offsetX, _offsetY);
+    }
     dispatch(setMove(data));
   };
 
   const onClickHandler = () => {
+    if (ref.current) {
+      _offsetX = ref.current.offsetLeft;
+      _offsetY = ref.current.offsetTop;
+      console.log(_offsetX, _offsetY);
+    }
     dispatch(setMove(data));
   };
 
@@ -52,8 +67,9 @@ export function Min({ data, number }: MinType) {
     //드래그 마다 새로운 위치 저장
     e.stopPropagation();
     const pos = { ...location };
-    pos['x'] = e.clientX - 50;
-    pos['y'] = e.clientY - 50;
+    pos['x'] = Math.abs(pageStyle.value.location.x) + e.clientX - 50;
+    //_offsetX + event.clientX - _startX
+    pos['y'] = Math.abs(pageStyle.value.location.y) + e.clientY - 50;
     setLocation(pos);
     dispatch(setMoveLocation(location));
     //현재 위치를 id와 같이 redux-path에 저장
@@ -67,14 +83,6 @@ export function Min({ data, number }: MinType) {
   const dragEndHandler = () => {
     dispatch(replaceEle(move)); //현재 위치를 id와 같이 redux-path에 저장
     dispatch(setDragOff());
-    /* const canvases = document.getElementsByClassName('canvas');
-    for (let i = 0; i < canvases.length; i++) {
-      let canvas = canvases[i];
-      canvas.parentNode?.removeChild(canvas);
-    }
-    document.body.removeAttribute('style'); 
-    //캔버스를 사용하여 고스트 이미지 제거할시
-    */
   };
 
   return (
@@ -85,6 +93,7 @@ export function Min({ data, number }: MinType) {
       onDrag={(e) => dragHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
+      ref={ref}
       style={{
         top: location.y + 'px',
         left: location.x + 'px'

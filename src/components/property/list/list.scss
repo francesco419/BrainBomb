@@ -1,6 +1,8 @@
 .property-list {
   overflow-y: scroll;
   color: #b3b3b3;
+  max-height: 300px;
+  margin: 10px 0 0;
   &__element {
     width: fit-content;
     cursor: default;
@@ -20,7 +22,7 @@
 .property-list::-webkit-scrollbar-thumb {
   //범위 바
   width: 8px;
-  background-color: #fff;
+  background-color: #b3b3b3;
 }
 
 .property-list::-webkit-scrollbar-track {

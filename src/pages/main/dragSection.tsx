@@ -1,25 +1,31 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { MemoElement, Min } from '../../components/elements/element/mapElement';
+import { Min } from '../../components/elements/element/mapElement';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectEle } from '../../redux/Slices/eleSlice';
 import Line from '../../components/elements/line';
-import { pageEle } from '../../redux/Slices/pageSlice';
+import { pageEle, setPageLocation } from '../../redux/Slices/pageSlice';
 import _ from 'lodash';
 import { moveDrag } from '../../redux/Slices/moveSlice';
+import { LocationType } from '../../functions/interface/interface';
 
 export default function DragSection() {
   const ele = useAppSelector(selectEle);
   const pageStyle = useAppSelector(pageEle);
-  const ref = useRef<HTMLDivElement>(null);
   const move = useAppSelector(moveDrag);
+  const dispatch = useAppDispatch();
 
   let _startX = 0;
   let _startY = 0;
   let _offsetX = 0;
   let _offsetY = 0;
-  let _dragElement: HTMLDivElement | null;
+  let _dragElement: HTMLDivElement | undefined;
+  let loaction: LocationType;
 
-  function onMouseDown(event: any) {
+  const debounceOnChange = _.debounce(() => {
+    dispatch(setPageLocation(loaction));
+  }, 500);
+
+  function onMouseDown(event: React.MouseEvent<HTMLDivElement>) {
     _startX = event.clientX;
     _startY = event.clientY;
     _dragElement = document.getElementById('dragSection') as HTMLDivElement;
@@ -28,15 +34,21 @@ export default function DragSection() {
     console.log('page start');
   }
 
-  function onMouseMoveHandler(event: any) {
-    if (_dragElement !== null) {
-      _dragElement.style.left = _offsetX + event.clientX - _startX + 'px';
-      _dragElement.style.top = _offsetY + event.clientY - _startY + 'px';
+  function onMouseMoveHandler(event: React.MouseEvent<HTMLDivElement>) {
+    if (_dragElement) {
+      loaction = {
+        x: _offsetX + event.clientX - _startX,
+        y: _offsetY + event.clientY - _startY
+      };
+      _dragElement.style.left = loaction.x + 'px';
+      _dragElement.style.top = loaction.y + 'px';
+
       console.log('page drag');
+      debounceOnChange();
     }
   }
 
-  function onMouseUp(event: any) {
+  function onMouseUp(event: React.MouseEvent<HTMLDivElement>) {
     if (_dragElement) {
       document.onmousemove = null;
       if (_offsetY + event.clientY - _startY > 0) {
@@ -62,7 +74,7 @@ export default function DragSection() {
           window.innerWidth - pageStyle.value.width + 'px';
       }
     }
-    _dragElement = null;
+    _dragElement = undefined;
     console.log('page end');
   }
 
@@ -87,33 +99,30 @@ export default function DragSection() {
   const onmouseDownHandler = () => {};
 
   return (
-    <div ref={ref} className='section_page'>
-      <div
-        className='section_dragSection'
-        id='dragSection'
-        style={{
-          backgroundColor: pageStyle.value.backgroundColor,
-          width: pageStyle.value.width + 'px',
-          height: pageStyle.value.height + 'px'
-        }}
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onMouseMove={move ? undefined : onMouseMoveHandler}
-        //onMouseLeave={() => (document.onmousemove = null)}
-      >
-        {ele.map((data, index) => {
-          if (index === 0) {
-            return <Min data={data} number={index} key={data.id} />;
-          } else {
-            return (
-              <div key={`${data.id}_${index}`}>
-                <Min data={data} number={index} key={data.id} />
-                <Line data={data} key={`${data.id}_line`} />
-              </div>
-            );
-          }
-        })}
-      </div>
+    <div
+      className='section_dragSection'
+      id='dragSection'
+      style={{
+        backgroundColor: pageStyle.value.backgroundColor,
+        width: pageStyle.value.width + 'px',
+        height: pageStyle.value.height + 'px'
+      }}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+      onMouseMove={move ? undefined : onMouseMoveHandler}
+    >
+      {ele.map((data, index) => {
+        if (index === 0) {
+          return <Min data={data} number={index} key={data.id} />;
+        } else {
+          return (
+            <>
+              <Min data={data} number={index} key={data.id} />
+              <Line data={data} key={`${data.id}_line`} />
+            </>
+          );
+        }
+      })}
     </div>
   );
 }

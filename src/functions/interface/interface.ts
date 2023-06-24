@@ -146,6 +146,7 @@ export interface PageType {
     MenuType: boolean;
     width: number;
     height: number;
+    location: LocationType;
   };
 } //pageSlice
 

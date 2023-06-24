@@ -166,6 +166,10 @@ function PageEdit() {
           px
         </div>
         <div className='property-edit__pageSet__box'>
+          <label>Location : &nbsp;</label>
+          <p>{`${pageStyle.value.location.x} / ${pageStyle.value.location.y}`}</p>
+        </div>
+        <div className='property-edit__pageSet__box'>
           <label>Background : </label>
           <button
             style={{ backgroundColor: pageStyle.value.backgroundColor }}
@@ -184,13 +188,6 @@ function PageEdit() {
       )}
       <button className='property-edit__pageSet__save' onClick={onClickHandler}>
         Save Theme
-      </button>
-      <button
-        type='button'
-        className='property-edit__save'
-        onClick={downloadHandler}
-      >
-        Download Image
       </button>
     </>
   );
