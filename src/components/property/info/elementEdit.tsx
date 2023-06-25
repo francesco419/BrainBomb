@@ -42,19 +42,19 @@ export default function ElementEdit({ data, shut }: ElementProp) {
     const radiusType = radiusPX ? 'px' : '%';
     switch (type) {
       case 'width':
-        style.width = e.target.value + 'px';
+        style.width = parseInt(e.target.value);
         setStyles((styles) => style);
         return;
       case 'height':
-        style.height = e.target.value + 'px';
+        style.height = parseInt(e.target.value);
         setStyles((styles) => style);
         return;
       case 'font':
-        style.fontSize = e.target.value + 'px';
+        style.fontSize = parseInt(e.target.value);
         setStyles((styles) => style);
         return;
       case 'bwidth':
-        style.borderWidth = e.target.value + 'px';
+        style.borderWidth = parseInt(e.target.value);
         setStyles((styles) => style);
         return;
       case 'bradius':

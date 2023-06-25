@@ -83,10 +83,10 @@ export interface StyleIdProp {
 //element edit
 
 export interface StyleProp {
-  width: string;
-  height: string;
-  fontSize: string;
-  borderWidth: string;
+  width: number | string;
+  height: number | string;
+  fontSize: number;
+  borderWidth: number;
   borderStyle: string;
   borderColor: string;
   borderRadius: string;
@@ -147,6 +147,7 @@ export interface PageType {
     width: number;
     height: number;
     location: LocationType;
+    scale: number;
   };
 } //pageSlice
 

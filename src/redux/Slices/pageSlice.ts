@@ -16,7 +16,8 @@ const initialState: PageType = {
     location: {
       x: 0,
       y: 0
-    }
+    },
+    scale: 1
   }
 };
 
@@ -36,12 +37,28 @@ export const pageSlice = createSlice({
     },
     setPageLocation: (state, action: PayloadAction<LocationType>) => {
       state.value.location = action.payload;
+    },
+    setPageScale: (state, action: PayloadAction<boolean>) => {
+      if (action.payload) {
+        if (state.value.scale !== 0.3) {
+          state.value.scale = parseFloat((state.value.scale - 0.1).toFixed(1));
+        }
+      } else {
+        if (state.value.scale !== 2) {
+          state.value.scale = parseFloat((state.value.scale + 0.1).toFixed(1));
+        }
+      }
     }
   }
 });
 
-export const { setBackground, setMenuType, setPageSize, setPageLocation } =
-  pageSlice.actions;
+export const {
+  setBackground,
+  setMenuType,
+  setPageSize,
+  setPageLocation,
+  setPageScale
+} = pageSlice.actions;
 
 export const pageEle = (state: RootState) => state.page;
 

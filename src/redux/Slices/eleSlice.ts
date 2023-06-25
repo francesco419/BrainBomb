@@ -7,28 +7,20 @@ import {
   RenameType,
   StyleIdProp,
   StyleProp,
-  LocationType
+  LocationType,
+  ElementObj
 } from '../../functions/interface/interface';
 
 export let DEFAULT_STYLE: StyleProp = {
-  width: '100px',
-  height: '100px',
-  fontSize: '16px',
-  borderWidth: '5px',
+  width: 100,
+  height: 100,
+  fontSize: 16,
+  borderWidth: 5,
   borderStyle: 'solid',
   borderColor: '#fff',
   borderRadius: '50%',
   backgroundColor: '#64b1b1'
 };
-
-export interface ElementObj {
-  id: string;
-  name: string;
-  location: LocationType;
-  from: string | null;
-  deep: number;
-  style: StyleProp;
-}
 
 export interface ElementState {
   element: ElementObj[];

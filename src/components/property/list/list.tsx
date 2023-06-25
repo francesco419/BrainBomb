@@ -1,4 +1,4 @@
-import { ElementObj } from '../../../redux/Slices/eleSlice';
+import { ElementObj } from '../../../functions/interface/interface';
 import { selectEle } from '../../../redux/Slices/eleSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import _ from 'lodash';

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../redux/hooks';
-import { ElementObj, selectEle } from '../../redux/Slices/eleSlice';
+import { selectEle } from '../../redux/Slices/eleSlice';
 import _ from 'lodash';
 import React from 'react';
 import { selectMove } from '../../redux/Slices/moveSlice';
 import { selectLine } from '../../redux/Slices/lineSlice';
-import { xy, Element } from '../../functions/interface/interface';
+import { xy, Element, ElementObj } from '../../functions/interface/interface';
 
 export default function Line({ data }: Element) {
   const ele = useAppSelector(selectEle);

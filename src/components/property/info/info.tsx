@@ -1,17 +1,13 @@
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { selectMove, moveDrag } from '../../../redux/Slices/moveSlice';
-import {
-  ElementObj,
-  selectEle,
-  reNameEle,
-  colorEle
-} from '../../../redux/Slices/eleSlice';
+import { selectEle, reNameEle, colorEle } from '../../../redux/Slices/eleSlice';
 import { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { SketchPicker } from 'react-color';
 import { ReactComponent as Edit } from '../../../assets/svg/edit.svg';
 import './info.scss';
 import ElementEdit from './elementEdit';
+import { ElementObj } from '../../../functions/interface/interface';
 
 export default function PropertyInfo() {
   const element = useAppSelector(selectMove);
@@ -116,7 +112,9 @@ export default function PropertyInfo() {
               </button>
             </li>
             <li>
-              <p>{`Location : ${element.location.x} / ${element.location.y}`}</p>
+              <p>{`Location : ${Math.floor(element.location.x)} / ${Math.floor(
+                element.location.y
+              )}`}</p>
             </li>
             <li className='property-info__color'>
               <p>Color :&nbsp;</p>

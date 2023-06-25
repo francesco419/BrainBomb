@@ -30,11 +30,16 @@ export function Min({ data, number }: MinType) {
     x: data.location.x,
     y: data.location.y
   });
+  const [scale, setScale] = useState<number>(pageStyle.value.scale);
 
   let _startX = 0;
   let _startY = 0;
   let _offsetX = 0;
   let _offsetY = 0;
+
+  useEffect(() => {
+    setScale((scale) => pageStyle.value.scale);
+  }, [pageStyle.value.scale]);
 
   const changeBool = () => {
     setBool((bool) => !bool);
@@ -67,9 +72,12 @@ export function Min({ data, number }: MinType) {
     //드래그 마다 새로운 위치 저장
     e.stopPropagation();
     const pos = { ...location };
-    pos['x'] = Math.abs(pageStyle.value.location.x) + e.clientX - 50;
-    //_offsetX + event.clientX - _startX
-    pos['y'] = Math.abs(pageStyle.value.location.y) + e.clientY - 50;
+    pos['x'] =
+      Math.abs(pageStyle.value.location.x) + e.clientX / scale - 50 / scale;
+    //_offsetX + event.clientX - _startX*
+    pos['y'] =
+      Math.abs(pageStyle.value.location.y) + e.clientY / scale - 50 / scale;
+    //scale은 zoom-in / zoom-out에 대비해서 넣은 수치
     setLocation(pos);
     dispatch(setMoveLocation(location));
     //현재 위치를 id와 같이 redux-path에 저장
@@ -95,8 +103,8 @@ export function Min({ data, number }: MinType) {
       onDragEnd={() => dragEndHandler()}
       ref={ref}
       style={{
-        top: location.y + 'px',
-        left: location.x + 'px'
+        top: location.y * scale + 'px',
+        left: location.x * scale + 'px'
       }}
     >
       <div className='drag_inner'>
@@ -104,13 +112,23 @@ export function Min({ data, number }: MinType) {
           id={data.id}
           className='section_drag'
           onClick={onClickHandler}
-          style={Object.assign(
-            {
-              backgroundColor:
-                ele[_.findIndex(ele, { id: data.id })].style.backgroundColor
-            },
-            data.style
-          )}
+          style={{
+            backgroundColor:
+              ele[_.findIndex(ele, { id: data.id })].style.backgroundColor,
+            width:
+              typeof data.style.width === 'number'
+                ? data.style.width * scale + 'px'
+                : data.style.width,
+            height:
+              typeof data.style.height === 'number'
+                ? data.style.height * scale + 'px'
+                : data.style.height,
+            fontSize: data.style.fontSize * scale + 'px',
+            borderWidth: data.style.borderWidth * scale + 'px',
+            borderColor: data.style.borderColor,
+            borderRadius: data.style.borderRadius,
+            borderStyle: data.style.borderStyle
+          }}
         >
           {bool ? (
             <ElementName change={changeBool} id={data.id} bool={bool} />

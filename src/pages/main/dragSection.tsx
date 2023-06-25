@@ -3,7 +3,12 @@ import { Min } from '../../components/elements/element/mapElement';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { selectEle } from '../../redux/Slices/eleSlice';
 import Line from '../../components/elements/line';
-import { pageEle, setPageLocation } from '../../redux/Slices/pageSlice';
+import {
+  pageEle,
+  setPageLocation,
+  setPageScale,
+  setPageSize
+} from '../../redux/Slices/pageSlice';
 import _ from 'lodash';
 import { moveDrag } from '../../redux/Slices/moveSlice';
 import { LocationType } from '../../functions/interface/interface';
@@ -13,6 +18,7 @@ export default function DragSection() {
   const pageStyle = useAppSelector(pageEle);
   const move = useAppSelector(moveDrag);
   const dispatch = useAppDispatch();
+  const ref = useRef<HTMLDivElement>(null);
 
   let _startX = 0;
   let _startY = 0;
@@ -50,66 +56,66 @@ export default function DragSection() {
 
   function onMouseUp(event: React.MouseEvent<HTMLDivElement>) {
     if (_dragElement) {
+      const y = _offsetY + event.clientY - _startY * pageStyle.value.scale;
+      const x = _offsetX + event.clientX - _startX * pageStyle.value.scale;
       document.onmousemove = null;
-      if (_offsetY + event.clientY - _startY > 0) {
+      if (y > 0) {
         _dragElement.style.top = 0 + 'px';
       }
-      if (_offsetX + event.clientX - _startX > 0) {
+      if (x > 0) {
         _dragElement.style.left = 0 + 'px';
       }
       //상단 범위 내부로 전체 엘리먼트가 들어올시 (0,0)으로 강제 이동.
-      if (
-        window.innerHeight >
-        pageStyle.value.height + _offsetY + event.clientY - _startY
-      ) {
+      if (window.innerHeight > pageStyle.value.height + y) {
         _dragElement.style.top =
-          window.innerHeight - pageStyle.value.height + 'px';
+          (window.innerHeight - pageStyle.value.height) *
+            pageStyle.value.scale +
+          'px';
       }
 
-      if (
-        window.innerWidth >
-        pageStyle.value.width + _offsetX + event.clientX - _startX
-      ) {
+      if (window.innerWidth > pageStyle.value.width + x) {
         _dragElement.style.left =
-          window.innerWidth - pageStyle.value.width + 'px';
+          (window.innerWidth - pageStyle.value.width) * pageStyle.value.scale +
+          'px';
       }
     }
     _dragElement = undefined;
     console.log('page end');
   }
 
-  /*  const speed = 0.1;
-  let scale = 1;
-
   useEffect(() => {
     if (ref && ref.current) {
-      ref.current.addEventListener('wheel', (e) => {
-        if (ref.current) {
-          console.log(e.deltaY);
-          if (e.deltaY > 0) {
-            ref.current.style.transform = `scale(${(scale -= speed)})`;
-          } else {
-            ref.current.style.transform = `scale(${(scale += speed)})`;
-          }
-        }
-      });
+      ref.current.addEventListener('wheel', wheelHandler);
     }
-  }, []); */
+    return () => {
+      ref.current?.removeEventListener('wheel', wheelHandler);
+    };
+  }, []);
 
-  const onmouseDownHandler = () => {};
+  const wheelHandler = (e: WheelEvent) => {
+    if (ref.current) {
+      if (e.deltaY > 0) {
+        dispatch(setPageScale(true));
+      } else {
+        dispatch(setPageScale(false));
+      }
+    }
+  };
 
   return (
     <div
       className='section_dragSection'
       id='dragSection'
+      ref={ref}
       style={{
         backgroundColor: pageStyle.value.backgroundColor,
-        width: pageStyle.value.width + 'px',
-        height: pageStyle.value.height + 'px'
+        width: pageStyle.value.width * pageStyle.value.scale + 'px',
+        height: pageStyle.value.height * pageStyle.value.scale + 'px'
       }}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseMove={move ? undefined : onMouseMoveHandler}
+      //onMouseMove={(e) => {console.log(e.clientX, e.clientY);}}
     >
       {ele.map((data, index) => {
         if (index === 0) {
