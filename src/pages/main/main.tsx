@@ -3,11 +3,12 @@ import './main.scss';
 import Pallet from './pallet';
 import Property from '../../components/property/property';
 import ZoomAlarm from '../../components/alarm/fadeAlarm/zoomAlarm';
-import { pageEle } from '../../redux/Slices/pageSlice';
+import { selectAlarm } from '../../redux/Slices/alarmSlice';
 import { useAppSelector } from '../../redux/hooks';
+import AlarmCenter from '../../components/alarm/alarmCenter';
 
 export default function Main() {
-  const pageStyle = useAppSelector(pageEle);
+  const alarm = useAppSelector(selectAlarm);
 
   return (
     <>
@@ -16,6 +17,7 @@ export default function Main() {
         <Property />
       </section>
       <ZoomAlarm />
+      {alarm.isON ? <AlarmCenter text={alarm.text} /> : null}
     </>
   );
 }

@@ -67,6 +67,13 @@ export const elementSlice = createSlice({
       state.element = temp;
     },
 
+    delAllEle: (state, action: PayloadAction<string>) => {
+      let temp = state.element;
+      _.remove(temp, (data) => data.id === action.payload);
+      _.remove(temp, (data) => data.from === action.payload);
+      state.element = temp;
+    },
+
     reNameEle: (state, action: PayloadAction<RenameType>) => {
       /* const temp = state.element;
       const index = _.findIndex(state.element, { id: action.payload.id });
@@ -118,6 +125,7 @@ export const elementSlice = createSlice({
 export const {
   addEle,
   delEle,
+  delAllEle,
   replaceEle,
   reNameEle,
   colorEle,

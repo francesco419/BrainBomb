@@ -15,7 +15,12 @@ export default function ElementModify({ change, id }: ModifyType) {
       return o.from === id;
     });
     if (havIt >= 0) {
-      dispatch(setAlarm('delete'));
+      dispatch(
+        setAlarm({
+          id: id,
+          name: 'Are you sure to delete with all child element ?'
+        })
+      );
     } else {
       dispatch(delEle(id));
     }

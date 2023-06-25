@@ -30,7 +30,9 @@
   flex-direction: column;
   width: 500px;
   height: 200px;
-  background-color: #000;
+  background-color: #424242;
+  border: 5px solid #f3ac11;
+  border-radius: 25px;
   color: #fff;
   font-weight: bold;
   position: absolute;
@@ -45,8 +47,13 @@
       width: 50px;
       height: 30px;
       margin: 0 10px;
-      background-color: #f1a708;
+      background-color: #fff;
       border: none;
+      border-radius: 10px;
+      &:hover {
+        background-color: #f3ac11;
+        color: #fff;
+      }
     }
   }
 }

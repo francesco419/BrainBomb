@@ -5,19 +5,26 @@ import _ from 'lodash';
 import React from 'react';
 import { selectMove } from '../../redux/Slices/moveSlice';
 import { selectLine } from '../../redux/Slices/lineSlice';
-import { xy, Element, ElementObj } from '../../functions/interface/interface';
+import {
+  xyNum,
+  Element,
+  ElementObj
+} from '../../functions/interface/interface';
+import { pageEle } from '../../redux/Slices/pageSlice';
 
 export default function Line({ data }: Element) {
   const ele = useAppSelector(selectEle);
   const move = useAppSelector(selectMove);
   const line = useAppSelector(selectLine);
-  const [from, setFrom] = useState<xy>({ x: '0px', y: '0px' });
+  const pageStyle = useAppSelector(pageEle);
+  const [from, setFrom] = useState<xyNum>({ x: 0, y: 0 });
   const [to, setTo] = useState<number>(0);
-  const [tan, setTan] = useState<number>();
-  const [define, setDefine] = useState<boolean>(data.id === move.id);
+  const [tan, setTan] = useState<number>(0);
+  const [scale, setScale] = useState<number>(pageStyle.value.scale);
   const elementID = data;
 
   useEffect(() => {
+    setScale((scale) => pageStyle.value.scale);
     if (data.id === move.id) {
       cal(move);
       return;
@@ -25,7 +32,7 @@ export default function Line({ data }: Element) {
       calFrom(elementID);
       return;
     }
-  }, [move]);
+  }, [move, pageStyle.value.scale]);
 
   useEffect(() => {
     cal(elementID);
@@ -66,9 +73,9 @@ export default function Line({ data }: Element) {
 
     if (location.y >= otherLocation.y) {
       //(나 -   상위)
-      const fromObj: xy = {
-        x: otherLocation.x + 50 + 'px',
-        y: otherLocation.y + 50 + 'px'
+      const fromObj: xyNum = {
+        x: otherLocation.x + 50 / scale,
+        y: otherLocation.y + 50 / scale
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -87,9 +94,9 @@ export default function Line({ data }: Element) {
       setTo(real);
     } else if (location.y < otherLocation.y) {
       //------------------------------------------------else----------------------------------------------//
-      const fromObj: xy = {
-        x: location.x + 50 + 'px',
-        y: location.y + 50 + 'px'
+      const fromObj: xyNum = {
+        x: location.x + 50 / scale,
+        y: location.y + 50 / scale
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -134,9 +141,9 @@ export default function Line({ data }: Element) {
     const otherLocation = at.location;
 
     if (location.y >= otherLocation.y) {
-      const fromObj: xy = {
-        x: otherLocation.x + 50 + 'px',
-        y: otherLocation.y + 50 + 'px'
+      const fromObj: xyNum = {
+        x: otherLocation.x + 50 / scale,
+        y: otherLocation.y + 50 / scale
         //시작점 => 움직이는 엘리먼트가 아님 => fromObj
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
@@ -156,9 +163,9 @@ export default function Line({ data }: Element) {
       setTo(real);
     } else if (location.y < otherLocation.y) {
       //------------------------------------------------else----------------------------------------------//
-      const fromObj: xy = {
-        x: location.x + 50 + 'px',
-        y: location.y + 50 + 'px'
+      const fromObj: xyNum = {
+        x: location.x + 50 / scale,
+        y: location.y + 50 / scale
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -197,11 +204,11 @@ export default function Line({ data }: Element) {
       className='comp_line'
       style={Object.assign(
         {
-          top: from.y,
-          left: from.x,
-          height: to + 'px',
+          top: from.y * scale + 'px',
+          left: from.x * scale + 'px',
+          height: to * scale + 'px',
           transform: `rotate(${tan}deg)`,
-          transformOrigin: '0 0px'
+          transformOrigin: `0 0px`
         },
         line.value
       )}

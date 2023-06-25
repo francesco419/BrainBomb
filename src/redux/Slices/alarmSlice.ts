@@ -1,19 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import _ from 'lodash';
-import { pathType, AlarmType } from '../../functions/interface/interface';
+import {
+  pathType,
+  AlarmType,
+  RenameType
+} from '../../functions/interface/interface';
 
 const initialState: AlarmType = {
   isON: false,
-  text: ''
+  text: '',
+  data: null
 };
 
 export const AlarmSlice = createSlice({
   name: 'alarm',
   initialState,
   reducers: {
-    setAlarm: (state, action: PayloadAction<string>) => {
-      state.text = action.payload;
+    setAlarm: (state, action: PayloadAction<RenameType>) => {
+      state.text = action.payload.name;
+      state.data = action.payload.id;
       state.isON = true;
     },
     offAlarm: (state) => {

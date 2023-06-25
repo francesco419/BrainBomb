@@ -50,6 +50,11 @@ export type sizeType = {
 
 //button
 
+export interface xyNum {
+  x: number;
+  y: number;
+}
+
 export interface xy {
   x: string;
   y: string;
@@ -109,6 +114,7 @@ export interface pathType {
 export interface AlarmType {
   isON: boolean;
   text: string;
+  data: any;
 }
 //alarm slice
 
