@@ -115,7 +115,6 @@ export default function DragSection() {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       onMouseMove={move ? undefined : onMouseMoveHandler}
-      //onMouseMove={(e) => {console.log(e.clientX, e.clientY);}}
     >
       {ele.map((data, index) => {
         if (index === 0) {

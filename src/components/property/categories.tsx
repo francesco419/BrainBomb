@@ -3,9 +3,7 @@ import './property.scss';
 import { useEffect, useState } from 'react';
 
 export default function Catergories({ element, propertyName }: PropertyType) {
-  const [show, setShow] = useState<boolean>(
-    propertyName !== 'Element Info' ? false : true
-  );
+  const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {}, []);
 

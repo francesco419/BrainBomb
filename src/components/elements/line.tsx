@@ -11,6 +11,7 @@ import {
   ElementObj
 } from '../../functions/interface/interface';
 import { pageEle } from '../../redux/Slices/pageSlice';
+import './line.scss';
 
 export default function Line({ data }: Element) {
   const ele = useAppSelector(selectEle);
@@ -48,6 +49,7 @@ export default function Line({ data }: Element) {
   } */
 
   const cal = (myElement: ElementObj) => {
+    console.log('line change');
     if (myElement.from === null) {
       return; //fromID가 null일시 return => 오직 HEAD에 적용(예정)
     }
@@ -74,8 +76,8 @@ export default function Line({ data }: Element) {
     if (location.y >= otherLocation.y) {
       //(나 -   상위)
       const fromObj: xyNum = {
-        x: otherLocation.x + 50 / scale,
-        y: otherLocation.y + 50 / scale
+        x: otherLocation.x,
+        y: otherLocation.y
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -95,8 +97,8 @@ export default function Line({ data }: Element) {
     } else if (location.y < otherLocation.y) {
       //------------------------------------------------else----------------------------------------------//
       const fromObj: xyNum = {
-        x: location.x + 50 / scale,
-        y: location.y + 50 / scale
+        x: location.x,
+        y: location.y
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -117,6 +119,7 @@ export default function Line({ data }: Element) {
   };
 
   const calFrom = (myElement: ElementObj) => {
+    console.log('line changeg');
     //(하위 - 나)
     if (myElement.from === null) {
       return; //fromID가 null일시 return => 오직 HEAD에 적용(예정)
@@ -142,8 +145,8 @@ export default function Line({ data }: Element) {
 
     if (location.y >= otherLocation.y) {
       const fromObj: xyNum = {
-        x: otherLocation.x + 50 / scale,
-        y: otherLocation.y + 50 / scale
+        x: otherLocation.x,
+        y: otherLocation.y
         //시작점 => 움직이는 엘리먼트가 아님 => fromObj
       }; // 연결선 초기 시작점(상위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
@@ -164,8 +167,8 @@ export default function Line({ data }: Element) {
     } else if (location.y < otherLocation.y) {
       //------------------------------------------------else----------------------------------------------//
       const fromObj: xyNum = {
-        x: location.x + 50 / scale,
-        y: location.y + 50 / scale
+        x: location.x,
+        y: location.y
       }; // 연결선 초기 시작점(하위) element로 부터 시작한다 + 48.5(널이 / 2)와 20(높이 / 2)은 element의 크기에서 정 중앙에서 시작하기 위함
 
       setFrom(fromObj); //초기위치 설정
@@ -204,8 +207,8 @@ export default function Line({ data }: Element) {
       className='comp_line'
       style={Object.assign(
         {
-          top: from.y * scale + 'px',
-          left: from.x * scale + 'px',
+          top: (from.y + 50) * scale + 0.1 + 'px',
+          left: (from.x + 50) * scale + 0.1 + 'px',
           height: to * scale + 'px',
           transform: `rotate(${tan}deg)`,
           transformOrigin: `0 0px`

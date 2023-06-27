@@ -1,0 +1,41 @@
+.drag {
+  position: absolute;
+  &_outer {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  &_inner {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    font-size: 12px;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px 0px #00000080;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    p {
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      word-wrap: break-word;
+    }
+    &__button {
+      width: 15px;
+      height: 15px;
+    }
+    &:hover .element-modify {
+      display: flex;
+    }
+    &:hover {
+      transform: translate(-50%, -50%) translateY(-2px);
+      box-shadow: 0px 10px 20px 2px #00000040;
+    }
+  }
+}

@@ -12,14 +12,15 @@ import ElementModify from './elementModify';
 import ElementName from './elementName';
 import { MinType, pathType } from '../../../functions/interface/interface';
 import { pageEle } from '../../../redux/Slices/pageSlice';
+import './mapElement.scss';
 
 const areEqual = (prevProps: any, nextProps: any) => {
   return prevProps.data.location === nextProps.data.location;
 };
 
 export function Min({ data, number }: MinType) {
-  const ele = useAppSelector(selectEle);
   const dispatch = useAppDispatch();
+  const ele = useAppSelector(selectEle);
   const move = useAppSelector(selectMove);
   const pageStyle = useAppSelector(pageEle);
   const [bool, setBool] = useState<boolean>(false);
@@ -39,6 +40,7 @@ export function Min({ data, number }: MinType) {
 
   useEffect(() => {
     setScale((scale) => pageStyle.value.scale);
+    console.log('tt');
   }, [pageStyle.value.scale]);
 
   const changeBool = () => {
@@ -54,7 +56,6 @@ export function Min({ data, number }: MinType) {
     if (ref.current) {
       _offsetX = ref.current.offsetLeft;
       _offsetY = ref.current.offsetTop;
-      console.log(_offsetX, _offsetY);
     }
     dispatch(setMove(data));
   };
@@ -63,7 +64,6 @@ export function Min({ data, number }: MinType) {
     if (ref.current) {
       _offsetX = ref.current.offsetLeft;
       _offsetY = ref.current.offsetTop;
-      console.log(_offsetX, _offsetY);
     }
     dispatch(setMove(data));
   };
@@ -95,7 +95,7 @@ export function Min({ data, number }: MinType) {
 
   return (
     <div
-      className='drag_outter'
+      className='drag'
       draggable
       onDragStart={(e) => dragStartHandler(e)}
       onDrag={(e) => dragHandler(e)}
@@ -104,13 +104,21 @@ export function Min({ data, number }: MinType) {
       ref={ref}
       style={{
         top: location.y * scale + 'px',
-        left: location.x * scale + 'px'
+        left: location.x * scale + 'px',
+        width: 100 * scale + 'px',
+        height: 100 * scale + 'px'
       }}
     >
-      <div className='drag_inner'>
+      <div
+        className='drag_outter'
+        style={{
+          width: 100 * scale + 'px',
+          height: 100 * scale + 'px'
+        }}
+      >
         <div
           id={data.id}
-          className='section_drag'
+          className='drag_inner'
           onClick={onClickHandler}
           style={{
             backgroundColor:
