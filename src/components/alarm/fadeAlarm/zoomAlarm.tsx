@@ -28,6 +28,20 @@ export default function ZoomAlarm() {
     pageStyle.value.scale === 2
   ]);
 
+  useEffect(() => {
+    setOpac((opac) => 1);
+
+    inter = setInterval(() => {
+      if (inter) {
+        if (opac > 0.8) {
+          setOpac((opac) => opac - 0.01);
+        } else {
+          setOpac((opac) => opac - 0.02);
+        }
+      }
+    }, 10);
+  }, []);
+
   setTimeout(() => {
     clearInterval(inter);
   }, 1000);
