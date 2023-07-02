@@ -73,10 +73,10 @@ export function Min({ data, number }: MinType) {
     e.stopPropagation();
     const pos = { ...location };
     pos['x'] =
-      Math.abs(pageStyle.value.location.x) + e.clientX / scale - 50 / scale;
+      Math.abs(pageStyle.value.location.x) + e.clientX / scale - 50 * scale;
     //_offsetX + event.clientX - _startX*
     pos['y'] =
-      Math.abs(pageStyle.value.location.y) + e.clientY / scale - 50 / scale;
+      Math.abs(pageStyle.value.location.y) + e.clientY / scale - 50 * scale;
     //scale은 zoom-in / zoom-out에 대비해서 넣은 수치
     setLocation(pos);
     dispatch(setMoveLocation(location));

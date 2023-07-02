@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { setAlarm } from '../../../redux/Slices/alarmSlice';
 import ElementName from './elementName';
 import { ModifyType } from '../../../functions/interface/interface';
+import { useState } from 'react';
 
 export default function ElementModify({ change, id }: ModifyType) {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ export default function ElementModify({ change, id }: ModifyType) {
   return (
     <div className='element-modify'>
       <button
+        style={{ backgroundColor: `${ele}` }}
         className='element-modify__delete element-modify__button'
         onClick={() => addElement(id)}
       >

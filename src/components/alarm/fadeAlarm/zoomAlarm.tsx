@@ -48,7 +48,7 @@ export default function ZoomAlarm() {
 
   return (
     <div ref={ref} className='zoomAlarm' style={{ opacity: opac }}>
-      <p>X{scale}</p>
+      <p>x{scale}</p>
     </div>
   );
 }

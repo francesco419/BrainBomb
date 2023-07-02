@@ -49,7 +49,6 @@ export default function Line({ data }: Element) {
   } */
 
   const cal = (myElement: ElementObj) => {
-    console.log('line change');
     if (myElement.from === null) {
       return; //fromID가 null일시 return => 오직 HEAD에 적용(예정)
     }
@@ -119,7 +118,6 @@ export default function Line({ data }: Element) {
   };
 
   const calFrom = (myElement: ElementObj) => {
-    console.log('line changeg');
     //(하위 - 나)
     if (myElement.from === null) {
       return; //fromID가 null일시 return => 오직 HEAD에 적용(예정)

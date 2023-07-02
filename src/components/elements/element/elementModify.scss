@@ -15,6 +15,9 @@
     border: 2px solid #fff;
     border-radius: 25px;
     padding: 4px 10px;
+    &:hover {
+      background-color: #e0e0e0;
+    }
   }
   &__add,
   &__delete {

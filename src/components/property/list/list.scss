@@ -30,3 +30,9 @@
   width: 8px;
   background-color: #00000000;
 }
+
+.listHover {
+  transform: translate(-50%, -50%) translateY(-2px) scale(1.2);
+  box-shadow: 0px 10px 20px 2px #00000040;
+  filter: brightness(1.2);
+}
