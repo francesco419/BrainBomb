@@ -27,6 +27,15 @@ export default function DragSection() {
   let _dragElement: HTMLDivElement | undefined;
   let loaction: LocationType;
 
+  useEffect(() => {
+    if (ref && ref.current) {
+      ref.current.addEventListener('wheel', wheelHandler);
+    }
+    return () => {
+      ref.current?.removeEventListener('wheel', wheelHandler);
+    };
+  }, []);
+
   const debounceOnChange = _.debounce(() => {
     dispatch(setPageLocation(loaction));
   }, 500);
@@ -34,10 +43,12 @@ export default function DragSection() {
   function onMouseDown(event: React.MouseEvent<HTMLDivElement>) {
     _startX = event.clientX;
     _startY = event.clientY;
-    _dragElement = document.getElementById('dragSection') as HTMLDivElement;
-    _offsetX = _dragElement.offsetLeft;
-    _offsetY = _dragElement.offsetTop;
-    console.log('page start');
+    if (!move) {
+      _dragElement = document.getElementById('dragSection') as HTMLDivElement;
+      _offsetX = _dragElement.offsetLeft;
+      _offsetY = _dragElement.offsetTop;
+      console.log('page start');
+    }
   }
 
   function onMouseMoveHandler(event: React.MouseEvent<HTMLDivElement>) {
@@ -82,15 +93,6 @@ export default function DragSection() {
     _dragElement = undefined;
     console.log('page end');
   }
-
-  useEffect(() => {
-    if (ref && ref.current) {
-      ref.current.addEventListener('wheel', wheelHandler);
-    }
-    return () => {
-      ref.current?.removeEventListener('wheel', wheelHandler);
-    };
-  }, []);
 
   const wheelHandler = (e: WheelEvent) => {
     if (ref.current) {

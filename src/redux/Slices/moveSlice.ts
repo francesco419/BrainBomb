@@ -35,16 +35,20 @@ export const MoveSlice = createSlice({
     setMoveLocation: (state, action: PayloadAction<pathType>) => {
       console.log('drag drag');
       state.data.location = action.payload;
-      state.drag = true;
     },
     setDragOff: (state) => {
-      console.log('drag end');
       state.drag = false;
+      console.log(state.drag);
+    },
+    setDragOn: (state) => {
+      state.drag = true;
+      console.log(state.drag);
     }
   }
 });
 
-export const { setMove, setMoveLocation, setDragOff } = MoveSlice.actions;
+export const { setMove, setMoveLocation, setDragOff, setDragOn } =
+  MoveSlice.actions;
 
 export const selectMove = (state: RootState) => state.move.data;
 

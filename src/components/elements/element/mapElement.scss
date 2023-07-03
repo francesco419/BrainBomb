@@ -1,5 +1,6 @@
 .drag {
   position: absolute;
+  z-index: 99;
   &_outer {
     position: relative;
     width: 100px;
@@ -25,6 +26,7 @@
       width: 100%;
       margin: 0;
       word-wrap: break-word;
+      pointer-events: none;
     }
     &__button {
       width: 15px;

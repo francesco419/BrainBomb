@@ -8,46 +8,28 @@ export default function ZoomAlarm() {
   const ref = useRef<HTMLDivElement>(null);
   const [opac, setOpac] = useState<number>(1);
   let scale: number = pageStyle.value.scale;
-  let inter: any;
+  let timeout: any;
 
   useEffect(() => {
     setOpac((opac) => 1);
-
-    inter = setInterval(() => {
-      if (inter) {
-        if (opac > 0.8) {
-          setOpac((opac) => opac - 0.01);
-        } else {
-          setOpac((opac) => opac - 0.02);
-        }
-      }
-    }, 10);
-  }, [
-    pageStyle.value.scale,
-    pageStyle.value.scale === 0.3,
-    pageStyle.value.scale === 2
-  ]);
+    timeout = setTimeout(() => {
+      setOpac((opac) => 0);
+    }, 500);
+  }, [pageStyle.value.scale]);
 
   useEffect(() => {
     setOpac((opac) => 1);
-
-    inter = setInterval(() => {
-      if (inter) {
-        if (opac > 0.8) {
-          setOpac((opac) => opac - 0.01);
-        } else {
-          setOpac((opac) => opac - 0.02);
-        }
-      }
-    }, 10);
+    timeout = setTimeout(() => {
+      setOpac((opac) => 0);
+    }, 500);
   }, []);
 
-  setTimeout(() => {
-    clearInterval(inter);
-  }, 1000);
-
   return (
-    <div ref={ref} className='zoomAlarm' style={{ opacity: opac }}>
+    <div
+      ref={ref}
+      className='zoomAlarm'
+      style={{ opacity: opac, display: opac <= 0 ? 'none' : 'block' }}
+    >
       <p>x{scale}</p>
     </div>
   );
