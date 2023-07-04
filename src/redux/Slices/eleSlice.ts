@@ -50,8 +50,8 @@ export const elementSlice = createSlice({
         id: randomID(),
         name: 'no name',
         location: {
-          x: state.element[index].location.x + 50,
-          y: state.element[index].location.y + 50
+          x: state.element[index].location.x + 100,
+          y: state.element[index].location.y + 100
         },
         from: state.element[index].id,
         deep: state.element[index].deep + 1,

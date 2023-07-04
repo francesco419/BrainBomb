@@ -97,7 +97,6 @@ export function Min({ data, number }: MinType) {
   const isMouseOver = (bool: boolean) => {
     if (bool) {
       dispatch(setDragOn());
-      console.log('in');
     } else {
       dispatch(setDragOff());
     }
@@ -111,8 +110,8 @@ export function Min({ data, number }: MinType) {
       onDrag={(e) => dragHandler(e)}
       onDragOver={(e) => dragOverHandler(e)}
       onDragEnd={() => dragEndHandler()}
-      /*  onMouseOver={() => isMouseOver(true)}
-      onMouseLeave={() => isMouseOver(false)} */
+      onMouseOver={() => isMouseOver(true)}
+      onMouseLeave={() => isMouseOver(false)}
       ref={ref}
       style={{
         top: location.y * scale + 'px',

@@ -10,7 +10,7 @@ import {
 const initialState: PageType = {
   value: {
     backgroundColor: '#f0f0f0',
-    MenuType: true,
+    MenuType: false,
     width: 3000,
     height: 2000,
     location: {
@@ -36,6 +36,7 @@ export const pageSlice = createSlice({
       state.value.height = action.payload.height;
     },
     setPageLocation: (state, action: PayloadAction<LocationType>) => {
+      console.log('set');
       state.value.location = action.payload;
     },
     setPageScale: (state, action: PayloadAction<boolean>) => {
@@ -44,7 +45,7 @@ export const pageSlice = createSlice({
           state.value.scale = parseFloat((state.value.scale - 0.1).toFixed(1));
         }
       } else {
-        if (state.value.scale !== 2) {
+        if (state.value.scale !== 1.5) {
           state.value.scale = parseFloat((state.value.scale + 0.1).toFixed(1));
         }
       }

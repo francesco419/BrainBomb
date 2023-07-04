@@ -34,15 +34,14 @@ export const MoveSlice = createSlice({
     },
     setMoveLocation: (state, action: PayloadAction<pathType>) => {
       console.log('drag drag');
+      state.drag = true;
       state.data.location = action.payload;
     },
     setDragOff: (state) => {
       state.drag = false;
-      console.log(state.drag);
     },
     setDragOn: (state) => {
       state.drag = true;
-      console.log(state.drag);
     }
   }
 });
