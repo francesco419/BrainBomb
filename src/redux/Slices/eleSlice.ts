@@ -43,6 +43,9 @@ export const elementSlice = createSlice({
   name: 'ele',
   initialState,
   reducers: {
+    setElement: (state, action: PayloadAction<ElementObj[]>) => {
+      state.element = action.payload;
+    },
     addEle: (state, action: PayloadAction<string>) => {
       let temp = state.element;
       const index = _.findIndex(state.element, { id: action.payload });
@@ -130,7 +133,8 @@ export const {
   reNameEle,
   colorEle,
   styleEle,
-  allStyleEle
+  allStyleEle,
+  setElement
 } = elementSlice.actions;
 
 export const selectEle = (state: RootState) => state.element.element;

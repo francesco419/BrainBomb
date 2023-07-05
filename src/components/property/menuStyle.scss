@@ -10,7 +10,8 @@
   font-size: 1rem;
   margin: 0 0 1rem 1rem;
   float: right;
-  button {
+  button,
+  label {
     display: block;
     width: 30px;
     height: 30px;
@@ -22,6 +23,17 @@
     width: inherit;
     height: inherit;
     fill: #fff;
+    cursor: pointer;
+  }
+  input[type='file'] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
   }
   &:hover {
     background-color: #fff;

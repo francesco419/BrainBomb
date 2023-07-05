@@ -31,7 +31,6 @@ export default function DragSection() {
     if (ref && ref.current) {
       ref.current.addEventListener('wheel', wheelHandler);
     }
-    console.log(1);
     return () => {
       ref.current?.removeEventListener('wheel', wheelHandler);
     };

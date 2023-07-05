@@ -25,6 +25,9 @@ export const pageSlice = createSlice({
   name: 'page',
   initialState,
   reducers: {
+    setPageSetting: (state, action: PayloadAction<PageType>) => {
+      state = action.payload;
+    },
     setBackground: (state, action: PayloadAction<string>) => {
       state.value.backgroundColor = action.payload;
     },
@@ -58,7 +61,8 @@ export const {
   setMenuType,
   setPageSize,
   setPageLocation,
-  setPageScale
+  setPageScale,
+  setPageSetting
 } = pageSlice.actions;
 
 export const pageEle = (state: RootState) => state.page;

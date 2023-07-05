@@ -5,12 +5,13 @@ import { ReactComponent as Ver } from '../../assets/svg/menu/vertical.svg';
 import { ReactComponent as Hor } from '../../assets/svg/menu/horizontal.svg';
 import { ReactComponent as Photo } from '../../assets/svg/menu/photo.svg';
 import { ReactComponent as Save } from '../../assets/svg/menu/save.svg';
+import { ReactComponent as Upload } from '../../assets/svg/menu/upload.svg';
 import './menuStyle.scss';
 import * as htmlToImage from 'html-to-image';
 import download from 'downloadjs';
 import { ElementObj, PageType } from '../../functions/interface/interface';
-import { selectEle } from '../../redux/Slices/eleSlice';
-import { pageEle } from '../../redux/Slices/pageSlice';
+import { selectEle, setElement } from '../../redux/Slices/eleSlice';
+import { pageEle, setPageSetting } from '../../redux/Slices/pageSlice';
 
 export default function MenuStyle() {
   const dispatch = useAppDispatch();
@@ -54,18 +55,24 @@ export default function MenuStyle() {
       window.URL.revokeObjectURL(url);
     }, 100);
   };
-  /**
-function saveAsFile(str, filename) {
-    var hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:attachment/text,' + encodeURI(str);
-    hiddenElement.target = '_blank';
-    hiddenElement.download = filename;
-    hiddenElement.click();
-}
- 
-var strdata = "Hello, world!";
-saveAsFile(strdata, "output.txt"); 
-*/
+
+  const fileOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files; //.files[0];
+    let fileText;
+    if (selectedFile !== null) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          fileText = JSON.parse(reader.result);
+          dispatch(setElement(fileText.element));
+          dispatch(setPageSetting(fileText.page));
+        } else {
+          console.log('not string');
+        }
+      };
+      reader.readAsText(selectedFile[0]);
+    }
+  };
 
   return (
     <>
@@ -79,6 +86,12 @@ saveAsFile(strdata, "output.txt");
         <button onClick={() => saveHandler(element, page, 'brainbomb')}>
           {<Save />}
         </button>
+      </div>
+      <div className='menuStyle'>
+        <label htmlFor='fileUpload'>
+          <Upload />
+        </label>
+        <input type='file' id='fileUpload' onChange={fileOnChangeHandler} />
       </div>
     </>
   );
