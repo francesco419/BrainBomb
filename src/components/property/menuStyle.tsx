@@ -6,6 +6,7 @@ import { ReactComponent as Hor } from '../../assets/svg/menu/horizontal.svg';
 import { ReactComponent as Photo } from '../../assets/svg/menu/photo.svg';
 import { ReactComponent as Save } from '../../assets/svg/menu/save.svg';
 import { ReactComponent as Upload } from '../../assets/svg/menu/upload.svg';
+import { useNavigate } from 'react-router-dom';
 import './menuStyle.scss';
 import * as htmlToImage from 'html-to-image';
 import download from 'downloadjs';
@@ -18,6 +19,7 @@ export default function MenuStyle() {
   const element = useAppSelector(selectEle);
   const page = useAppSelector(pageEle);
   const [type, setType] = useState<boolean>(false);
+  const nav = useNavigate();
 
   const menuStyleHandler = () => {
     dispatch(setMenuType());
@@ -92,6 +94,24 @@ export default function MenuStyle() {
           <Upload />
         </label>
         <input type='file' id='fileUpload' onChange={fileOnChangeHandler} />
+      </div>
+      <div className='menuStyle'>
+        <button
+          onClick={() => {
+            nav('/intro');
+          }}
+        >
+          intro
+        </button>
+      </div>
+      <div className='menuStyle'>
+        <button
+          onClick={() => {
+            nav('/design');
+          }}
+        >
+          design
+        </button>
       </div>
     </>
   );

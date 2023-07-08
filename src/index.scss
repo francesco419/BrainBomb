@@ -6,10 +6,11 @@ html {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
-  background-color: #424242;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
 /* #root {
   height: 100%;
 } */

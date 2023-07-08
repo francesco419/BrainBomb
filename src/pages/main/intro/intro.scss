@@ -1,0 +1,16 @@
+.intropage {
+  height: 10000px;
+  background: linear-gradient(160deg, #5d6ccc, #475acf 15%);
+  &__contents {
+    width: 1500px;
+    margin: 0 auto;
+  }
+  &__header {
+    display: flex;
+    height: 80px;
+  }
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
