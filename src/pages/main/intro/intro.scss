@@ -138,14 +138,108 @@
       width: fit-content;
       color: #fff;
       margin: 0 auto;
+      text-align: center;
       h3 {
-        text-align: center;
         color: #2fd883;
       }
+      p {
+        letter-spacing: normal;
+        color: #c0c0c0;
+      }
+    }
+    &__fwbox {
+      display: flex;
+      justify-content: space-between;
+      margin: 50px 0;
     }
     &__usage {
       display: flex;
     }
+    &__box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      width: 450px;
+      height: 450px;
+      background-color: #191a4e;
+      padding: 20px;
+      word-break: keep-all;
+      box-sizing: border-box;
+      border-radius: 15px;
+      p {
+        color: #c0c0c0;
+        margin: 5px;
+        text-align: center;
+        line-height: 1.5rem;
+      }
+    }
+    &__update {
+      padding: 50px 0;
+    }
+  }
+  &__center {
+    padding: 50px 0;
+    &__container {
+      display: flex;
+      padding: 20px 40px;
+      width: 100%;
+      //background-color: #2fd883;
+      background: linear-gradient(120deg, #168548, #2fd883);
+      border-radius: 25px;
+      img {
+        border-radius: 25px;
+      }
+    }
+  }
+}
+
+.use2 {
+  position: relative;
+  padding: 50px;
+  border-radius: 15px;
+  border: 1px solid #2fd883;
+  width: fit-content;
+}
+
+.use1 {
+  color: #fff;
+  margin: 0 0 0 100px;
+  h3 {
+    color: #2fd883;
+  }
+  p {
+    line-height: 1.5rem;
+    color: #c0c0c0;
+  }
+  &__visual {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    button {
+      height: 70px;
+      width: 200px;
+      border: 1px solid #fff;
+      background-color: #191a4e;
+      color: #fff;
+      font-size: 1.1rem;
+      &:hover {
+        filter: brightness(140%);
+      }
+    }
+  }
+}
+
+.circle {
+  padding: 10px;
+  width: fit-content;
+  border-radius: 50%;
+  background-color: #00002d;
+  svg {
+    width: 80px;
+    height: 80px;
+    fill: #2fd883;
   }
 }
 
@@ -156,9 +250,11 @@
 .usage {
   padding: 50px;
   &__container {
-    border-radius: 25px;
+    border-radius: 15px;
     background-color: #191a4e;
     overflow: hidden;
+    //box-shadow: 2px 2px 10px #3535a0;
+    margin-bottom: 100px;
   }
   &__info {
     display: flex;
@@ -166,6 +262,7 @@
     justify-content: center;
     width: 100%;
     height: 400px;
+    margin-bottom: 100px;
   }
   &__info-container {
     border-radius: 25px;
@@ -177,5 +274,5 @@
 
 // #00002d 배경 1
 // #191a4e 배경 2
-// #2fd883 포인트 1
+// #2fd883 포인트 1  //38b979
 //
