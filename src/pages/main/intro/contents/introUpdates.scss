@@ -1,0 +1,27 @@
+.intropage-update {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 0;
+  h3 {
+    margin: 10px 0;
+    letter-spacing: 0.5rem;
+    color: #2fd883;
+  }
+  h1 {
+    margin: 10px 0;
+    letter-spacing: 0.5rem;
+    color: #fff;
+  }
+  &__usage {
+    display: flex;
+    padding: 50px 0;
+  }
+}
+
+.usage {
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  width: 650px;
+}

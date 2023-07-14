@@ -1,0 +1,54 @@
+.intropage-front {
+  position: relative;
+  display: flex;
+  justify-content: baseline;
+  height: 700px;
+  overflow: hidden;
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    color: #fff;
+    z-index: 10;
+    h1 {
+      font-size: 2.5rem;
+      margin: 10px 0;
+      letter-spacing: 0.5rem;
+    }
+    p {
+      color: #2fd883;
+      font-size: 1.5rem;
+      margin: 10px 0;
+      letter-spacing: 0.5rem;
+      width: max-content;
+    }
+    div {
+      button {
+        padding: 10px;
+        background-color: #2fd883;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin: 20px 50px 0 0;
+        width: 200px;
+        &:hover {
+          filter: brightness(90%);
+        }
+      }
+    }
+  }
+  &__img {
+    position: absolute;
+    right: 0;
+    top: -5%;
+    overflow: hidden;
+    opacity: 0.7;
+    /* img {
+        width: 1000px;
+        height: 600px;
+      } */
+  }
+}

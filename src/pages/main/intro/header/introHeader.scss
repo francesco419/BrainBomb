@@ -1,0 +1,45 @@
+.intropage-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    height: 80px;
+    width: 1500px;
+    align-items: center;
+    margin: 0 auto;
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  &__to {
+    display: flex;
+    button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-right: 60px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    button:last-child {
+      background-color: #2fd883;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+  }
+}

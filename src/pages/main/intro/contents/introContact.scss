@@ -1,0 +1,48 @@
+.intropage-contact {
+  padding: 50px 0 0;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #191a4e;
+  padding: 30px 0;
+  color: #c0c0c0;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #00002d;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+  &__word {
+    display: flex;
+    margin: 20px 0;
+    p {
+      margin-left: 50px;
+    }
+  }
+  &__svg {
+    display: flex;
+    margin: 20px 0;
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: #c0c0c0;
+      margin: 0 50px;
+    }
+  }
+  &__rights {
+    font-size: 0.7rem;
+    margin: 20px 0;
+  }
+}

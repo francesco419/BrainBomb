@@ -1,0 +1,43 @@
+.circle {
+  padding: 10px;
+  width: fit-content;
+  border-radius: 50%;
+  background-color: #00002d;
+  svg {
+    width: 80px;
+    height: 80px;
+    fill: #2fd883;
+  }
+}
+
+.howUse {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 450px;
+  height: 450px;
+  background-color: #191a4e;
+  padding: 20px;
+  word-break: keep-all;
+  box-sizing: border-box;
+  border-radius: 15px;
+  p {
+    color: #c0c0c0;
+    margin: 5px;
+    text-align: center;
+    line-height: 1.5rem;
+  }
+  &__circle {
+    padding: 10px;
+    width: fit-content;
+    border-radius: 50%;
+    background-color: #00002d;
+    svg {
+      width: 80px;
+      height: 80px;
+      fill: #2fd883;
+    }
+  }
+}

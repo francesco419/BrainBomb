@@ -1,0 +1,65 @@
+.intropage-use {
+  padding: 50px 0;
+  &__container {
+    letter-spacing: 0.5rem;
+    width: fit-content;
+    color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    h3 {
+      color: #2fd883;
+    }
+    p {
+      letter-spacing: normal;
+      color: #c0c0c0;
+    }
+  }
+  &__fwbox {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+  }
+  &__usage {
+    display: flex;
+    padding: 50px 0;
+  }
+  &__update {
+    padding: 50px 0;
+  }
+}
+
+.use2 {
+  position: relative;
+  padding: 50px;
+  border-radius: 15px;
+  border: 1px solid #2fd883;
+  width: fit-content;
+}
+
+.use1 {
+  color: #fff;
+  margin: 0 0 0 100px;
+  h3 {
+    color: #2fd883;
+  }
+  p {
+    line-height: 1.5rem;
+    color: #c0c0c0;
+  }
+  &__visual {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    button {
+      height: 70px;
+      width: 200px;
+      border: 1px solid #fff;
+      background-color: #191a4e;
+      color: #fff;
+      font-size: 1.1rem;
+      &:hover {
+        filter: brightness(140%);
+      }
+    }
+  }
+}
