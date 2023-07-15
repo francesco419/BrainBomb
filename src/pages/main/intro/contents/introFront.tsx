@@ -3,7 +3,7 @@ import './introFront.scss';
 
 export default function IntroFront() {
   return (
-    <div className='intropage-front'>
+    <div id='intro-front' className='intropage-front'>
       <div className='intropage-front__intro'>
         <h1>Feel free to use</h1>
         <h1 style={{ fontSize: '3.5rem' }}>BrainBomb MindMap</h1>
@@ -13,7 +13,7 @@ export default function IntroFront() {
         </p>
         <div>
           <button>How to use</button>
-          <button>List</button>
+          <button>Start MindMap</button>
         </div>
       </div>
       <div className='intropage-front__img'>

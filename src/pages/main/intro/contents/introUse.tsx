@@ -7,7 +7,7 @@ import HowUse from '../components/howUseBox';
 
 export default function IntroUse() {
   return (
-    <div className='intropage-use'>
+    <div id='intro-use' className='intropage-use'>
       <div className='intropage-use__container'>
         <h3>How to use</h3>
         <h1>How it Works</h1>

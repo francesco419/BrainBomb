@@ -5,7 +5,7 @@ import './introContact.scss';
 
 export default function IntroContact() {
   return (
-    <div className='intropage-contact'>
+    <div id='intro-contact' className='intropage-contact'>
       <div className='footer'>
         <div className='footer__icon'>
           <img src={mainIcon} />

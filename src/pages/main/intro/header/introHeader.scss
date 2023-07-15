@@ -1,8 +1,9 @@
 .intropage-header {
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 99;
+  transition: all 1s linear;
   &__container {
     display: flex;
     justify-content: space-between;

@@ -3,7 +3,7 @@ import './introCenter.scss';
 
 export default function IntroCenter() {
   return (
-    <div className='intropage-center'>
+    <div id='intro-center' className='intropage-center'>
       <div className='intropage-center__container'>
         <div>
           <img src={firstGIF} />

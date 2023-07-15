@@ -16,7 +16,7 @@ const pro = [
 
 export default function IntroTemp() {
   return (
-    <div className='intropage-temp'>
+    <div id='intro-temp' className='intropage-temp'>
       {_.map(pro, (o) => {
         return (
           <div className='intropage-temp__project'>
