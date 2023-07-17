@@ -46,13 +46,21 @@ export default function IntroHeader() {
   const toLocate = (id: string) => {
     const location = document.getElementById(id);
     if (id === 'contact') {
-      window.scrollTo(0, document.body.scrollHeight);
+      window.scrollTo({
+        left: 0,
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
       return;
     }
 
     if (location) {
       console.log(location.offsetTop);
-      window.scrollTo(0, location.offsetTop - 100);
+      window.scrollTo({
+        left: 0,
+        top: location.offsetTop - 100,
+        behavior: 'smooth'
+      });
     }
   };
 

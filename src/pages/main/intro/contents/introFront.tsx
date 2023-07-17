@@ -1,7 +1,14 @@
 import brain from '../../../../assets/image/brain.png';
 import './introFront.scss';
+import { useNavigate } from 'react-router-dom';
 
 export default function IntroFront() {
+  const nav = useNavigate();
+
+  const toNav = () => {
+    nav('/');
+  };
+
   return (
     <div id='intro-front' className='intropage-front'>
       <div className='intropage-front__intro'>
@@ -13,7 +20,7 @@ export default function IntroFront() {
         </p>
         <div>
           <button>How to use</button>
-          <button>Start MindMap</button>
+          <button onClick={toNav}>Start Mapping</button>
         </div>
       </div>
       <div className='intropage-front__img'>
@@ -22,3 +29,5 @@ export default function IntroFront() {
     </div>
   );
 }
+
+//, No Subscription

@@ -117,6 +117,40 @@ export default function ElementEdit({ data, shut }: ElementProp) {
 
   return (
     <div className='element-edit'>
+      {showBackground && (
+        <div
+          style={{
+            width: 'fit-content',
+            margin: '0 30px',
+            padding: '30px',
+            backgroundColor: '#000',
+            border: '5px solid #fff',
+            borderRadius: '25px'
+          }}
+        >
+          <SketchPicker
+            color={backgroundColor}
+            onChange={(color) => changeBackgroundColor(color)}
+          />
+        </div>
+      )}
+      {showBorder && (
+        <div
+          style={{
+            width: 'fit-content',
+            margin: '0 30px',
+            padding: '30px',
+            backgroundColor: '#000',
+            border: '5px solid #fff',
+            borderRadius: '25px'
+          }}
+        >
+          <SketchPicker
+            color={borderColor}
+            onChange={(color) => changeBorderColor(color)}
+          />
+        </div>
+      )}
       <ul className='element-edit__ul'>
         <li className='element-edit__size'>
           <div className='element-edit__size__temp'>
@@ -205,14 +239,6 @@ export default function ElementEdit({ data, shut }: ElementProp) {
               <Reset />
             </button>
           </div>
-          {showBorder && (
-            <div style={{ width: 'fit-content', margin: '20px auto' }}>
-              <SketchPicker
-                color={borderColor}
-                onChange={(color) => changeBorderColor(color)}
-              />
-            </div>
-          )}
           <div className='element-edit__border__container'>
             <p>- Radius :</p>
             <input
@@ -243,14 +269,6 @@ export default function ElementEdit({ data, shut }: ElementProp) {
             onClick={changeShowBackgroundColor}
           />
         </li>
-        {showBackground && (
-          <div style={{ width: 'fit-content', margin: '0 auto 30px' }}>
-            <SketchPicker
-              color={backgroundColor}
-              onChange={(color) => changeBackgroundColor(color)}
-            />
-          </div>
-        )}
         <li className='element-edit__flex'>
           <p>Apply All :</p>
           <input type='checkbox' id='applyAll' />

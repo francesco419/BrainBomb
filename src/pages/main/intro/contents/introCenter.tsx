@@ -9,7 +9,7 @@ export default function IntroCenter() {
           <img src={firstGIF} />
         </div>
         <div style={{ margin: ' 0 0 0 50px' }}>
-          <h2>Very easy to use just follow the infomation below</h2>
+          <h2>Very easy to use just follow the instruction below</h2>
           <p>
             rainBomb, your ultimate online tool for creating intuitive and
             visually captivating mind maps. Designed with simplicity in mind,

@@ -15,9 +15,9 @@ export default function Property() {
       style={{ display: page.value.MenuType ? 'flex' : 'block' }}
     >
       <Catergories element={<PropertyList />} propertyName='Element List' />
-      {/* <Catergories element={<PropertyInfo />} propertyName='Element Info' />
+      <Catergories element={<PropertyInfo />} propertyName='Element Info' />
       <Catergories element={<PropertyEdit />} propertyName='Page Theme' />
-      <MenuStyle /> */}
+      <MenuStyle />
     </div>
   );
 }
