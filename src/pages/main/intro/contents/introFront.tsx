@@ -6,7 +6,7 @@ export default function IntroFront() {
   const nav = useNavigate();
 
   const toNav = () => {
-    nav('/');
+    nav('/map');
   };
 
   return (

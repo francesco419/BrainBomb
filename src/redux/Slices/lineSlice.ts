@@ -5,9 +5,9 @@ import { LineState } from '../../functions/interface/interface';
 
 const initialState: LineState = {
   value: {
-    borderWidth: '1px',
-    borderStyle: 'dashed',
-    borderColor: '#000'
+    borderRightWidth: '4px',
+    borderStyle: 'dotted',
+    borderRightColor: '#fff'
   }
 };
 

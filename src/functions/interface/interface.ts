@@ -140,9 +140,9 @@ export interface ElementState {
 
 export interface LineState {
   value: {
-    borderWidth: string;
+    borderRightWidth: string;
     borderStyle: string;
-    borderColor: string;
+    borderRightColor: string;
   };
 } //lineSlice
 

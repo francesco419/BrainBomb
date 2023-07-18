@@ -40,7 +40,7 @@ export default function IntroHeader() {
   }, 300);
 
   const startMap = () => {
-    nav('/');
+    nav('/map');
   };
 
   const toLocate = (id: string) => {

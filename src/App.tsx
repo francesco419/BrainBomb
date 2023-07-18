@@ -8,10 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`${process.env.PUBLIC_URL}`} element={<Main />} />
-        <Route path='/plan' element={<Plan />} />
-        <Route path='/design' element={<DesignPage />} />
-        <Route path='/intro' element={<IntroPage />} />
+        <Route path={`${process.env.PUBLIC_URL}`} element={<IntroPage />} />
+        <Route path='/map' element={<Main />} />
       </Routes>
     </BrowserRouter>
   );

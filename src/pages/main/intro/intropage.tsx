@@ -14,11 +14,11 @@ export default function IntroPage() {
       <div className='intropage__contents'>
         <IntroFront />
         <IntroTemp />
-        <hr />
+        {/* <hr /> */}
         <IntroUse />
-        <hr />
+        {/* <hr /> */}
         <IntroCenter />
-        <hr />
+        {/* <hr /> */}
         <IntroUpdates />
         <hr />
         <IntroContact />

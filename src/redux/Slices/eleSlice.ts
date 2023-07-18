@@ -19,7 +19,7 @@ export let DEFAULT_STYLE: StyleProp = {
   borderStyle: 'solid',
   borderColor: '#fff',
   borderRadius: '50%',
-  backgroundColor: '#64b1b1'
+  backgroundColor: '#2fd883'
 };
 
 export interface ElementState {

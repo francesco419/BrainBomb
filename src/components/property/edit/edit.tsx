@@ -17,15 +17,15 @@ import { PageSizeType } from '../../../functions/interface/interface';
 export default function PropertyEdit() {
   const dispatch = useAppDispatch();
   const line = useAppSelector(selectLine);
-  const [color, setColor] = useState<string>(line.value.borderColor);
+  const [color, setColor] = useState<string>(line.value.borderRightColor);
   const [width, setWidth] = useState<string>('1');
   const [radio, setRadio] = useState<string>('solid');
 
   const changeState = () => {
     let temp = {
       value: {
-        borderColor: color,
-        borderWidth: width + 'px',
+        borderRightColor: color,
+        borderRightWidth: width + 'px',
         borderStyle: radio
       }
     };
