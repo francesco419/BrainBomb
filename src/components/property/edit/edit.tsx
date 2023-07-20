@@ -18,7 +18,7 @@ export default function PropertyEdit() {
   const dispatch = useAppDispatch();
   const line = useAppSelector(selectLine);
   const [color, setColor] = useState<string>(line.value.borderRightColor);
-  const [width, setWidth] = useState<string>('1');
+  const [width, setWidth] = useState<string>('4');
   const [radio, setRadio] = useState<string>('solid');
 
   const changeState = () => {
@@ -36,6 +36,7 @@ export default function PropertyEdit() {
   const onChangeStyle = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
       setRadio(e.target.value);
+      console.log(e.target.value);
     }
   };
 
@@ -45,7 +46,7 @@ export default function PropertyEdit() {
         <PageEdit />
         <hr />
         <li>
-          <p className='property-edit__category'>LINE : </p>
+          <p className='property-edit__category'>Line : </p>
           <ul className='property-edit__line'>
             <ColorPallet line={color} set={setColor} />
             <li>
@@ -165,10 +166,10 @@ function PageEdit() {
           />
           px
         </div>
-        <div className='property-edit__pageSet__box'>
+        {/* <div className='property-edit__pageSet__box'>
           <label>Location : &nbsp;</label>
           <p>{`${pageStyle.value.location.x} / ${pageStyle.value.location.y}`}</p>
-        </div>
+        </div> */}
         <div className='property-edit__pageSet__box'>
           <label>Background : </label>
           <button

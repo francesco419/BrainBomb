@@ -77,7 +77,14 @@ export default function MenuStyle() {
   };
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '300px',
+        margin: '0 0 0 1rem'
+      }}
+    >
       <div className='menuStyle'>
         <button onClick={menuStyleHandler}>{type ? <Hor /> : <Ver />}</button>
       </div>
@@ -95,24 +102,6 @@ export default function MenuStyle() {
         </label>
         <input type='file' id='fileUpload' onChange={fileOnChangeHandler} />
       </div>
-      <div className='menuStyle'>
-        <button
-          onClick={() => {
-            nav('/intro');
-          }}
-        >
-          intro
-        </button>
-      </div>
-      <div className='menuStyle'>
-        <button
-          onClick={() => {
-            nav('/design');
-          }}
-        >
-          design
-        </button>
-      </div>
-    </>
+    </div>
   );
 }

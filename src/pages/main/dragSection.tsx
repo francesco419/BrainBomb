@@ -67,10 +67,12 @@ export default function DragSection() {
     const fixedX =
       (window.innerWidth - pageStyle.value.width) * pageStyle.value.scale; // note1 : zx
 
-    if (_dragElement && !move) {
+    if (_dragElement && !move && location) {
       const y = _offsetY + event.clientY - _startY * pageStyle.value.scale;
       const x = _offsetX + event.clientX - _startX * pageStyle.value.scale;
+
       document.onmousemove = null;
+
       if (y > 0) {
         _dragElement.style.top = 0 + 'px';
         location['y'] = 0;
@@ -79,6 +81,7 @@ export default function DragSection() {
         _dragElement.style.left = 0 + 'px';
         location['x'] = 0;
       }
+
       //상단 범위 내부로 전체 엘리먼트가 들어올시 (0,0)으로 강제 이동.
       if (window.innerHeight < pageStyle.value.height * pageStyle.value.scale) {
         // 뷰포트가 마인드맵보다 작을 때
