@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import Main from './pages/main/main';
 import Plan from './pages/plan';
-import DesignPage from './pages/main/design/design';
 import IntroPage from './pages/main/intro/intropage';
 
 function App() {
