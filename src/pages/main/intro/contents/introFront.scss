@@ -25,18 +25,7 @@
     }
     div {
       button {
-        padding: 10px;
-        background-color: #2fd883;
-        border: none;
-        border-radius: 10px;
-        color: #fff;
-        font-weight: 700;
-        font-size: 1.2rem;
         margin: 20px 50px 0 0;
-        width: 200px;
-        &:hover {
-          filter: brightness(90%);
-        }
       }
     }
   }

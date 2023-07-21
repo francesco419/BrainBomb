@@ -38,7 +38,8 @@ export interface ButtonProps {
   disabled?: boolean;
   size: string;
   children: string;
-  act: any;
+  act: () => void;
+  style?: any;
 }
 
 export type sizeType = {
@@ -103,6 +104,7 @@ export interface StyleProp {
 export interface PropertyType {
   element: JSX.Element;
   propertyName: string;
+  button: boolean;
 } //property
 
 export interface pathType {

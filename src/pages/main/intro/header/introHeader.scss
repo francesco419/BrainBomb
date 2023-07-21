@@ -24,23 +24,16 @@
   }
   &__to {
     display: flex;
-    button {
-      background: none;
-      border: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-right: 60px;
-      padding: 10px;
-      cursor: pointer;
-    }
-    button:last-child {
-      background-color: #2fd883;
-      border: none;
-      border-radius: 10px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
+  }
+  &__to-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 60px;
+    padding: 10px;
+    width: 120px;
+    cursor: pointer;
   }
 }

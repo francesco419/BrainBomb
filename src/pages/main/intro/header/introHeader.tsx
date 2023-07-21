@@ -3,6 +3,8 @@ import mainIcon from '../../../../assets/image/icon.png';
 import './introHeader.scss';
 import _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
+import PointButton from '../../../../components/common/pointbutton';
+import { toLocate } from '../../../../functions/scrollTo';
 
 export default function IntroHeader() {
   const ref = useRef<HTMLDivElement>(null);
@@ -43,26 +45,28 @@ export default function IntroHeader() {
     nav('/map');
   };
 
-  const toLocate = (id: string) => {
-    const location = document.getElementById(id);
-    if (id === 'contact') {
-      window.scrollTo({
-        left: 0,
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-      });
-      return;
+  const headerList = [
+    {
+      children: 'How to use',
+      act: () => toLocate('intro-use')
+    },
+    {
+      children: 'Center',
+      act: () => toLocate('intro-use')
+    },
+    {
+      children: 'Updates',
+      act: () => toLocate('intro-use')
+    },
+    {
+      children: 'Contact',
+      act: () => toLocate('intro-use')
+    },
+    {
+      children: 'Start MindMap',
+      act: () => toLocate('intro-use')
     }
-
-    if (location) {
-      console.log(location.offsetTop);
-      window.scrollTo({
-        left: 0,
-        top: location.offsetTop - 100,
-        behavior: 'smooth'
-      });
-    }
-  };
+  ];
 
   return (
     <div ref={ref} className='intropage-header' id='intro-header'>
@@ -72,11 +76,31 @@ export default function IntroHeader() {
           <h2>BRAINBOMB</h2>
         </div>
         <div className='intropage-header__to'>
-          <button onClick={() => toLocate('intro-use')}>How to use</button>
-          <button onClick={() => toLocate('intro-center')}>Center</button>
-          <button onClick={() => toLocate('intro-update')}>Updates</button>
-          <button onClick={() => toLocate('contact')}>Contact</button>
-          <button onClick={startMap}>Start MindMap</button>
+          <button
+            className='intropage-header__to-button'
+            onClick={() => toLocate('intro-use')}
+          >
+            How to use
+          </button>
+          <button
+            className='intropage-header__to-button'
+            onClick={() => toLocate('intro-center')}
+          >
+            Center
+          </button>
+          <button
+            className='intropage-header__to-button'
+            onClick={() => toLocate('intro-update')}
+          >
+            Updates
+          </button>
+          <button
+            className='intropage-header__to-button'
+            onClick={() => toLocate('contact')}
+          >
+            Contact
+          </button>
+          <PointButton act={startMap} children='Start MindMap' size='md' />
         </div>
       </div>
     </div>

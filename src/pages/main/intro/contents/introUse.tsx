@@ -7,6 +7,7 @@ import { ReactComponent as Customize } from '../../../../assets/svg/use/customiz
 import './introUse.scss';
 import HowUse from '../components/howUseBox';
 import { useState } from 'react';
+import BorderButton from '../../../../components/common/borderbutton';
 
 export default function IntroUse() {
   const [switchGif, setSwitchGif] = useState<string>(firstGIF);
@@ -14,6 +15,21 @@ export default function IntroUse() {
   const switchGifImage = (gif: string) => {
     setSwitchGif((switchGif) => gif);
   };
+
+  const frontText = [
+    `BrainBomb, your ultimate online tool for creating intuitive and
+  visually captivating mind maps. Designed with simplicity in mind,
+  BrainBomb empowers you to effortlessly organize your thoughts,
+  brainstorm ideas, and unlock your creative potential. With its
+  user-friendly interface and powerful features, BrainBomb offers a
+  seamless and enjoyable mind mapping experience for users of all
+  backgrounds.`,
+    `Whether you're a student, professional, or anyone seeking a clear
+  and structured way to express your ideas, BrainBomb is here to
+  streamline your thought process and help you achieve greater clarity
+  and productivity. Explore the world of mind mapping like never
+  before and let your ideas flourish with BrainBomb!`
+  ];
 
   return (
     <div id='intro-use' className='intropage-use'>
@@ -53,30 +69,25 @@ export default function IntroUse() {
         <div className='use1'>
           <h3>Boost Your Productivity</h3>
           <h1>Simplify Your Thoughts, Unleash Your Creativity</h1>
-          <p>
-            BrainBomb, your ultimate online tool for creating intuitive and
-            visually captivating mind maps. Designed with simplicity in mind,
-            BrainBomb empowers you to effortlessly organize your thoughts,
-            brainstorm ideas, and unlock your creative potential. With its
-            user-friendly interface and powerful features, BrainBomb offers a
-            seamless and enjoyable mind mapping experience for users of all
-            backgrounds.
-          </p>
-          <p>
-            Whether you're a student, professional, or anyone seeking a clear
-            and structured way to express your ideas, BrainBomb is here to
-            streamline your thought process and help you achieve greater clarity
-            and productivity. Explore the world of mind mapping like never
-            before and let your ideas flourish with BrainBomb!
-          </p>
+          <p>{frontText[0]}</p>
+          <p>{frontText[1]}</p>
           <div className='use1__visual'>
-            <button onMouseOver={() => switchGifImage(firstGIF)}>Basic</button>
-            <button onMouseOver={() => switchGifImage(secondGIF)}>
-              Customize
-            </button>
-            <button onMouseOver={() => switchGifImage(ListGIF)}>
-              Organize
-            </button>
+            <BorderButton
+              act={() => switchGifImage(firstGIF)}
+              children='Basic'
+              size='lg'
+            />
+            <BorderButton
+              act={() => switchGifImage(secondGIF)}
+              children='Customize'
+              size='lg'
+            />
+
+            <BorderButton
+              act={() => switchGifImage(ListGIF)}
+              children='Organize'
+              size='lg'
+            />
           </div>
         </div>
       </div>
