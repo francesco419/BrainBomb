@@ -1,5 +1,6 @@
 .property-info {
   height: fit-content;
+  padding: 20px 15px;
   p {
     margin: 0;
   }
@@ -15,7 +16,6 @@
     }
   }
   &__inner {
-    padding: 16px 0 0;
     &::first-line {
       margin: 20 px 0;
     }

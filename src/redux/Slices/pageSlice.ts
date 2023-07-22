@@ -9,7 +9,7 @@ import {
 
 const initialState: PageType = {
   value: {
-    backgroundColor: '#191a4e',
+    backgroundColor: '#fff',
     MenuType: false,
     width: 3000,
     height: 2000,

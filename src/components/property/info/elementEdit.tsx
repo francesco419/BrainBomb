@@ -6,6 +6,7 @@ import { allStyleEle, styleEle } from '../../../redux/Slices/eleSlice';
 import { ColorResult, SketchPicker } from 'react-color';
 import { useDispatch } from 'react-redux';
 import { ElementProp, StyleProp } from '../../../functions/interface/interface';
+import BorderButton from '../../common/button/borderbutton';
 
 export default function ElementEdit({ data, shut }: ElementProp) {
   const [styles, setStyles] = useState<StyleProp>(data.style);
@@ -281,17 +282,17 @@ export default function ElementEdit({ data, shut }: ElementProp) {
           </div>
         </li>
         <li className='element-edit__out'>
-          <button
-            type='button'
-            onClick={() => {
+          <BorderButton
+            size='sm'
+            children='RESET'
+            act={() => {
               setStyles((styles) => data.style);
             }}
-          >
-            RESET
-          </button>
-          <button
-            type='button'
-            onClick={() => {
+          />
+          <BorderButton
+            size='sm'
+            children='SAVE'
+            act={() => {
               const doc = document.getElementById(
                 'applyAll'
               ) as HTMLInputElement | null;
@@ -302,12 +303,8 @@ export default function ElementEdit({ data, shut }: ElementProp) {
               }
               shut();
             }}
-          >
-            SAVE
-          </button>
-          <button type='button' onClick={shut}>
-            CANCEL
-          </button>
+          />
+          <BorderButton size='sm' children='CANCEL' act={shut} />
         </li>
       </ul>
       <div className='element-edit__preview'>

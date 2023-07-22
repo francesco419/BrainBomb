@@ -90,7 +90,7 @@ export default function PropertyInfo() {
         <div className='property-info__inner'>
           <ul className='property-info__ul'>
             <li>
-              <p>{`Id : ${element.id}`}</p>
+              <p style={{ maxWidth: '300px' }}>{`ID : ${element.id}`}</p>
             </li>
             <li className='property-info__name'>
               <p>Name :&nbsp;</p>

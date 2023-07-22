@@ -12,10 +12,9 @@
   background-color: #00000088;
 
   &__ul {
-    background-color: #000;
+    background-color: #00002d;
     padding: 30px;
-    border: 5px solid #fff;
-    border-radius: 25px;
+    border: 2px solid #fff;
 
     li {
       list-style: none;
@@ -28,9 +27,8 @@
     align-items: center;
     min-width: 300px;
     min-height: 300px;
-    background-color: #000;
-    border: 5px solid #fff;
-    border-radius: 25px;
+    background-color: #00002d;
+    border: 2px solid #fff;
     margin: 0 0 0 20px;
     padding: 20px;
     &__container {
@@ -117,18 +115,8 @@
 
   &__out {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     padding: 0;
-    button {
-      font-size: 1rem;
-      margin: 0 0 0 10px;
-      border: 1px solid #fff;
-      color: #fff;
-      &:hover {
-        background-color: #fff;
-        color: #000;
-      }
-    }
   }
 
   &__hidden {

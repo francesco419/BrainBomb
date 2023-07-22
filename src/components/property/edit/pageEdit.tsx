@@ -11,6 +11,7 @@ import * as htmlToImage from 'html-to-image';
 import download from 'downloadjs';
 import _ from 'lodash';
 import { PageSizeType } from '../../../functions/interface/interface';
+import BorderButton from '../../common/button/borderbutton';
 
 export default function PageEdit() {
   const dispatch = useAppDispatch();
@@ -88,6 +89,9 @@ export default function PageEdit() {
             title={pageStyle.value.backgroundColor}
           ></button>
         </div>
+        <div style={{ margin: '5px 0 0 15px' }}>
+          <BorderButton size='sm' children='Save Theme' act={onClickHandler} />
+        </div>
       </li>
       {back && (
         <li className='property-edit__picker'>
@@ -97,9 +101,7 @@ export default function PageEdit() {
           />
         </li>
       )}
-      <button className='property-edit__pageSet__save' onClick={onClickHandler}>
-        Save Theme
-      </button>
+      {/* <BorderButton className='property-edit__pageSet__save' onClick={onClickHandler}/> */}
     </>
   );
 }

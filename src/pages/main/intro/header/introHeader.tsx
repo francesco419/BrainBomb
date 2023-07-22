@@ -3,7 +3,7 @@ import mainIcon from '../../../../assets/image/icon.png';
 import './introHeader.scss';
 import _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
-import PointButton from '../../../../components/common/pointbutton';
+import PointButton from '../../../../components/common/button/pointbutton';
 import { toLocate } from '../../../../functions/scrollTo';
 
 export default function IntroHeader() {

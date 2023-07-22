@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ButtonProps, sizeType } from '../../functions/interface/interface';
+import { ButtonProps, sizeType } from '../../../functions/interface/interface';
 
 const SIZES: sizeType = {
   sm: css`

@@ -1,7 +1,6 @@
 import firstGIF from '../../../../assets/image/useGif/basicGif.gif';
 import './introCenter.scss';
-import BorderButton from '../../../../components/common/borderbutton';
-import PointButton from '../../../../components/common/pointbutton';
+import PointButton from '../../../../components/common/button/pointbutton';
 
 export default function IntroCenter() {
   const buttonStyle = { backgroundColor: '#191a4e', height: '70px' };
@@ -12,6 +11,7 @@ export default function IntroCenter() {
   user-friendly interface and powerful features, BrainBomb offers a
   seamless and enjoyable mind mapping experience for users of all
   backgrounds.`;
+
   return (
     <div id='intro-center' className='intropage-center'>
       <div className='intropage-center__container'>

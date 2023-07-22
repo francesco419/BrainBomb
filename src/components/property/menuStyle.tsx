@@ -13,8 +13,13 @@ import download from 'downloadjs';
 import { ElementObj, PageType } from '../../functions/interface/interface';
 import { selectEle, setElement } from '../../redux/Slices/eleSlice';
 import { pageEle, setPageSetting } from '../../redux/Slices/pageSlice';
+import _ from 'lodash';
 
-export default function MenuStyle() {
+type boolType = {
+  bool: boolean;
+};
+
+export default function MenuStyle({ bool }: boolType) {
   const dispatch = useAppDispatch();
   const element = useAppSelector(selectEle);
   const page = useAppSelector(pageEle);
@@ -76,32 +81,40 @@ export default function MenuStyle() {
     }
   };
 
+  const menu = [
+    <button onClick={bool ? menuStyleHandler : undefined} title='change view'>
+      {bool ? type ? <Hor /> : <Ver /> : <Ver />}
+    </button>,
+    <button onClick={downloadHandler} title='screenshot'>
+      {<Photo />}
+    </button>,
+    <button
+      onClick={() => saveHandler(element, page, 'brainbomb')}
+      title='Save MindMap'
+    >
+      {<Save />}
+    </button>,
+    <>
+      <label htmlFor='fileUpload' title='Load MindMap'>
+        <Upload />
+      </label>
+      <input type='file' id='fileUpload' onChange={fileOnChangeHandler} />
+    </>
+  ];
+
   return (
     <div
       style={{
         display: 'flex',
         justifyContent: 'space-between',
         width: '300px',
-        margin: '0 0 0 1rem'
+        margin: bool ? '0 0 0 20px' : '20px 0',
+        padding: bool ? '0px' : '0 15px'
       }}
     >
-      <div className='menuStyle'>
-        <button onClick={menuStyleHandler}>{type ? <Hor /> : <Ver />}</button>
-      </div>
-      <div className='menuStyle'>
-        <button onClick={downloadHandler}>{<Photo />}</button>
-      </div>
-      <div className='menuStyle'>
-        <button onClick={() => saveHandler(element, page, 'brainbomb')}>
-          {<Save />}
-        </button>
-      </div>
-      <div className='menuStyle'>
-        <label htmlFor='fileUpload'>
-          <Upload />
-        </label>
-        <input type='file' id='fileUpload' onChange={fileOnChangeHandler} />
-      </div>
+      {_.map(menu, (array) => {
+        return <div className={bool ? 'menuStyle' : 'menuStyle2'}>{array}</div>;
+      })}
     </div>
   );
 }

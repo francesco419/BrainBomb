@@ -5,6 +5,7 @@ import { selectLine, editLine } from '../../../redux/Slices/lineSlice';
 import { ColorPallet } from './pallet';
 import _ from 'lodash';
 import PageEdit from './pageEdit';
+import BorderButton from '../../common/button/borderbutton';
 
 export default function PropertyEdit() {
   const dispatch = useAppDispatch();
@@ -79,13 +80,18 @@ export default function PropertyEdit() {
               <label>Dashed</label>
             </li>
             <li>
-              <button
+              {/*               <button
                 type='button'
                 className='property-edit__save'
                 onClick={changeState}
               >
                 Save LineStyle
-              </button>
+              </button> */}
+              <BorderButton
+                size='sm'
+                children='Save LineStyle'
+                act={changeState}
+              />
             </li>
           </ul>
         </li>

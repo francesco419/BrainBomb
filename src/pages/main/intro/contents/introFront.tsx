@@ -1,7 +1,7 @@
 import brain from '../../../../assets/image/brain.png';
 import './introFront.scss';
 import { useNavigate } from 'react-router-dom';
-import PointButton from '../../../../components/common/pointbutton';
+import PointButton from '../../../../components/common/button/pointbutton';
 import { toLocate } from '../../../../functions/scrollTo';
 
 export default function IntroFront() {

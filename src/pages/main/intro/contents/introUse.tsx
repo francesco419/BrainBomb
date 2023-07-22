@@ -7,7 +7,7 @@ import { ReactComponent as Customize } from '../../../../assets/svg/use/customiz
 import './introUse.scss';
 import HowUse from '../components/howUseBox';
 import { useState } from 'react';
-import BorderButton from '../../../../components/common/borderbutton';
+import BorderButton from '../../../../components/common/button/borderbutton';
 
 export default function IntroUse() {
   const [switchGif, setSwitchGif] = useState<string>(firstGIF);

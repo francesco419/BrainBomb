@@ -107,6 +107,12 @@ export interface PropertyType {
   button: boolean;
 } //property
 
+export interface ChainState extends PropertyType {
+  handler: (num: number) => void;
+  state: number;
+  fixedNum: number;
+}
+
 export interface pathType {
   id: string;
   x: number;

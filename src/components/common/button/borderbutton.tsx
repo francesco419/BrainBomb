@@ -1,11 +1,11 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ButtonProps, sizeType } from '../../functions/interface/interface';
+import { ButtonProps, sizeType } from '../../../functions/interface/interface';
 
 const SIZES: sizeType = {
   sm: css`
-    height: 70px;
-    width: 200px;
-    font-size: 1.1rem;
+    height: 30px;
+    width: 100px;
+    font-size: 0.8rem;
   `,
   md: css`
     height: 70px;
@@ -31,7 +31,7 @@ export default function BorderButton({
     <StyleButton
       style={style}
       disabled={disabled}
-      onMouseOver={act}
+      onClick={act}
       sizeStyle={sizeStyle}
     >
       {children}
