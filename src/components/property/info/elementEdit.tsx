@@ -7,6 +7,11 @@ import { ColorResult, SketchPicker } from 'react-color';
 import { useDispatch } from 'react-redux';
 import { ElementProp, StyleProp } from '../../../functions/interface/interface';
 import BorderButton from '../../common/button/borderbutton';
+import Input from '../../common/input/common-Input';
+import Checkbox from '../../common/input/checkbox';
+import Radio from '../../common/input/radio';
+import SmallButton from '../../common/button/smallbutton';
+import Range from '../../common/input/range';
 
 export default function ElementEdit({ data, shut }: ElementProp) {
   const [styles, setStyles] = useState<StyleProp>(data.style);
@@ -156,13 +161,13 @@ export default function ElementEdit({ data, shut }: ElementProp) {
         <li className='element-edit__size'>
           <div className='element-edit__size__temp'>
             <p>Height : &nbsp;</p>
-            <input
-              className='element-edit_inputNum'
+            <Input
+              size='sm'
               type='number'
               onChange={(e) => inputHandler(e, 'width')}
             />
             <label>px</label>
-            <input
+            <Checkbox
               id='height-auto'
               type='checkbox'
               onChange={(e) => sizeAuto(e, 'height')}
@@ -171,13 +176,13 @@ export default function ElementEdit({ data, shut }: ElementProp) {
           </div>
           <div className='element-edit__size__temp'>
             <p>Width : &nbsp;</p>
-            <input
-              className='element-edit_inputNum'
+            <Input
+              size='sm'
               type='number'
               onChange={(e) => inputHandler(e, 'height')}
             />
             <label>px</label>
-            <input
+            <Checkbox
               id='width-auto'
               type='checkbox'
               onChange={(e) => sizeAuto(e, 'width')}
@@ -187,8 +192,8 @@ export default function ElementEdit({ data, shut }: ElementProp) {
         </li>
         <li className='element-edit__flex'>
           <p>FontSize : &nbsp;</p>
-          <input
-            className='element-edit_inputNum'
+          <Input
+            size='sm'
             type='number'
             onChange={(e) => inputHandler(e, 'font')}
           />
@@ -198,8 +203,8 @@ export default function ElementEdit({ data, shut }: ElementProp) {
           <p>Border : &nbsp;</p>
           <div className='element-edit__border__container'>
             <p>- Width :</p>
-            <input
-              className='element-edit_inputNum'
+            <Input
+              size='sm'
               type='number'
               onChange={(e) => inputHandler(e, 'bwidth')}
             />
@@ -207,21 +212,21 @@ export default function ElementEdit({ data, shut }: ElementProp) {
           </div>
           <div className='element-edit__border__container'>
             <p>- Style :</p>
-            <input
+            <Radio
               type='radio'
               name='style'
               value='solid'
               onChange={(e) => onChangeHandler(e)}
             />
             <label>Solid</label>
-            <input
+            <Radio
               type='radio'
               name='style'
               value='dotted'
               onChange={(e) => onChangeHandler(e)}
             />
             <label>Dotted</label>
-            <input
+            <Radio
               type='radio'
               name='style'
               value='dashed'
@@ -242,8 +247,7 @@ export default function ElementEdit({ data, shut }: ElementProp) {
           </div>
           <div className='element-edit__border__container'>
             <p>- Radius :</p>
-            <input
-              type='range'
+            <Range
               min='0'
               max='50'
               value={radius}
@@ -253,7 +257,7 @@ export default function ElementEdit({ data, shut }: ElementProp) {
               {radius}
               {radiusPX ? 'px' : '%'}
             </label>
-            <input
+            <Checkbox
               type='checkbox'
               onChange={() => setradiusPX((radiusPX) => !radiusPX)}
             />
@@ -272,7 +276,7 @@ export default function ElementEdit({ data, shut }: ElementProp) {
         </li>
         <li className='element-edit__flex'>
           <p>Apply All :</p>
-          <input type='checkbox' id='applyAll' />
+          <Checkbox id='applyAll' onChange={() => null} />
           <Warning />
           <div className='element-edit__hidden'>
             <p>

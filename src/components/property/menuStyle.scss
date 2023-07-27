@@ -1,20 +1,19 @@
+@import '../../style.scss';
+
 .menuStyle {
-  height: 60px;
-  width: 60px;
+  @include mx-size(0, 60px, 60px);
   padding: 10px 0;
   box-sizing: border-box;
-  border: 5px solid #2fd883;
+  border: 5px solid $first-point-color;
   border-radius: 20px;
-  background-color: #00002d;
-  color: white;
+  background-color: $base-background;
+  color: $purewhite;
   font-size: 1rem;
   //margin: 0 0 1rem 1rem;
-  float: right;
   button,
   label {
     display: block;
-    width: 30px;
-    height: 30px;
+    @include mx-size(0, 30px, 30px);
     border: 0;
     margin: 0 auto;
     padding: 0;
@@ -22,13 +21,12 @@
   svg {
     width: inherit;
     height: inherit;
-    fill: #fff;
+    fill: $purewhite;
     cursor: pointer;
   }
   input[type='file'] {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    @include mx-size(0, 1px, 1px);
     padding: 0;
     margin: -1px;
     overflow: hidden;
@@ -36,32 +34,26 @@
     border: 0;
   }
   &:hover {
-    background-color: #fff;
-    border-color: #424242;
+    background-color: $purewhite;
     svg {
-      fill: #424242;
+      fill: $pureblack;
     }
   }
 }
 
 .menuStyle2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
+  @include mx-flexbox();
+  @include mx-size(0, 50px, 50px);
   border-radius: 5px;
-  background-color: #00002d;
-  color: white;
+  background-color: $base-background;
+  color: $purewhite;
   font-size: 1rem;
-  border: 1px solid #fff;
+  border: 1px solid $purewhite;
   //margin: 0 0 1rem 1rem;
-  float: right;
   button,
   label {
     display: block;
-    width: 30px;
-    height: 30px;
+    @include mx-size(0, 30px, 30px);
     border: 0;
     margin: 0 auto;
     padding: 0;
@@ -69,13 +61,12 @@
   svg {
     width: inherit;
     height: inherit;
-    fill: #fff;
+    fill: $purewhite;
     cursor: pointer;
   }
   input[type='file'] {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    @include mx-size(0, 1px, 1px);
     padding: 0;
     margin: -1px;
     overflow: hidden;
@@ -83,10 +74,9 @@
     border: 0;
   }
   &:hover {
-    background-color: #fff;
-    border-color: #424242;
+    background-color: $purewhite;
     svg {
-      fill: #424242;
+      fill: $pureblack;
     }
   }
 }

@@ -1,3 +1,5 @@
+@import '../../../style.scss';
+
 .property-edit {
   padding: 20px 15px;
   &__page {
@@ -13,18 +15,17 @@
   }
   &__pageSet {
     &__box {
-      display: flex;
-      align-items: center;
+      @include mx-flexbox(start);
       padding: 5px 5px;
       margin: 5px 0 5px 10px;
       input {
-        text-align: center;
         width: 80px;
+        text-align: center;
         background: none;
         border: 0;
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid $purewhite;
         margin: 0 0 0 10px;
-        color: #fff;
+        color: $purewhite;
         &:focus {
           outline: none;
         }
@@ -35,43 +36,20 @@
         margin: 0;
       }
       button {
-        width: 1rem;
-        height: 1rem;
+        @include mx-size(0, 15px, 15px);
         border: none;
         margin-left: 10px;
       }
     }
-    &__save {
-      margin: 0 10px;
-      padding: 5px;
-      color: #fff;
-      border: 1px solid #fff;
-      &:hover {
-        background-color: #fff;
-        color: #000;
-      }
-    }
   }
   &__picker {
-    display: flex;
-    justify-content: center;
+    @include mx-flexbox(center, start);
   }
   &__line {
     margin: 20px 0 0;
     padding: 0 0 0 10px;
     li {
-      display: flex;
-      align-items: center;
-    }
-  }
-  &__save {
-    margin: 5px 10px 0 0;
-    padding: 5px;
-    color: #fff;
-    border: 1px solid #fff;
-    &:hover {
-      background-color: #fff;
-      color: #000;
+      @include mx-flexbox(start);
     }
   }
   input[type='radio'] {

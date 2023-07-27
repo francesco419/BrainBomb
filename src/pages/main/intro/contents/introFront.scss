@@ -1,13 +1,13 @@
+@import '../../../../style.scss';
+
 .intropage-front {
   position: relative;
   display: flex;
-  justify-content: baseline;
   height: 700px;
   overflow: hidden;
   &__intro {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
+    @include mx-flexbox(center, start);
     width: 50%;
     color: #fff;
     z-index: 10;
@@ -17,7 +17,7 @@
       letter-spacing: 0.5rem;
     }
     p {
-      color: #2fd883;
+      color: $first-point-color;
       font-size: 1.5rem;
       margin: 10px 0;
       letter-spacing: 0.5rem;
@@ -30,9 +30,7 @@
     }
   }
   &__img {
-    position: absolute;
-    right: 0;
-    top: -5%;
+    @include position-top-right(absolute, 0, -5%);
     overflow: hidden;
     opacity: 0.7;
     /* img {

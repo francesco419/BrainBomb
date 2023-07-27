@@ -3,9 +3,8 @@ import { ButtonProps, sizeType } from '../../../functions/interface/interface';
 
 const SIZES: sizeType = {
   sm: css`
-    height: 40px;
     font-size: 1.2rem;
-    width: 200px;
+    width: 50px;
   `,
   md: css`
     height: 50px;
@@ -19,32 +18,30 @@ const SIZES: sizeType = {
   `
 };
 
-type InputProps = {
-  style: any;
-  disabled: boolean;
-  type: string;
-  name: string;
-  value: string | number;
-  size: string;
-  onChange: () => void;
+type RadioProps = {
+  id?: string;
+  style?: any;
+  disabled?: boolean;
+  type?: string;
+  name?: string;
+  value?: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function Input({
+export default function Radio({
+  id,
   style,
   disabled = false,
-  type,
   name,
   value,
-  size,
   onChange
-}: InputProps) {
-  const sizeStyle = SIZES[size];
+}: RadioProps) {
   return (
     <StyleInput
+      id={id}
       style={style}
       disabled={disabled}
-      type={type}
-      sizeStyle={sizeStyle}
+      type='radio'
       onChange={onChange}
       name={name}
       value={value}
@@ -52,16 +49,14 @@ export default function Input({
   );
 }
 
-const StyleInput = styled.input<{ sizeStyle: any }>`
-  ${(p) => p.sizeStyle}
-  padding: 10px;
-  background-color: #2fd883;
-  border: none;
-  border-radius: 10px;
+const StyleInput = styled.input`
+  text-align: center;
+  background: none;
+  border: 0;
   color: #fff;
-  font-weight: 700;
+  border-bottom: 1px solid #fff;
 
-  &:hover {
-    filter: brightness(90%);
+  &:focus {
+    outline: none;
   }
 `;

@@ -1,42 +1,39 @@
+@import '../../style.scss';
+
 .property {
+  @include position-top-right(fixed, 10px, 10px);
   display: flex;
-  position: fixed;
-  top: 10px;
-  right: 10px;
   background: none;
   z-index: 99;
 }
 
 .property-prop {
-  width: 300px;
-  height: min-content;
+  @include mx-size(0, 300px, min-content);
   padding: 15px;
   box-sizing: border-box;
-  border: 5px solid #2fd883;
+  border: 5px solid $first-point-color;
   border-radius: 25px;
-  color: white;
+  color: $purewhite;
   font-size: 1rem;
   margin: 0 0 1rem 1rem;
-  background-color: #00002d;
+  background-color: $base-background;
   &__title {
-    display: flex;
-    justify-content: space-between;
-    color: #b3b3b3;
+    @include mx-flexbox(between, start);
+    color: $modern-gray;
     button {
       border: 0;
       background: none;
-      color: #b3b3b3;
+      color: $modern-gray;
       font-weight: 1000;
       svg {
-        width: 30px;
-        height: 30px;
-        fill: #fff;
+        @include mx-size(0, 30px, 30px);
+        fill: $purewhite;
       }
     }
     &:hover {
-      color: #fff;
+      color: $purewhite;
       button {
-        color: #fff;
+        color: $purewhite;
       }
     }
   }
@@ -46,64 +43,45 @@
 }
 
 .property-next {
-  display: flex;
-  position: fixed;
-  top: 0;
-  right: 0;
+  @include position-top-right(fixed);
+  @include mx-flexbox(between, normal);
+  flex-direction: column;
   height: 100%;
-  background-color: #00002d;
+  background-color: $base-background;
   z-index: 99;
   transition: all 1s;
   &_hide {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    height: 60px;
-    width: 0;
-    position: absolute;
-    top: 50%;
+    @include mx-flexbox(start);
+    @include mx-size(0, 0, 60px);
+    @include position-center-y();
     left: -15px;
-    transform: translateY(-50%);
     color: #fff;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-right: 15px solid #00002d;
+    border-right: 15px solid $base-background;
     z-index: 1;
     cursor: pointer;
   }
 }
 
-.p-button {
-  border: 0;
-  margin: 10px 0 0;
-  float: right;
-  svg {
-    height: 30px;
-    width: 30px;
-    fill: #fff;
-  }
-}
-
 .property-next-prop {
-  color: white;
+  color: $purewhite;
   font-size: 1rem;
   height: auto;
   min-height: 80px;
   margin-bottom: 20px;
-  background-color: #00002d;
+  background-color: $base-background;
   //border-bottom: 1px solid #fff;
   transition: max-height 2s;
   overflow-y: hidden;
   &__res {
-    display: flex;
-    align-items: center;
+    @include mx-flexbox(start);
     svg {
-      width: 30px;
-      height: 30px;
+      @include mx-size(0, 30px, 30px);
       margin-right: 20px;
     }
     &:hover {
-      color: #fff;
+      color: $purewhite;
       svg {
         filter: brightness(140%);
       }
@@ -111,9 +89,8 @@
     cursor: default;
   }
   &__title {
-    display: flex;
-    justify-content: space-between;
-    color: #b3b3b3;
+    @include mx-flexbox(between);
+    color: $modern-gray;
     padding: 30px 15px;
     p {
       font-size: 1.2rem;
@@ -121,12 +98,12 @@
     button {
       border: 0;
       background: none;
-      color: #b3b3b3;
+      color: $modern-gray;
       font-weight: 1000;
     }
     &:hover {
       button {
-        color: #fff;
+        color: $purewhite;
       }
     }
   }

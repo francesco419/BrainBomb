@@ -6,6 +6,9 @@ import { ColorPallet } from './pallet';
 import _ from 'lodash';
 import PageEdit from './pageEdit';
 import BorderButton from '../../common/button/borderbutton';
+import Input from '../../common/input/common-Input';
+import Range from '../../common/input/range';
+import Radio from '../../common/input/radio';
 
 export default function PropertyEdit() {
   const dispatch = useAppDispatch();
@@ -44,8 +47,7 @@ export default function PropertyEdit() {
             <ColorPallet line={color} set={setColor} />
             <li>
               <label>Width : </label>
-              <input
-                type='range'
+              <Range
                 min='1'
                 max='50'
                 value={width}
@@ -57,21 +59,21 @@ export default function PropertyEdit() {
             </li>
             <li>
               <label>Style : </label>
-              <input
+              <Radio
                 type='radio'
                 name='lineStyle'
                 value='solid'
                 onChange={(e) => onChangeStyle(e)}
               />
               <label>Solid</label>
-              <input
+              <Radio
                 type='radio'
                 name='lineStyle'
                 value='dotted'
                 onChange={(e) => onChangeStyle(e)}
               />
               <label>Dotted</label>
-              <input
+              <Radio
                 type='radio'
                 name='lineStyle'
                 value='dashed'

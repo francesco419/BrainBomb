@@ -1,22 +1,18 @@
+@import '../../../../style.scss';
+
 .intropage-temp {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  @include mx-flexbox(around);
+  @include mx-size(0, 100%, 100px);
   margin: 50px 0;
-  width: 100%;
-  height: 100px;
   padding: 20px 0;
   background-color: #191a4e;
   &__project {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include mx-flexbox();
     width: 300px;
     color: #c0c0c0;
     font-size: 2rem;
     img {
-      width: 80px;
-      height: 80px;
+      @include mx-size(0, 80px, 80px);
     }
     p {
       margin-left: 20px;

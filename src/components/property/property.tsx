@@ -21,51 +21,49 @@ export default function Property() {
   };
 
   return (
-    <div
-      className={sidestyle ? 'property' : 'property-next'}
-      style={{ display: page.value.MenuType ? 'flex' : 'block' }}
-      ref={ref}
-    >
-      {!sidestyle && (
-        <>
-          <div
-            style={{
-              color: '#fff',
-              padding: '30px 15px'
-            }}
-          >
-            <h2 style={{ color: '#fff', margin: '0', width: 'fit-content' }}>
-              BRAINBOMB
-            </h2>
-          </div>
-          <hr style={{ margin: '0' }} />
-        </>
-      )}
-      <Catergories
-        button={sidestyle}
-        element={<PropertyList />}
-        propertyName='Element List'
-        handler={listNumHandler}
-        state={listNum}
-        fixedNum={1}
-      />
-      <Catergories
-        button={sidestyle}
-        element={<PropertyInfo />}
-        propertyName='Element Info'
-        handler={listNumHandler}
-        state={listNum}
-        fixedNum={2}
-      />
-      <Catergories
-        button={sidestyle}
-        element={<PropertyEdit />}
-        propertyName='Page Theme'
-        handler={listNumHandler}
-        state={listNum}
-        fixedNum={3}
-      />
-      <hr />
+    <div className={sidestyle ? 'property' : 'property-next'} ref={ref}>
+      <div>
+        {!sidestyle && (
+          <>
+            <div
+              style={{
+                color: '#fff',
+                padding: '30px 15px'
+              }}
+            >
+              <h2 style={{ color: '#fff', margin: '0', width: 'fit-content' }}>
+                BRAINBOMB
+              </h2>
+            </div>
+            <hr style={{ margin: '0' }} />
+          </>
+        )}
+        <Catergories
+          button={sidestyle}
+          element={<PropertyList />}
+          propertyName='Element List'
+          handler={listNumHandler}
+          state={listNum}
+          fixedNum={1}
+        />
+        <Catergories
+          button={sidestyle}
+          element={<PropertyInfo />}
+          propertyName='Element Info'
+          handler={listNumHandler}
+          state={listNum}
+          fixedNum={2}
+        />
+        <Catergories
+          button={sidestyle}
+          element={<PropertyEdit />}
+          propertyName='Page Theme'
+          handler={listNumHandler}
+          state={listNum}
+          fixedNum={3}
+        />
+        <hr />
+      </div>
       <MenuStyle bool={sidestyle} />
       {/* <button
         className='p-button'

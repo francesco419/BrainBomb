@@ -4,13 +4,19 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { offAlarm, selectAlarm } from '../../redux/Slices/alarmSlice';
 import { StringType } from '../../functions/interface/interface';
 import { delAllEle } from '../../redux/Slices/eleSlice';
+import BorderButton from '../common/button/borderbutton';
 
 export interface AlarmType {
   text?: string;
   image?: string | undefined;
+  type: string;
 }
 
-export default function AlarmCenter({ text, image = undefined }: AlarmType) {
+export default function AlarmCenter({
+  type,
+  text,
+  image = undefined
+}: AlarmType) {
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectAlarm);
 
@@ -28,14 +34,20 @@ export default function AlarmCenter({ text, image = undefined }: AlarmType) {
       {image && <img />}
       <p>{text}</p>
       <div className='alarmCenter__buttonBox'>
-        <button onClick={deleteAll}>Yes</button>
-        <button
-          onClick={() => {
-            closeAlarm();
-          }}
-        >
-          No
-        </button>
+        {type === 'yesno' ? (
+          <>
+            <BorderButton children='Yes' size='sm' act={deleteAll} />
+            <BorderButton
+              children='No'
+              size='sm'
+              act={() => {
+                closeAlarm();
+              }}
+            />
+          </>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

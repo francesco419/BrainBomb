@@ -1,20 +1,16 @@
+@import '../../../style.scss';
+
 .element-edit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
+  @include mx-flexbox();
+  @include position-center(fixed);
+  @include mx-size(0, 100%, 100%);
   z-index: 99;
-  background-color: #00000088;
+  background-color: $transparent-80;
 
   &__ul {
-    background-color: #00002d;
+    background-color: $base-background;
     padding: 30px;
-    border: 2px solid #fff;
+    border: 2px solid $purewhite;
 
     li {
       list-style: none;
@@ -22,29 +18,22 @@
   }
 
   &__preview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 300px;
-    min-height: 300px;
-    background-color: #00002d;
-    border: 2px solid #fff;
+    @include mx-flexbox();
+    @include mx-size('min', 300px, 300px);
+    background-color: $base-background;
+    border: 2px solid $purewhite;
     margin: 0 0 0 20px;
     padding: 20px;
     &__container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include mx-flexbox();
       padding: 10px;
-      background-color: #9013fe;
     }
     p {
       width: fit-content;
     }
     &__button {
-      width: 15px;
-      height: 15px;
-      border: 1px solid #fff;
+      @include mx-size(0, 15px, 15px);
+      border: 1px solid $purewhite;
       background-color: none;
       margin: 0 0 0 10px;
     }
@@ -52,12 +41,10 @@
 
   &__flex {
     position: relative;
-    display: flex;
-    align-items: center;
+    @include mx-flexbox(start);
     padding-bottom: 30px;
     svg {
-      width: 15px;
-      height: 15px;
+      @include mx-size(0, 15px, 15px);
       &:hover + .element-edit__hidden {
         display: block;
       }
@@ -81,8 +68,8 @@
     width: 50px;
     background: none;
     border: none;
-    border-bottom: 1px solid #fff;
-    color: #fff;
+    border-bottom: 1px solid $purewhite;
+    color: $purewhite;
     text-align: center;
     &:focus {
       outline: none;
@@ -92,8 +79,7 @@
   &__border {
     padding-bottom: 30px;
     &__container {
-      display: flex;
-      align-items: center;
+      @include mx-flexbox(start);
       margin: 10px 0;
       padding: 0 0 0 20px;
       p {
@@ -106,34 +92,29 @@
         margin: 0 10px 0 0;
       }
       button {
-        width: 15px;
-        height: 15px;
+        @include mx-size(0, 15px, 15px);
         margin: 0 20px 0 0;
       }
     }
   }
 
   &__out {
-    display: flex;
-    justify-content: space-between;
+    @include mx-flexbox(between);
     padding: 0;
   }
 
   &__hidden {
+    @include position-top-right(absolute, 150px, 0);
     display: none;
-    position: absolute;
-    top: 0;
-    left: 150px;
     width: max-content;
-    background-color: #000;
-    border: 2px solid #fff;
+    background-color: $pureblack;
+    border: 2px solid $purewhite;
     padding: 5px;
     border-radius: 15px;
   }
 
   &__reset {
-    width: 20px;
-    height: 20px;
+    @include mx-size(0, 20px, 20px);
     svg {
       width: inherit;
       height: inherit;

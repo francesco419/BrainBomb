@@ -1,8 +1,9 @@
+@import '../../../style.scss';
+
 .property-pallet {
   &__colorButton {
-    width: 1rem;
+    @include mx-size(0, 15px, 15px);
     margin: 0 20px;
-    height: 1rem;
-    border: 1px solid #fff;
+    border: 1px solid $purewhite;
   }
 }

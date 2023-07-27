@@ -1,22 +1,23 @@
+@import '../../../../style.scss';
+
 .intropage-use {
   padding: 50px 0;
   &__container {
     letter-spacing: 0.5rem;
     width: fit-content;
-    color: #fff;
+    color: $purewhite;
     margin: 0 auto;
     text-align: center;
     h3 {
-      color: #2fd883;
+      color: $first-point-color;
     }
     p {
       letter-spacing: normal;
-      color: #c0c0c0;
+      color: $modern-gray;
     }
   }
   &__fwbox {
-    display: flex;
-    justify-content: space-between;
+    @include mx-flexbox(between, start);
     margin: 50px 0;
   }
   &__usage {
@@ -35,31 +36,28 @@
   border: 1px solid #2fd883;
   width: fit-content;
   img {
-    width: 544px;
-    height: 380px;
+    @include mx-size(0, 544px, 380px);
   }
 }
 
 .use1 {
-  color: #fff;
+  color: $purewhite;
   margin: 0 0 0 100px;
   h3 {
-    color: #2fd883;
+    color: $first-point-color;
   }
   p {
     line-height: 1.5rem;
-    color: #c0c0c0;
+    color: $modern-gray;
   }
   &__visual {
-    display: flex;
-    justify-content: space-between;
+    @include mx-flexbox(between, start);
     padding: 20px 0;
     button {
-      height: 70px;
-      width: 200px;
-      border: 1px solid #fff;
-      background-color: #191a4e;
-      color: #fff;
+      @include mx-size(0, 200px, 70px);
+      border: 1px solid $purewhite;
+      background-color: $sub-background;
+      color: $purewhite;
       font-size: 1.1rem;
       &:hover {
         filter: brightness(140%);

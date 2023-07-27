@@ -14,7 +14,7 @@ import {
 export let DEFAULT_STYLE: StyleProp = {
   width: 100,
   height: 100,
-  fontSize: 16,
+  fontSize: 12,
   borderWidth: 5,
   borderStyle: 'solid',
   borderColor: '#fff',

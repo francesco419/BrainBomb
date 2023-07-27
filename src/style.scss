@@ -1,3 +1,31 @@
+$radius: 30px;
+$wid: 100px;
+$full: 100%;
+$fontfamily: 'Pretendard-Regular';
+
+/*----color-----*/
+$purewhite: #fff;
+$pureblack: #000;
+$mid-black: #424242;
+$base-background: #00002d;
+$sub-background: #191a4e;
+$third-background: #3535a0;
+$first-point-color: #2fd883;
+$sub-point-color: #38b979;
+$modern-gray: #c0c0c0;
+$transparent-80: #00000080;
+$transparent-40: #00000040;
+
+:export {
+  .move {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: cyan;
+    transform: translateY(-10%);
+  }
+}
+
 /*------------function--------------------------------------------*/
 
 @function automargin() {
@@ -133,7 +161,7 @@ $flex-map: (
   }
 }
 @mixin position-center($type: absolute) {
-  @if ($type == fixed $type==absolute) {
+  @if ($type == fixed or $type==absolute) {
     position: $type;
     top: 50%;
     left: 50%;
@@ -145,6 +173,11 @@ $flex-map: (
     position: $type;
     top: 0;
   }
+}
+@mixin position-top-right($type, $x: 0, $y: 0) {
+  position: $type;
+  right: $x;
+  top: $y;
 }
 
 /*------------image--------------------------------------------*/
@@ -172,6 +205,16 @@ $flex-map: (
 }
 
 /*------------font--------------------------------------------*/
+
+/* 
+font-size
+0.7rem
+1.1rem
+1.2rem
+1.5rem
+2rem
+2.5rem
+*/
 
 $font-size-small: 11px;
 $line-height-small: 11px;

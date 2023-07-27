@@ -12,6 +12,7 @@ import download from 'downloadjs';
 import _ from 'lodash';
 import { PageSizeType } from '../../../functions/interface/interface';
 import BorderButton from '../../common/button/borderbutton';
+import Input from '../../common/input/common-Input';
 
 export default function PageEdit() {
   const dispatch = useAppDispatch();
@@ -61,7 +62,8 @@ export default function PageEdit() {
         <p>Page : </p>
         <div className='property-edit__pageSet__box'>
           <label>Width : </label>
-          <input
+          <Input
+            size='md'
             type='number'
             onChange={widthChangeHandler}
             placeholder={`${pageStyle.value.width}`}
@@ -70,7 +72,8 @@ export default function PageEdit() {
         </div>
         <div className='property-edit__pageSet__box'>
           <label>Height : </label>
-          <input
+          <Input
+            size='md'
             type='number'
             onChange={heightChangeHandler}
             placeholder={`${pageStyle.value.height}`}

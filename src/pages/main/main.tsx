@@ -17,7 +17,7 @@ export default function Main() {
         <Property />
       </section>
       <ZoomAlarm />
-      {alarm.isON ? <AlarmCenter text={alarm.text} /> : null}
+      {alarm.isON ? <AlarmCenter type='yesno' text={alarm.text} /> : null}
     </>
   );
 }

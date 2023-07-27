@@ -1,6 +1,8 @@
+@import '../../../style.scss';
+
 .property-list {
   overflow-y: scroll;
-  color: #b3b3b3;
+  color: $modern-gray;
   max-height: 350px;
   padding: 20px 15px;
   &__element {
@@ -8,7 +10,7 @@
     cursor: default;
     padding: 16px 0 0;
     &:hover {
-      color: #fff;
+      color: $purewhite;
     }
   }
 }
@@ -16,23 +18,23 @@
 .property-list::-webkit-scrollbar {
   //전체
   width: 10px;
-  background-color: #00000000;
+  background-color: transparent;
 }
 
 .property-list::-webkit-scrollbar-thumb {
   //범위 바
   width: 8px;
-  background-color: #b3b3b3;
+  background-color: $modern-gray;
 }
 
 .property-list::-webkit-scrollbar-track {
   //범위 제외 바
   width: 8px;
-  background-color: #00000000;
+  background-color: transparent;
 }
 
 .listHover {
   transform: translate(-50%, -50%) translateY(-2px) scale(1.2);
-  box-shadow: 0px 10px 20px 2px #00000040;
+  box-shadow: 0px 10px 20px 2px $transparent-40;
   filter: brightness(1.2);
 }

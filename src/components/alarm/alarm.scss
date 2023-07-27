@@ -1,14 +1,11 @@
 @import '../../style.scss';
 
 .alarm {
-  position: fixed;
-  bottom: -50px;
-  right: 0;
+  @include position-top-right(fixed, 0, -50px);
   @include mx-flexbox();
   text-align: center;
-  width: 100px;
-  height: 50px;
-  background-color: #f1a708;
+  @include mx-size(0, 100px, 50px);
+  background-color: $first-point-color;
   z-index: 99;
   animation: show 1s linear;
 }
@@ -26,33 +23,27 @@
 }
 
 .alarmCenter {
+  @include position-center();
   @include mx-flexbox();
+  @include mx-size(0, 500px, 200px);
   flex-direction: column;
-  width: 500px;
-  height: 200px;
-  background-color: #424242;
-  border: 5px solid #f3ac11;
+  background-color: $sub-background;
+  border: 5px solid $first-point-color;
   border-radius: 25px;
-  color: #fff;
+  color: $purewhite;
   font-weight: bold;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 99;
 
   &__buttonBox {
     margin: 20px 0;
     * {
-      width: 50px;
-      height: 30px;
+      @include mx-size(0, 50px, 30px);
       margin: 0 10px;
-      background-color: #fff;
+      background-color: $purewhite;
       border: none;
       border-radius: 10px;
       &:hover {
-        background-color: #f3ac11;
-        color: #fff;
+        background-color: $first-point-color;
       }
     }
   }

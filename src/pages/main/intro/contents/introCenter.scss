@@ -1,26 +1,26 @@
+@import '../../../../style.scss';
+
 .intropage-center {
   padding: 50px 0;
   &__container {
     display: flex;
     padding: 20px 40px;
     width: 100%;
-    //background-color: #2fd883;
-    background: linear-gradient(120deg, #168548, #2fd883);
+    background: linear-gradient(120deg, #168548, $first-point-color);
     border-radius: 25px;
     box-sizing: border-box;
     img {
       border-radius: 25px;
     }
     h2 {
-      color: #ffffff;
+      color: $purewhite;
     }
     p {
       line-height: 2rem;
-      color: #fff;
+      color: $purewhite;
     }
     progress {
-      width: 80%;
-      height: 30px;
+      @include mx-size(0, 80%, 30px);
       margin: 20px 0;
     }
     button {

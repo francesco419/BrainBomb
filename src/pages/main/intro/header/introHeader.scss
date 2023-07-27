@@ -1,3 +1,5 @@
+@import '../../../../style.scss';
+
 .intropage-header {
   position: sticky;
   top: 0;
@@ -5,21 +7,16 @@
   z-index: 99;
   transition: all 1s linear;
   &__container {
-    display: flex;
-    justify-content: space-between;
+    @include mx-flexbox(between);
+    @include mx-size(0, 1500px, 80px);
     padding: 10px 0;
-    height: 80px;
-    width: 1500px;
-    align-items: center;
     margin: 0 auto;
   }
   &__icon {
-    display: flex;
-    align-items: center;
+    @include mx-flexbox(start);
     color: #fff;
     img {
-      width: 60px;
-      height: 60px;
+      @include mx-size(0, 60px, 60px);
     }
   }
   &__to {
@@ -28,7 +25,7 @@
   &__to-button {
     background: none;
     border: none;
-    color: #fff;
+    color: $purewhite;
     font-weight: 700;
     font-size: 1.2rem;
     margin-right: 60px;

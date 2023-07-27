@@ -1,3 +1,5 @@
+@import '../../../style.scss';
+
 .property-info {
   height: fit-content;
   padding: 20px 15px;
@@ -9,8 +11,7 @@
     padding: 0;
     list-style: none;
     li {
-      display: flex;
-      align-items: center;
+      @include mx-flexbox(start);
       padding-bottom: 20px;
       list-style: none;
     }
@@ -27,8 +28,7 @@
     }
   }
   &__button {
-    width: 20px;
-    height: 20px;
+    @include mx-size(0, 20px, 20px);
     background: none;
     border: 0;
   }
@@ -41,14 +41,12 @@
     display: flex;
   }
   &__colorButton {
-    width: 1rem;
+    @include mx-size(0, 15px, 15px);
     margin: 0 20px;
-    height: 1rem;
-    border: 1px solid #fff;
+    border: 1px solid $purewhite;
   }
   &__svg {
-    width: 15px;
-    height: 15px;
+    @include mx-size(0, 15px, 15px);
     fill: none;
   }
 }
