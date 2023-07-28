@@ -99,7 +99,7 @@ export default function PropertyInfo() {
                   className='property-info__input'
                   onChange={(e) => onChangeHandler(e)}
                   onKeyPress={(e) => onKeyPressHandler(e)}
-                ></input>
+                />
               ) : (
                 <p>{obj.name}</p>
               )}
