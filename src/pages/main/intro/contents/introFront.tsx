@@ -35,7 +35,7 @@ export default function IntroFront() {
     <div id='intro-front' className='intropage-front'>
       <div className='intropage-front__intro'>
         <h1>Feel free to use</h1>
-        <h1 style={{ fontSize: '3.5rem' }}>BrainBomb MindMap</h1>
+        <h1 style={{ fontSize: '3.5rem' }}>MINDLAB</h1>
         <p className='intropage-front__intro'>No need to login or register</p>
         <p className='intropage-front__intro'>
           Simple and easy to make mindmap

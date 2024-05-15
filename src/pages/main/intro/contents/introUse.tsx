@@ -17,18 +17,18 @@ export default function IntroUse() {
   };
 
   const frontText = [
-    `BrainBomb, your ultimate online tool for creating intuitive and
+    `MINDLAB, your ultimate online tool for creating intuitive and
   visually captivating mind maps. Designed with simplicity in mind,
-  BrainBomb empowers you to effortlessly organize your thoughts,
+  MINDLAB empowers you to effortlessly organize your thoughts,
   brainstorm ideas, and unlock your creative potential. With its
-  user-friendly interface and powerful features, BrainBomb offers a
+  user-friendly interface and powerful features, MINDLAB offers a
   seamless and enjoyable mind mapping experience for users of all
   backgrounds.`,
     `Whether you're a student, professional, or anyone seeking a clear
-  and structured way to express your ideas, BrainBomb is here to
+  and structured way to express your ideas, MINDLAB is here to
   streamline your thought process and help you achieve greater clarity
   and productivity. Explore the world of mind mapping like never
-  before and let your ideas flourish with BrainBomb!`
+  before and let your ideas flourish with MINDLAB!`
   ];
 
   return (

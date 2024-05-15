@@ -73,7 +73,7 @@ export default function IntroHeader() {
       <div className='intropage-header__container'>
         <div className='intropage-header__icon'>
           <img src={mainIcon} />
-          <h2>BRAINBOMB</h2>
+          <h2>MINDLAB</h2>
         </div>
         <div className='intropage-header__to'>
           <button

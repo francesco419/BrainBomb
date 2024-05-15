@@ -4,11 +4,11 @@ import PointButton from '../../../../components/common/button/pointbutton';
 
 export default function IntroCenter() {
   const buttonStyle = { backgroundColor: '#191a4e', height: '70px' };
-  const text = `BrainBomb, your ultimate online tool for creating intuitive and
+  const text = `MINDLAB, your ultimate online tool for creating intuitive and
   visually captivating mind maps. Designed with simplicity in mind,
-  BrainBomb empowers you to effortlessly organize your thoughts,
+  MINDLAB empowers you to effortlessly organize your thoughts,
   brainstorm ideas, and unlock your creative potential. With its
-  user-friendly interface and powerful features, BrainBomb offers a
+  user-friendly interface and powerful features, MINDLAB offers a
   seamless and enjoyable mind mapping experience for users of all
   backgrounds.`;
 
